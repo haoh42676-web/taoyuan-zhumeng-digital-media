@@ -1,9 +1,47 @@
 'use strict';
 window.PeachAIAdmin=(()=>{
  let copyRequest=0,result=null,selectedProducts=[],dashboardData=null,example=false,charts=[],resizeObserver;
+ let chartLibraryPromise=null,mountVersion=0;
  const currency=n=>'¥'+Number(n||0).toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2});
  const labels={home:'首页',consumer:'消费者端',ip:'小桃满IP',trace:'批次事实',service:'收货售后',evidence:'事实中心',operator:'协作运营',content:'内容工作室',rural:'农文旅',competition:'赛事讲解',records:'我的记录',api:'接口'};
- function dispose(){charts.forEach(c=>c.dispose());charts=[];resizeObserver?.disconnect();}
+ function dispose(){mountVersion++;charts.forEach(c=>c.dispose());charts=[];resizeObserver?.disconnect();}
+ function chartLibrary(){
+   if(window.echarts)return Promise.resolve(window.echarts);
+   if(chartLibraryPromise)return chartLibraryPromise;
+   chartLibraryPromise=new Promise((resolve,reject)=>{
+     const script=document.createElement('script');
+     script.src='/assets/vendor/echarts.min.js';script.async=true;
+     script.dataset.chartLibrary='echarts';
+     let finished=false;
+     const finish=(error)=>{
+       if(finished)return;finished=true;clearTimeout(timer);script.onload=null;script.onerror=null;
+       if(error){script.remove();chartLibraryPromise=null;reject(error);}else resolve(window.echarts);
+     };
+     const timer=setTimeout(()=>finish(new Error('图表组件加载超时，请重新加载图表。')),20000);
+     script.onload=()=>finish(window.echarts?null:new Error('图表组件未能初始化，请重新加载图表。'));
+     script.onerror=()=>finish(new Error('图表组件暂未加载成功，请重新加载图表。'));
+     document.head.append(script);
+   });
+   return chartLibraryPromise;
+ }
+ function chartMessage(message,retry=false){
+   document.querySelectorAll('.ai-chart').forEach((el,index)=>{
+     el.innerHTML='<p class="muted" role="status">'+esc(message)+'</p>'+(retry&&index===0?button('重新加载图表','ai-dashboard-retry'): '');
+   });
+ }
+ function mount(){
+   if(state.route!=='ai-dashboard'||!dashboardData||!document.getElementById('ai-sales-chart'))return Promise.resolve();
+   if(window.echarts){draw();return Promise.resolve();}
+   const ticket=++mountVersion,routeTicket=generation;
+   chartMessage('图表组件正在加载，明细数据仍可查看。');
+   return chartLibrary().then(()=>{
+     if(ticket!==mountVersion||routeTicket!==generation||state.route!=='ai-dashboard'||!document.getElementById('ai-sales-chart'))return;
+     draw();
+   }).catch(error=>{
+     if(ticket!==mountVersion||routeTicket!==generation||state.route!=='ai-dashboard'||!document.getElementById('ai-sales-chart'))return;
+     chartMessage(error.message,true);
+   });
+ }
  function fillProduct(id){
    const p=selectedProducts.find(x=>x.id===id),f=document.querySelector('[data-form="ai-description"]');if(!p||!f)return;
    f.elements.weight.value=p.name.match(/\d+(?:[–—-]\d+)?斤/)?.[0]||'';
@@ -42,7 +80,7 @@ window.PeachAIAdmin=(()=>{
   const d=example?sample():dashboardData,css=getComputedStyle(document.documentElement),tone=n=>css.getPropertyValue(n).trim(),text=tone('--text-2'),weight=Number(css.getPropertyValue('--weight-400'));
   const base={animation:!matchMedia('(prefers-reduced-motion: reduce)').matches,animationDuration:450,color:[tone('--accent'),tone('--peach'),tone('--mint'),tone('--sun')],textStyle:{fontFamily:'Peach UI, Microsoft YaHei, sans-serif',fontSize:13,fontWeight:weight,color:text},aria:{enabled:true},tooltip:{trigger:'item',renderMode:'richText'},grid:{left:62,right:24,top:24,bottom:38}};
   const emptyGraphic={type:'text',left:'center',top:'middle',style:{text:location.pathname.startsWith('/demo/')?'暂无模拟记录\n可在隔离台账中继续演练':'暂无真实数据\n登记后自动显示',fontSize:16,lineHeight:28,fill:text,fontWeight:weight,textAlign:'center'}};
-  const plot=(id,option,empty)=>{const el=document.getElementById(id);if(!el||!window.echarts)return;const c=echarts.init(el,null,{renderer:'svg'});const axis=a=>a?{...a,axisLabel:{color:text,fontWeight:weight},nameTextStyle:{color:text,fontWeight:weight},axisLine:{show:false},axisTick:{show:false},splitLine:{lineStyle:{color:tone('--surface-3')}}}:a;c.setOption({...base,...option,xAxis:axis(option.xAxis),yAxis:axis(option.yAxis),legend:{...option.legend,textStyle:{color:text,fontWeight:weight}},tooltip:{...base.tooltip,...option.tooltip,backgroundColor:tone('--surface-3'),borderWidth:0,textStyle:{color:text,fontWeight:weight}},...(empty?{graphic:emptyGraphic}:{} )});charts.push(c);};
+  const plot=(id,option,empty)=>{const el=document.getElementById(id);if(!el||!window.echarts)return;el.innerHTML='';const c=echarts.init(el,null,{renderer:'svg'});const axis=a=>a?{...a,axisLabel:{color:text,fontWeight:weight},nameTextStyle:{color:text,fontWeight:weight},axisLine:{show:false},axisTick:{show:false},splitLine:{lineStyle:{color:tone('--surface-3')}}}:a;c.setOption({...base,...option,xAxis:axis(option.xAxis),yAxis:axis(option.yAxis),legend:{...option.legend,textStyle:{color:text,fontWeight:weight}},tooltip:{...base.tooltip,...option.tooltip,backgroundColor:tone('--surface-3'),borderWidth:0,textStyle:{color:text,fontWeight:weight}},...(empty?{graphic:emptyGraphic}:{} )});charts.push(c);};
   plot('ai-sales-chart',{tooltip:{trigger:'axis',renderMode:'richText'},xAxis:{type:'category',data:d.sales.daily.map(x=>x.date.slice(5)),boundaryGap:false},yAxis:{type:'value',name:'元',splitLine:{lineStyle:{color:'#e4ebe1'}}},series:d.sales.orders?[{name:'签收订单净收款',type:'line',smooth:.25,data:d.sales.daily.map(x=>x.netReceipts),symbolSize:7,areaStyle:{color:tone('--accent-soft')},lineStyle:{width:3}}]:[]},!d.sales.orders);
   const pie=(id,list)=>plot(id,{legend:{bottom:0,type:'scroll'},series:list.length?[{type:'pie',radius:['43%','68%'],center:['50%','44%'],label:{formatter:'{b}\n{d}%'},data:list}]:[]},!list.length);
   pie('ai-devices-chart',d.audience.devices);pie('ai-regions-chart',d.audience.regions);
@@ -61,7 +99,8 @@ window.PeachAIAdmin=(()=>{
    document.querySelector('#ai-copy-result').innerHTML=resultHTML();return true;
  }
  async function action(name,value,el){
-   if(name==='ai-dashboard-mode'){example=!example;document.querySelector('#main-content').innerHTML=dashboardHTML();draw();return true;}
+   if(name==='ai-dashboard-mode'){example=!example;document.querySelector('#main-content').innerHTML=dashboardHTML();await mount();return true;}
+   if(name==='ai-dashboard-retry'){await mount();return true;}
    if(name==='ai-copy-output'){if(!result)throw Error('请先生成文案');await navigator.clipboard.writeText(result.title+'\n'+result.body);el.dataset.copyPending='1';notice('文案已复制，发布前请核验。');return true;}
    if(name==='ai-save-draft'){
      if(!result)throw Error('字段已变化，请重新生成文案');
@@ -72,7 +111,7 @@ window.PeachAIAdmin=(()=>{
  document.addEventListener('input',e=>{if(e.target.closest('[data-form="ai-description"]'))invalidate();});
  document.addEventListener('change',e=>{if(e.target.matches('[data-form="ai-description"] [name="productId"]'))fillProduct(e.target.value);else if(e.target.closest('[data-form="ai-description"]'))invalidate();});
  window.addEventListener('hashchange',dispose);
- window.addEventListener('peach:themechange',()=>{if(state.route==='ai-dashboard')draw();});
- return {page,mount:draw,submit,action,dispose};
+ window.addEventListener('peach:themechange',()=>{if(state.route==='ai-dashboard')mount();});
+ return {page,mount,submit,action,dispose};
 })();
 
