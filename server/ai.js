@@ -9,6 +9,7 @@ import {requireCustomer,reserveChat} from './customer.js';
 import {customerAnswer,redact} from './llm.js';
 import {randomUUID} from 'node:crypto';
 import {selectProjectKnowledge} from './project-knowledge.js';
+import {digitalChatFacts,digitalChatReply} from './digital.js';
 export async function intelligenceConfig(db){return {...AI_DEFAULTS,...(await published(db,'ai_settings'))[0]};}
 async function takeModelBudget(db){const bucket='site:'+new Date().toISOString().slice(0,10),limit=Math.max(1,Math.min(1000,Number(process.env.AI_SITE_DAILY_LIMIT)||300));const row=(await db.query("INSERT INTO ai_usage(bucket,used,expires_at) VALUES($1,1,now()+interval '2 days') ON CONFLICT(bucket) DO UPDATE SET used=ai_usage.used+1 WHERE ai_usage.used<$2 RETURNING used",[bucket,limit])).rows;if(!row.length)fail(429,'今日模型预算已用完，改用公开事实答复');}
 const chatSchema=z.object({message:z.string().trim().min(1).max(500),productId:z.string().max(80).default(''),recordId:z.string().trim().max(100).default('')}).strict();
@@ -45,11 +46,11 @@ export function intelligenceRouter(db,send,limiter){
     const selected=selectProjectKnowledge(p.message),topicModules={research:['research_sets','survey_rows'],ip:['ip_profile','ip_series'],opc:['pages'],cooperation:['pages'],competition:['slides'],tour:['tours'],platform:['pages'],overview:['pages']};
     const modules=[...new Set(['products','faqs','batches',...selected.topics.flatMap(t=>topicModules[t]||[])])];
     const publicContent=Object.fromEntries(await Promise.all(modules.map(async m=>[m,await published(db,m)])));
-    const {products,faqs,batches}=publicContent;
+    const digital=await digitalChatFacts(db,req,p);publicContent.products=digital.products.map(v=>({...v,price:'¥'+v.price.toFixed(2),priceNote:v.realEnabled?'当前公开价格，提交后尚未付款':'示例价格，仅模拟下单',scene:/gift/.test(v.id)?'gift':'family',fields:[['规格',v.weight]],desc:v.description,sourceRef:'网站当前公开商品'}));publicContent.batches=digital.products.filter(v=>v.realEnabled).map(v=>({id:v.batchCode,productId:v.id,status:'verified',shippingRegions:v.regions,shippingWindow:v.dispatch,shippingFee:v.shippingFee,stock:v.stock,availableQuantity:v.availableStock}));const {products,faqs,batches}=publicContent;
     const origin=req.headers.origin;if(origin&&new URL(origin).host!==req.get('host'))fail(403,'客服仅允许站点直接调用');if(req.headers['sec-fetch-site']==='cross-site')fail(403,'不接受跨站客服调用');
     const release=await reserveChat(db,req);let result,attempts=0;
     try{
-      const base=answerQuestion({...p,products,faqs,batches,config,publicContent,logistics:await ownLogistics(db,req,p.recordId)});
+      const base=digitalChatReply(answerQuestion({...p,products,faqs,batches,config,publicContent,logistics:digital.logistics||await ownLogistics(db,req,p.recordId)}),digital);
       const onAttempt=async()=>{
         if(attempts>0)await takeModelBudget(db);
         attempts++;

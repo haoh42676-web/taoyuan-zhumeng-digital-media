@@ -3,85 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#eef2ee">
-  <meta name="description" content="数商桃乡：小桃满 IP、上坪鹰嘴蜜桃事实链与 AI+OPC 运营原型。">
-  <title>数商桃乡 · 小桃满工作台</title>
+  <meta name="theme-color" content="#f0f3ee">
+  <meta name="description" content="走进桃园日常，认识小桃满，了解桃乡的桃子。看清规格与履约信息，选桃下单，加入桃乡推广。">
+  <title>数商桃乡 · 让好桃被看见</title>
   <link rel="icon" href="assets/web/xiaotaoman.webp">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="interactions.css">
-  <link rel="stylesheet" href="ai-features.css">
-<link rel="stylesheet" href="ui-system.css"><link rel="stylesheet" href="account.css"><link rel="stylesheet" href="ip-experience.css"><script src="ui-system.js"></script></head>
+  <link rel="stylesheet" href="ui-system.css">
+  <link rel="stylesheet" href="digital.css">
+  <script src="runtime-config.js" defer></script>
+  <script src="ui-system.js" defer></script>
+  <script src="digital-api.js" defer></script>
+  <script src="digital.js" defer></script>
+</head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
-  <header class="topbar">
-    <a class="brand" href="#home" data-route="home" aria-label="返回项目总览">
-      <span class="brand-mark"><img src="assets/web/xiaotaoman.webp" alt="小桃满"></span>
-      <span><strong>数商桃乡</strong><small>小桃满 · 上坪鹰嘴蜜桃</small></span>
-    </a>
-    <div class="top-meta"><span class="live-dot"></span><span data-storage-hint>浏览器体验</span></div>
-    <button class="menu-button" type="button" aria-expanded="false" aria-controls="top-nav">目录 <span>＋</span></button>
-    <nav id="top-nav" class="top-nav" aria-label="主导航">
-      <a href="#home" data-route="home">总览</a>
-      <a href="#evidence" data-route="evidence">事实中心</a>
-      <a href="#consumer" data-route="consumer">消费者端</a>
-      <a href="#ip" data-route="ip">小桃满 IP</a>
-      <a href="#operator" data-route="operator">AI+OPC</a>
-      <a href="#records" data-route="records">我的记录 <span class="record-count" data-record-count hidden>0</span></a>
-      <button type="button" data-route="competition">赛事讲解 <span>↗</span></button>
-    </nav>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="数商桃乡首页"><img src="assets/ip-actions/welcome.webp" width="54" height="54" alt="小桃满"><span><strong>数商桃乡</strong><small>桃园里，有好故事</small></span></a>
+    <nav class="main-nav" aria-label="主导航"><a href="#home" data-nav="home">首页</a><a href="#stories" data-nav="stories">桃乡见闻</a><a href="#shop" data-nav="shop">买桃下单</a><a href="#join" data-nav="join">加入我们</a></nav>
+    <button class="account-button" type="button" data-action="account" aria-label="登录或管理我的账号"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg><span data-account-label>登录</span></button>
   </header>
-
-  <main id="app" tabindex="-1">
-    <section id="home-view" class="home-view" aria-labelledby="home-title">
-      <div class="home-hero content-width">
-        <div class="hero-copy">
-          <span class="eyebrow"><i></i>桃源筑梦团队 · 项目服务平台</span>
-          <h1 id="home-title">数商桃乡，<br><em>让好桃被看见</em></h1>
-          <p>看真实桃园，选合适规格，让小桃满陪你问清一箱桃。商品咨询、内容复核与售后回访，在这里连成一条完整的体验。</p>
-          <div class="hero-actions"><button class="button button-primary" type="button" data-route="consumer">选桃与售后 <span>↗</span></button><button class="button button-quiet" type="button" data-route="evidence">先看事实依据 <span>↘</span></button></div>
-          <div class="hero-note"><span class="status status-demo">DEMO</span><span>商品、批次、订单与效果数据均有明确状态标识</span></div>
-        </div>
-        <div class="hero-art" aria-label="小桃满与上坪真实素材">
-          <div class="hero-photo"><img src="assets/web/origin-walk.webp" alt="上坪桃园走访记录" fetchpriority="high" decoding="async"></div>
-          <div class="hero-ip"><img src="assets/ip-actions/welcome.webp" data-ip-art="welcome" alt="小桃满向你挥手，欢迎了解一箱桃"></div>
-          <div class="hero-caption"><b>小桃满</b><span>把复杂的桃园事实，翻译成消费者听得懂的选择。</span></div>
-        </div>
-      </div>
-      <div class="proof-strip"><div class="content-width proof-grid"><div><b>206</b><span>产业端受访者</span><small>159户自有果园 + 47名代管者</small></div><div><b>243</b><span>消费者有效样本</span><small>购买偏好与首购阻力</small></div><div><b>437</b><span>学生与 OPC 调查</span><small>其中351人在校</small></div><div><b>1 批桃</b><span>从采摘到回访</span><small>示例流程，非实际经营数据</small></div></div></div>
-      <div class="dashboard content-width" aria-label="二级功能入口">
-        <div class="dashboard-head"><div><span class="eyebrow"><i></i>从这里开始</span><h2>你想先做什么？</h2></div><p>选购、创作或了解项目，详细操作进入下一页。</p></div>
-        <div class="home-categories" role="group" aria-label="入口用途"><button type="button" data-home-group="buy" aria-pressed="true"><img src="assets/ip-actions/gift.webp" data-ip-art="gift" alt="" width="64" height="64"><span><b>选桃与售后</b><small>选规格 · 查批次 · 收货反馈</small></span></button><button type="button" data-home-group="create" aria-pressed="false"><img src="assets/ip-actions/guide.webp" data-ip-art="guide" alt="" width="64" height="64"><span><b>小桃满与创作</b><small>看IP · 写内容 · 人工复核</small></span></button><button type="button" data-home-group="learn" aria-pressed="false"><img src="assets/ip-actions/facts.webp" data-ip-art="facts" alt="" width="64" height="64"><span><b>项目与调研</b><small>看依据 · 明边界 · 讲项目</small></span></button></div>
-        <div class="entry-grid">
-          <button class="entry-card entry-card-wide" type="button" data-route="evidence"><span class="entry-number">01</span><span class="entry-icon">▦</span><b>事实中心</b><p>把问卷样本、题号、比例和可用结论放在同一张证据表里。</p><small>调查数据 · 来源映射 · 结论边界 <em>↗</em></small></button>
-          <button class="entry-card entry-card-feature" type="button" data-route="consumer"><span class="entry-number">02</span><span class="entry-icon">◒</span><b>消费者端</b><p>按家庭、礼赠、团购切换场景，比较规格、价格和履约条件。</p><small>场景推荐 · 商品详情 · 咨询承接 <em>↗</em></small></button>
-          <button class="entry-card" type="button" data-route="trace"><span class="entry-number">03</span><span class="entry-icon">⌁</span><b>批次事实链</b><p>看清每一步事实由谁确认、什么时候更新、什么还不能承诺。</p><small>批次字段 · 责任人 · 售后边界 <em>↗</em></small></button>
-          <button class="entry-card entry-card-ip" type="button" data-route="ip"><span class="entry-number">04</span><span class="entry-icon">✦</span><b>小桃满 IP</b><p>角色、语气、视觉资产、内容栏目和服务触点完整展开。</p><small>IP 手册 · 内容日历 · 触点组件 <em>↗</em></small></button>
-          <button class="entry-card" type="button" data-route="operator"><span class="entry-number">05</span><span class="entry-icon">⌘</span><b>AI+OPC 运营台</b><p>AI 负责整理和生成，OPC 负责事实核验、发布与回写。</p><small>任务状态 · 复核清单 · 反馈闭环 <em>↗</em></small></button>
-          <button class="entry-card" type="button" data-route="content"><span class="entry-number">06</span><span class="entry-icon">◫</span><b>内容传播矩阵</b><p>一份真实素材如何进入短视频、直播、详情页、礼盒和社群。</p><small>内容资产 · 渠道 · 衡量指标 <em>↗</em></small></button>
-          <button class="entry-card" type="button" data-route="rural"><span class="entry-number">07</span><span class="entry-icon">⌂</span><b>农文旅路线</b><p>从桃园观察到分拣体验，把 IP 变成线下导览和线上复购入口。</p><small>体验步骤 · 开放条件 · 承接方式 <em>↗</em></small></button>
-          <button class="entry-card" type="button" data-route="service"><span class="entry-number">08</span><span class="entry-icon">↺</span><b>收货与售后</b><p>购买前说清发货、保存、损耗和反馈，收货后继续回访。</p><small>FAQ · 二维码 · 回访字段 <em>↗</em></small></button>
-          <button class="entry-card entry-card-dark" type="button" data-route="competition"><span class="entry-number">09</span><span class="entry-icon">↗</span><b>赛事讲解模式</b><p>按“问题—证据—方案—推广”快速讲清项目价值和边界。</p><small>四类赛道 · 演示顺序 · 推广条件 <em>↗</em></small></button>
-        </div>
-      </div>
-      <div class="home-footer content-width"><span>真实事实 → 内容整理 → 人工核验 → 服务与回访</span><button class="back-link" type="button" data-route="api">功能与接口 ↗</button></div>
-    </section>
-    <section id="secondary-view" class="secondary-view is-hidden" aria-live="polite"></section>
-  </main>
-
-  <dialog id="app-modal" class="app-modal" aria-labelledby="modal-title"><div class="modal-box"><button class="modal-close" type="button" aria-label="关闭">×</button><div id="modal-content"></div></div></dialog>
-  <div id="toast" class="toast" role="status"></div>
-  <script src="runtime-config.js"></script>
-  <script src="account.js"></script>
-  <script src="source-data.js"></script>
-  <script src="project-data.js"></script>
-  <script src="api.js"></script>
-  <script src="remote-api.js"></script>
-  <script src="demo-data.js"></script>
-  <script src="front-cms.js"></script>
-  <script src="presentation-cms.js"></script>
-  <script src="app.js"></script>
-  <script src="analytics-client.js"></script>
-  <script type="module" src="ai-features.js"></script>
-  <script src="ip-experience.js" defer></script>
+  <main id="app" class="site-main" tabindex="-1" aria-live="polite" aria-busy="true"><div class="loading-state"><img src="assets/ip-actions/welcome.webp" width="120" height="120" alt=""><p>小桃满正在整理桃乡的故事…</p></div></main>
+  <footer class="site-footer"><a href="#home">数商桃乡</a><span>从一颗桃，到一份信任。</span><button type="button" data-action="shipping">配送与售后</button><button type="button" data-action="privacy">隐私说明</button></footer>
+  <button class="chat-launcher" type="button" data-action="chat" aria-haspopup="dialog"><img src="assets/ip-actions/service.webp" width="64" height="64" alt=""><span><strong>问小桃满</strong><small>选桃 · 订单 · 项目咨询</small></span></button>
+  <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="dialog-title"><div class="dialog-shell"><button class="icon-button dialog-close" type="button" data-action="close-dialog" aria-label="关闭窗口">×</button><div id="dialog-content"></div></div></dialog>
+  <dialog id="ai-chat" class="chat-dialog" aria-labelledby="chat-title" data-draggable-panel>
+    <header class="chat-heading" data-panel-handle><img src="assets/ip-actions/service.webp" width="62" height="62" alt="小桃满"><div><h2 id="chat-title">小桃满，听你说</h2><p>选桃、售后与桃乡项目咨询</p></div><button class="icon-button" type="button" data-action="close-chat" aria-label="关闭客服">×</button></header>
+    <p class="chat-notice">回答依据项目公开资料；订单以“我的订单”状态为准。请勿发送密码、验证码或完整收货信息。</p>
+    <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"><article class="message assistant"><b>小桃满</b><p>你好呀！我是小桃满。可以帮你了解桃子规格、配送售后、IP故事、调研与合作。与项目无关的问题，我会婉拒。</p></article></div>
+    <div class="chat-shortcuts"><button type="button" data-question="第一次买桃，怎么选规格？">怎么选桃</button><button type="button" data-question="收到桃子有破损怎么办？">收货售后</button><button type="button" data-question="小桃满和这个项目有什么关系？">认识项目</button></div>
+    <form id="chat-form"><label class="sr-only" for="chat-input">输入项目相关问题</label><textarea id="chat-input" name="message" rows="2" maxlength="500" required placeholder="问问桃子、订单，或桃乡项目…"></textarea><button class="button primary" type="submit">发送 <span aria-hidden="true">↗</span></button></form>
+    <p id="chat-status" class="form-hint" role="status"></p>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

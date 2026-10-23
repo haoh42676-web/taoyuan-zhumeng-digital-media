@@ -1,6 +1,6 @@
 # 数商桃乡 · 数字媒体赛独立副本
 
-此目录单独维护数字媒体赛项目。复制时保持原站页面与功能一致，后续内容按参赛要求独立修改。
+此目录单独维护数字媒体赛项目。前台以“能展示、能下单、能招人”为主线：**首页 / 桃乡见闻 / 买桃下单 / 加入我们**。原站在 `MVP` 目录独立维护。
 
 - GitHub： https://github.com/haoh42676-web/taoyuan-zhumeng-digital-media
 - Web Service： https://shushang-taoxiang-digital-media.onrender.com/
@@ -13,3 +13,5 @@
 运行：Node.js 22，`npm ci`，按 `.env.example` 设置仅本地或平台私有环境变量，再执行 `npm start`。部署使用 Render 免费 Web Service 与外部 Neon，不使用 Render PostgreSQL。
 
 `.data/`、`.env`、备份、数据库导出和平台密钥禁止发布到 GitHub。模型接口配置只在服务器读取。两个服务共用账号级免费额度；未配置定时保活。
+
+数字媒体版的流程、数据边界与管理入口见 [改造说明](docs/digital-media-mvp.md)。执行 `npm test` 验证服务端业务与权限；`tests/digital-browser.cjs` 仅面向指定的隔离本机验收服务，不能用于生产写入测试。
