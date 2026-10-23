@@ -1,6 +1,7 @@
 // Curated public knowledge only. Never import source_library or operating records here.
 // Customer facts remain separate from the private material intake and LLM credentials.
 const fact=(id,topic,text,source,status='reference')=>Object.freeze({id,topic,text,source,status});
+const hasOwn=(value,key)=>Object.prototype.hasOwnProperty.call(value,key);
 const V2C='问卷V2 · 01_消费者调研问卷.csv（现行问卷汇总）';
 const V2B='问卷V2 · 02_学生与OPC调研问卷.csv（现行问卷汇总）';
 const FARMER='附件04 · 上坪镇鹰嘴蜜桃产业农户调研数据';
@@ -47,33 +48,78 @@ const FACTS=Object.freeze([
   fact('platform-demo','platform','GitHub Pages静态备份的记录仅保存在当前浏览器，不能当成连通生产后台。演示账号与演示业务数据应隔离并标为模拟；真实经营看板不应由模拟销量填充。','项目静态备份与演示隔离说明','boundary'),
   fact('platform-ai','platform','智能辅助包括客服、商品文案、基于浏览或场景的可解释推荐、经营看板和资料分类草稿。规则或模板可独立运行；外部模型以当前服务状态为准。生成文案和资料归类都需人工核验，上传原件与私人档案不向客服公开。','ai-core.js；智能辅助与资料导入规范','boundary'),
   fact('platform-account','platform','客户登录与后台工作人员账号分开。客户会话和本人登记状态需按权限访问，客服不能提供后台密码、他人数据或数据库内容。速率、站点与账户限额减少滥用，不宣称绝对防代理。','server/customer.js；客服隐私与限额规范','boundary')
+  ,fact('sales-choosing','sales','选桃可以先说清用途、人数、口感偏好、预算和收货地区：第一次尝试先比较小份规格，家庭分享比较份量，送礼另核对包装与到货条件。口感、软硬和成熟度要看当批说明，不能只凭角色画面判断；页面没有写明的口感或糖度可请运营确认。','问卷V2 C14、C15、C16；项目选购服务流程','plan')
+  ,fact('ip-practice','ip','桃乡内容可以从一个具体场景开始：用真实桃园或分拣照片做主体，小桃满承担引导或说明，把“这是什么桃、适合谁、规格与服务怎么查”讲清楚。海报先突出一张实拍和一句主题；短视频可按产地开场、采摘分拣、规格说明、选购入口编排。文案、排版和脚本可以作为创作建议，发布前仍要核对商品事实与图片授权。','icanAIOPC §4.4、§4.6；真实素材与IP内容协作流程','plan')
+  ,fact('research-practice','research','开展项目调研可先明确想验证的问题，再分别设计消费者、学生与OPC、农户的提问。区分“购买意向”与“实际购买”、“不会操作”与“不愿学习”；汇总时保留题号、原始人数与有效分母，用访谈解释原因，不把口述经历相加成团队销量。学习或合作可以从整理一题数据、核对一段访谈、试做一份内容开始，再交给运营复核。','问卷V2；附件01、02、04、06；项目调研与青年培训流程','plan')
 ]);
 
 const TOPIC_RULES=[
   ['research',/问卷|调查|调研|样本|分母|访谈|证据|数据来源|多少(?:人|份)|C(?:14|15|16|17|20|25)|B07|Q(?:02|04|06|08|09|10|14)|243|437|206|351|91[.．]79|68[.．]6/i],
-  ['ip',/小桃满|\bIP\b|角色|插画|贴纸|草帽|文创|营销|内容创作|直播|脚本|桃林日记|说明卡|传播/i],
+  ['ip',/小桃满|\bIP\b|角色|插画|贴纸|草帽|文创|营销|内容创作|内容设计|海报|封面|排版|配色|短视频|文案|宣传标题|宣传单|直播|脚本|桃林日记|说明卡|乡村传播|乡村品牌|乡村故事|传播/i],
   ['opc',/\bOPC\b|学生|青年|培训|工时|验收|任务|返工|运营(?:者|协作|闭环|决策)|复盘|实验|对照/i],
   ['cooperation',/合作|加入|参与|接洽|对接|签约|加盟|农户|桃农|责任|分工|联系项目/i],
   ['competition',/赛事|赛项|比赛|竞赛|参赛|答辩|评委|获奖|奖项|讲解|新文科|ican|攀登/i],
   ['tour',/农文旅|旅游|桃乡游|导览|一日|采摘体验|接待|预约|路线|名额/i],
   ['trace',/溯源|批次|核验|产地|发货地|认证|检测|区块链|追溯|核验码/i],
   ['delivery',/物流|配送|运费|包邮|邮费|到货|发货|快递|单号|订单|查单|到哪|运输|冷链|48小时/i],
-  ['aftercare',/售后|坏桃|坏了|挤压|破损|退款|退货|赔付|赔偿|签收|保存|保鲜|食用|投诉/i],
-  ['sales',/商品|产品|价格|多少钱|贵|元|规格|斤|礼盒|团购|尝鲜|家庭装|选购|下单|买桃|购买|库存|桃子|蜜桃|鹰嘴桃|鹰嘴蜜桃/i],
-  ['platform',/平台|网站|页面|前端|后台|前台|账号|登录|注册|接口|技术|数据库|框架|部署|隐私|脱敏|演示|静态|模型|客服|智能|AI|Render|Neon|GitHub|API/i],
-  ['overview',/数商桃乡|桃源筑梦|项目|口号|上坪|连平|河源|桃乡/i]
+  ['aftercare',/售后|坏桃|坏了|挤压|破损|退款|退货|赔付|赔偿|签收|保存|保鲜|食用|存放|放多久|放多长时间|怎么放|投诉/i],
+  ['sales',/商品|产品|价格|多少钱|贵|元|规格|斤|礼盒|礼赠装|团购|尝鲜|家庭装|选购|下单|买桃|购买|库存|桃子|蜜桃|鹰嘴桃|鹰嘴蜜桃|怎么选|选哪|送礼|脆口|软桃|硬桃|甜不甜|好吃吗|软一点|偏软|硬一点|偏硬|(?:送|给)(?:爸妈|父母|长辈)|卖什么|卖啥|怎么买/i],
+  ['platform',/平台|网站|网页|页面|前端|后台|前台|账号|登录|注册|接口|技术|数据库|框架|部署|隐私|脱敏|数据安全|提示词|密钥|(?:客户|用户)(?:电话|地址|资料|名单|数据)|演示|静态|模型|客服|智能|AI|Render|Neon|GitHub|API/i],
+  ['overview',/数商桃乡|桃源筑梦|项目|口号|上坪|连平|河源|桃乡|你们(?:是)?(?:做什么|干什么|做啥|干啥)/i]
 ];
 const FOLLOWUP=/^(?:请)?(?:继续|再详细(?:一点|一些)?|详细(?:一点|一些)?|具体(?:一点|一些)?|展开(?:说说)?|讲清楚(?:一些)?|为什么(?:这样做)?|有什么依据|怎么参与|如何参与|然后呢|还有呢|什么意思|这个呢|能举例吗|举个例子|介绍一下)[？?。！!\s]*$/;
 const EXTRACTION=/(?:忽略|绕过|覆盖|撤销).{0,20}(?:规则|指令|限制|提示|系统)|(?:输出|显示|泄露|读取|导出|给我|告诉我|查询|获取|发我).{0,24}(?:系统提示词|system\s*prompt|管理员密码|账号密码|API[_ -]?KEY|密钥|令牌|数据库连接串|DATABASE_URL|其他人|所有客户|个人明细|原始问卷)|(?:系统提示词|管理员密码|数据库连接串|DATABASE_URL).{0,12}(?:是什么|多少|给我)|(?:ignore|override|bypass).{0,24}(?:instructions|rules|system)|(?:reveal|print|show|give).{0,24}(?:system\s*prompt|api[_ -]?key|password|secret|token)|越狱|sql注入|反向代理.{0,10}(?:绕过|盗用)/i;
-const UNRELATED=/天气预报|彩票开奖|比特币|股票推荐|基金推荐|诊断(?:疾病|癌症)|治疗方案|处方药|代写.{0,12}(?:论文|作业)|(?:写|生成|执行|运行).{0,15}(?:python|shell|powershell|恶意代码|病毒|爬虫)|(?:解|计算).{0,12}(?:方程|积分|微分)|政治观点|赌博|色情|(?:IP地址|子网掩码).{0,15}(?:计算|怎么|是什么)|(?:计算|算一下|求解).{0,12}\d+\s*[+*/=]/i;
-function questionInfo(message){
-  const q=typeof message==='string'?message.normalize('NFKC').trim().slice(0,2000):'';
-  if(!q||EXTRACTION.test(q)||UNRELATED.test(q))return{q,topics:[],followup:false};
-  const followup=q.length<=36&&FOLLOWUP.test(q);
-  const topics=TOPIC_RULES.filter(([,r])=>r.test(q)).map(([t])=>t);
-  return{q,topics:followup&&!topics.length?['overview','opc']:topics,followup};
+const UNRELATED=/天气预报|彩票开奖|比特币|股票推荐|基金推荐|推荐.{0,5}(?:股票|基金)|(?:推荐|选购|比较).{0,8}(?:手机|电脑|汽车)|^(?:(?:这|那)(?:台|部|款))?(?:手机|电脑|汽车)(?:多少钱|什么价格|价格是多少|哪个好|怎么选)[？?。\s]*$|诊断(?:疾病|癌症)|治疗方案|处方药|代写.{0,12}(?:论文|作业)|(?:写|生成|执行|运行).{0,15}(?:python|shell|powershell|恶意代码|病毒|爬虫)|(?:解|计算).{0,12}(?:方程|积分|微分)|政治观点|赌博|色情|(?:IP地址|子网掩码).{0,15}(?:计算|怎么|是什么)|(?:计算|算一下|求解).{0,12}\d+\s*[+*/=]|^\s*\d+\s*[+*/=]\s*\d+/i;
+const TOPICS=new Set(TOPIC_RULES.map(([t])=>t));
+const SOCIAL_GREETING=/^(?:嗨|哈[喽啰罗]|你好(?:呀|啊)?|您好|早上好|早安|下午好|晚上好|在吗|在不在|有人吗|(?:你好|您好|嗨|哈喽)[，,\s]*小桃满|小桃满[，, ]*(?:在吗|你好)?|hello|hi|hey)[!！。?？~～\s]*$/i;
+const SOCIAL_THANKS=/^(?:谢谢(?:你|啦|呀|啊)?|感谢(?:你)?|多谢|谢啦|辛苦了|thanks|thank you)[!！。?？~～\s]*$/i;
+const ACKNOWLEDGMENT=/^(?:好(?:的|呀|啊|嘞)?|嗯(?:嗯)?|哦(?:哦)?|明白(?:了)?|知道了|收到|行|可以|ok|好的谢谢)[!！。?？~～\s]*$/i;
+const VAGUE=/^(?:那|这(?:个|款|种|些)?|那(?:个|款|种|些)?|它|他们|你们|你(?:能|会|可以)|这里|这边|我想|想|帮我|能不能|可以|怎么|如何|为什么|还有|要是|如果|有没有|能|有啥|有什么|哪个|啥意思|不太懂|没懂|说说|介绍|继续|再|展开|详细|具体|举例|推荐|挑)/;
+const PROJECT_ANCHOR=/数商桃乡|桃源筑梦|桃乡|小桃满|桃子|蜜桃|桃园|桃农|农户|果园|乡村|调研|问卷|访谈|消费者|\bOPC\b|本项目|这个项目|项目介绍|项目怎么|介绍项目/i;
+const TOPIC_QUERY={sales:'桃子选购与规格',delivery:'桃子配送与发货',aftercare:'桃子保存与售后',trace:'桃子产地与批次',ip:'小桃满IP内容设计与乡村传播',research:'项目问卷与调研',opc:'青年培训与协作任务',cooperation:'项目合作与加入',competition:'项目赛事讲解',tour:'桃乡体验与导览',platform:'项目平台使用',overview:'数商桃乡项目介绍'};
+function privacyRequest(q){
+ if(/(?:忽略|绕过|覆盖|撤销).{0,20}(?:规则|指令|限制|提示|系统)|(?:ignore|override|bypass).{0,24}(?:instructions|rules|system)|越狱|sql注入/i.test(q))return true;
+ const valueRequest=/(?:数据库连接(?:串|字符串)|后台密码|管理员密码|API[_ -]?KEY|密钥|令牌).{0,16}(?:发给我|发我|给我|列出|显示)|(?:所有|全部|其他|别的)(?:客户|用户|订单).{0,18}(?:收货人|收件人|姓名|电话|地址|个人明细).{0,12}(?:列出|导出|发给我|给我|告诉我)/i;
+ const extra=/(?:给我|告诉我|发我|导出|读取|查一下|查询).{0,15}(?:后台密码|管理员账号|他人订单|别人的|(?:其他|别的|所有)?客户(?:的)?(?:名单|电话|地址|资料))|(?:后台密码|后台密钥|API[_ -]?KEY|系统提示词).{0,10}(?:是什么|多少|给我|发我|看看)/i;
+ return q.split(/[，,。；;\n]+/).some(clause=>{
+  if(!EXTRACTION.test(clause)&&!extra.test(clause)&&!valueRequest.test(clause))return false;
+  const protective=/(?:如何|怎么|怎样|措施|机制|是否|能否).{0,14}(?:保护|避免|防止|防范)|(?:保护|避免|防止|防范).{0,14}(?:泄露|盗取|安全)/.test(clause);
+  const direct=/(?:给我|输出|读取|导出|查询|获取|发我).{0,18}(?:密钥|API[_ -]?KEY|密码|令牌|客户电话|系统提示词)|(?:密钥|密码|令牌|系统提示词).{0,8}(?:给我|发给我|发我|是什么|看看)|(?:然后|再|同时|并).{0,6}(?:给我|输出|读取|发给我)/i.test(clause);
+  return!protective||direct;
+ });
 }
-export function isProjectQuestion(message){return questionInfo(message).topics.length>0;}
+export function classifyProjectMessage(message,{context}={}){
+  const q=typeof message==='string'?message.normalize('NFKC').trim().slice(0,2000):'',prior=Array.isArray(context?.topics)?context.topics.filter(t=>TOPICS.has(t)).slice(0,3):[];
+  const safeQuery=value=>clean(value,1200).replace(/\b(?:TX|ASK)-[a-zA-Z0-9_-]{8,}\b/g,'[本人记录编号]');
+  const finish=(kind,topics=[],extra={})=>({q,kind,scope:['unrelated','privacy'].includes(kind)?'unrelated':'project',topics,followup:false,mixed:false,query:safeQuery(extra.query??q),...extra,...(extra.query!==undefined?{query:safeQuery(extra.query)}:{})});
+  if(!q)return finish('unrelated');
+  if(privacyRequest(q))return finish('privacy');
+  if(SOCIAL_GREETING.test(q))return finish('greeting',prior);
+  if(SOCIAL_THANKS.test(q))return finish('thanks',prior);
+  if(ACKNOWLEDGMENT.test(q))return finish('acknowledgment',prior);
+  const clauses=q.split(/[。！？!?；;\n]+|[，,]?\s*(?:顺便|另外|再帮我|同时再|同时也)\s*/).map(x=>x.trim()).filter(Boolean),mixed=UNRELATED.test(q);
+  const relevant=clauses.filter(c=>!UNRELATED.test(c)&&TOPIC_RULES.some(([,r])=>r.test(c))),projectQ=relevant.join('；');
+  if(mixed&&!projectQ&&!PROJECT_ANCHOR.test(q))return finish('unrelated');
+  const query=mixed?(projectQ||q.replace(UNRELATED,'')):q;
+  let topics=TOPIC_RULES.filter(([,r])=>r.test(query)).map(([t])=>t);
+  const storageFollowup=prior.includes('aftercare')&&/^(?:那|这)?(?:是|现在|目前|还是|已经|有点|比较)?(?:偏?硬|偏?软|变软|未熟|没熟|还没熟|熟透|熟)[的了呢。！？?\s]*$/.test(q);
+  if(storageFollowup)topics=['aftercare'];
+  const followup=q.length<=80&&(FOLLOWUP.test(q)||VAGUE.test(q)||storageFollowup);
+  if(!topics.length&&prior.length&&followup)topics=prior;
+  if(!topics.length){if(FOLLOWUP.test(q)||q.length<=50&&VAGUE.test(q))return finish('clarify',[],{followup:true,mixed,query});return finish('unrelated');}
+  const inherited=followup&&prior.length&&(!TOPIC_RULES.some(([,r])=>r.test(query))||storageFollowup);
+  return finish('project',topics,{followup:!!followup,mixed,query:inherited?TOPIC_QUERY[topics[0]]+'：'+query:query});
+}
+export function isProjectQuestion(message,options){return classifyProjectMessage(message,options).scope==='project';}
+
+// Resolve against the current public catalog only; an ambiguous size never selects a product.
+export function resolveProductMention(message,products=[]){
+ const q=String(message||'').normalize('NFKC').toLowerCase(),catalog=products.filter(p=>p&&typeof p.id==='string'&&typeof p.name==='string'&&p.name.trim());
+ const escape=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+ const named=catalog.filter(p=>{const name=p.name.normalize('NFKC').toLowerCase(),aliases=name.match(/(?:尝鲜|家庭|礼赠|礼盒|团购)(?:装|盒)?/g)||[];return q.includes(name)||new RegExp('(?:^|[^a-z0-9_-])'+escape(p.id.toLowerCase())+'(?:$|[^a-z0-9_-])').test(q)||aliases.some(a=>q.includes(a));});
+ const matches=named.length?named:catalog.filter(p=>typeof p.weight==='string'&&p.weight&&new RegExp('(?:^|[^0-9.])'+escape(p.weight.normalize('NFKC').toLowerCase())).test(q));
+ return{matched:matches.length>0,product:matches.length===1?matches[0]:undefined};
+}
 
 const BOUNDARIES=Object.freeze([
   '只使用已发布且允许公开的项目事实；不读取原始档案、个人明细、客户记录、会话令牌或服务端密钥。',
@@ -124,11 +170,11 @@ function safeValue(v){
   if(Array.isArray(v))return v.slice(0,12).map(x=>Array.isArray(x)?x.slice(0,2).map(t=>clean(t,220)).filter(Boolean):clean(x,220)).filter(x=>Array.isArray(x)?x.length===2:!!x);
 }
 function publicRows(publicContent,module){
-  if(!publicContent||typeof publicContent!=='object'||Array.isArray(publicContent)||!Object.hasOwn(publicContent,module)||!Array.isArray(publicContent[module]))return[];
+  if(!publicContent||typeof publicContent!=='object'||Array.isArray(publicContent)||!hasOwn(publicContent,module)||!Array.isArray(publicContent[module]))return[];
   return publicContent[module].slice(0,module==='survey_rows'?700:50).flatMap(row=>{
-    if(!row||typeof row!=='object'||Array.isArray(row)||Object.hasOwn(row,'draft')||Object.hasOwn(row,'published')||row.visibility==='private'||row.status==='draft'||row.status==='archived'||row.public===false)return[];
+    if(!row||typeof row!=='object'||Array.isArray(row)||hasOwn(row,'draft')||hasOwn(row,'published')||row.visibility==='private'||row.status==='draft'||row.status==='archived'||row.public===false)return[];
     const id=clean(row.id,80);if(!id||!/^[a-zA-Z0-9][a-zA-Z0-9_-]*$/.test(id))return[];
-    const data={id};for(const k of PUBLIC_FIELDS[module])if(Object.hasOwn(row,k)){const v=safeValue(row[k]);if(v!==undefined&&v!=='')data[k]=v;}
+    const data={id};for(const k of PUBLIC_FIELDS[module])if(hasOwn(row,k)){const v=safeValue(row[k]);if(v!==undefined&&v!=='')data[k]=v;}
     return[data];
   });
 }
@@ -136,9 +182,9 @@ const label={title:'标题',intro:'介绍',body:'内容',notice:'状态说明',n
 function line(row,excluded=[]){return Object.entries(row).filter(([k])=>!['id','sourceRef','source',...excluded].includes(k)).map(([k,v])=>(label[k]||k)+'：'+(Array.isArray(v)?v.map(x=>Array.isArray(x)?x.join('—'):x).join('；'):v===null?'待确认':typeof v==='boolean'?(v?'是':'否'):v)).join('；').slice(0,2200);}
 const SURVEYS=Object.freeze({consumer:{name:'消费者',n:243,prefix:'C',source:V2C},opc:{name:'学生与OPC',n:437,prefix:'B',source:V2B},farmer:{name:'产业端',n:206,prefix:'Q',source:FARMER}});
 function researchContext(publicContent){
-  const sets=new Map(publicRows(publicContent,'research_sets').filter(r=>Object.hasOwn(SURVEYS,r.id)&&r.name&&r.source&&Number.isInteger(r.n)&&r.n>0).map(r=>[r.id,r]));
+  const sets=new Map(publicRows(publicContent,'research_sets').filter(r=>hasOwn(SURVEYS,r.id)&&r.name&&r.source&&Number.isInteger(r.n)&&r.n>0).map(r=>[r.id,r]));
   const rows=publicRows(publicContent,'survey_rows').filter(r=>{
-    const def=Object.hasOwn(SURVEYS,r.dataset)?SURVEYS[r.dataset]:null;
+    const def=hasOwn(SURVEYS,r.dataset)?SURVEYS[r.dataset]:null;
     return def&&new RegExp('^'+def.prefix+'\\d{2}$').test(r.question||'')&&r.option&&r.label&&Number.isInteger(r.count)&&Number.isInteger(r.denominator)&&r.denominator>0&&r.denominator<=(sets.get(r.dataset)?.n??def.n)&&r.count>=0&&r.count<=r.denominator;
   });
   const questions=new Map();for(const r of rows){const key=r.dataset+':'+r.question;if(!questions.has(key))questions.set(key,[]);questions.get(key).push(r);}
@@ -254,7 +300,7 @@ const ANSWER_HINTS={
   'delivery-limit':/运费|包邮|发货|到货|48小时|配送/,
   'delivery-tracking':/物流|单号|轨迹|查快递|查询/,
   'aftercare-process':/坏桃|破损|退款|售后|赔付|投诉/,
-  'aftercare-storage':/保存|保鲜|食用|温度/,
+  'aftercare-storage':/保存|保鲜|食用|温度|存放|放多久|放多长时间|怎么放/,
   'trace-four':/步骤|流程|哪些记录|责任人/,
   'trace-limit':/核验|证明|认证|区块链|真伪/,
   'ip-character':/角色|是谁|定位|性格|形象|草帽/,
@@ -273,7 +319,10 @@ const ANSWER_HINTS={
   'platform-tech':/框架|技术|连接|技术栈|部署|数据库|接口/,
   'platform-demo':/静态|演示|模拟|GitHub/,
   'platform-ai':/AI|智能|模型|客服|生成|推荐/i,
-  'platform-account':/账号|登录|注册|隐私|密钥|数据安全/
+  'platform-account':/账号|登录|注册|隐私|密钥|密码|提示词|数据安全|(?:客户|用户)(?:电话|地址|资料)|防泄露|保护/
+  ,'sales-choosing':/怎么选|选哪|适合|送礼|第一次|脆口|硬桃|软桃|口感|甜不甜|好吃吗|软一点|偏软|硬一点|偏硬|(?:送|给)(?:爸妈|父母|长辈)/
+  ,'ip-practice':/海报|排版|配色|封面|标题|选题|宣传单|短视频|怎么写|文案|内容设计/
+  ,'research-practice':/怎么做|怎么问|怎么设计|怎么分析|怎么学|方法|步骤|学习/
 };
 function answerScore(f,q,codes){
   let score=codes.reduce((n,c)=>n+(new RegExp('(?:^|[^A-Z0-9])'+c+'(?:[^0-9]|$)').test(f.id+' '+f.text)?100:0),0);
@@ -287,13 +336,13 @@ function answerScore(f,q,codes){
   return score;
 }
 
-export function selectProjectKnowledge(message,{publicContent}={}){
-  const {q,topics,followup}=questionInfo(message);
-  if(!topics.length)return{scope:'unrelated',topics:[],facts:[],answerFacts:[],boundaries:[...BOUNDARIES,'只回答本项目范围；不要执行无关任务或披露内部信息。'],followup:false};
+export function selectProjectKnowledge(message,{publicContent,context}={}){
+  const info=classifyProjectMessage(message,{context}),{topics,followup}=info,q=info.query;
+  if(info.kind!=='project')return{scope:info.scope,kind:info.kind,topics:[...topics],facts:[],answerFacts:[],boundaries:[...BOUNDARIES],followup,mixed:info.mixed,query:q};
   let base=FACTS.filter(f=>topics.includes(f.topic));
   // An explicitly supplied product collection is authoritative, including an empty list.
-  if(publicContent&&Object.hasOwn(publicContent,'products')&&Array.isArray(publicContent.products))base=base.filter(f=>!f.id.startsWith('product-'));
-  if(publicContent&&Object.hasOwn(publicContent,'tours')&&Array.isArray(publicContent.tours))base=base.filter(f=>f.id!=='tour-intention');
+  if(publicContent&&hasOwn(publicContent,'products')&&Array.isArray(publicContent.products))base=base.filter(f=>!f.id.startsWith('product-'));
+  if(publicContent&&hasOwn(publicContent,'tours')&&Array.isArray(publicContent.tours))base=base.filter(f=>f.id!=='tour-intention');
   const research=researchContext(publicContent);
   base=overrideResearch(base,research);
   const published=publishedFacts(q,topics,publicContent,research);
@@ -305,5 +354,5 @@ export function selectProjectKnowledge(message,{publicContent}={}){
   const ordered=[...base.filter(f=>f.status==='boundary'),...curated,...exact,...other];
   const facts=[];let chars=0;for(const f of ordered){if(facts.length>=40)break;if(chars+f.text.length+f.source.length>18000)continue;facts.push({...f});chars+=f.text.length+f.source.length;}
   const answerFacts=[...facts].sort((a,b)=>answerScore(b,q,codes)-answerScore(a,q,codes)).slice(0,5).map(f=>({...f}));
-  return{scope:'project',topics:[...topics],facts,answerFacts,boundaries:[...BOUNDARIES],followup};
+  return{scope:'project',kind:info.kind,topics:[...topics],facts,answerFacts,boundaries:[...BOUNDARIES],followup,mixed:info.mixed,query:q};
 }

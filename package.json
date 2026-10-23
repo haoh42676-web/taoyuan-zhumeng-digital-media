@@ -15,7 +15,7 @@
     "admin:reset": "node --env-file-if-exists=.env server/cli.js admin-reset",
     "backup": "node --env-file-if-exists=.env server/cli.js backup",
     "restore": "node --env-file-if-exists=.env server/cli.js restore",
-    "test": "node --test --test-concurrency=1 tests/backend.test.js tests/operating.test.js tests/edge-cases.test.js tests/frontend-state.test.js tests/public-state.test.js tests/cms-account.test.js tests/source-library.test.js tests/ai.test.js tests/customer.test.js tests/materials.test.js server/llm.test.js tests/demo.test.js tests/knowledge.test.js tests/reliability.test.js tests/ai-dashboard.test.js tests/digital.test.js"
+    "test": "node --test --test-concurrency=1 tests/backend.test.js tests/operating.test.js tests/edge-cases.test.js tests/frontend-state.test.js tests/public-state.test.js tests/cms-account.test.js tests/source-library.test.js tests/ai.test.js tests/customer.test.js tests/materials.test.js server/llm.test.js tests/demo.test.js tests/knowledge.test.js tests/reliability.test.js tests/ai-dashboard.test.js tests/digital.test.js tests/chat-conversation.test.js tests/review-chat-boundary.test.js tests/review-mobile-compat.test.js"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.3.14",

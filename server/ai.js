@@ -10,6 +10,7 @@ import {customerAnswer,redact} from './llm.js';
 import {randomUUID} from 'node:crypto';
 import {selectProjectKnowledge} from './project-knowledge.js';
 import {digitalChatFacts,digitalChatReply} from './digital.js';
+import {createConversationMemory,conversationPlan,conversationalReply,naturalProjectReply,resolveProductMention} from './chat-conversation.js';
 export async function intelligenceConfig(db){return {...AI_DEFAULTS,...(await published(db,'ai_settings'))[0]};}
 async function takeModelBudget(db){const bucket='site:'+new Date().toISOString().slice(0,10),limit=Math.max(1,Math.min(1000,Number(process.env.AI_SITE_DAILY_LIMIT)||300));const row=(await db.query("INSERT INTO ai_usage(bucket,used,expires_at) VALUES($1,1,now()+interval '2 days') ON CONFLICT(bucket) DO UPDATE SET used=ai_usage.used+1 WHERE ai_usage.used<$2 RETURNING used",[bucket,limit])).rows;if(!row.length)fail(429,'今日模型预算已用完，改用公开事实答复');}
 const chatSchema=z.object({message:z.string().trim().min(1).max(500),productId:z.string().max(80).default(''),recordId:z.string().trim().max(100).default('')}).strict();
@@ -40,24 +41,30 @@ export async function intelligenceDashboard(db,query){
   });
 }
 export function intelligenceRouter(db,send,limiter){
-  const r=Router();
+  const r=Router(),conversation=createConversationMemory();
   r.post('/ai/chat',requireCustomer,limiter(12,60000),async(req,res)=>{
     const p=chatSchema.parse(req.body),config=await intelligenceConfig(db);if(!config.chatEnabled)fail(403,'智能客服暂时暂停，请使用商品咨询或售后表单');
-    const selected=selectProjectKnowledge(p.message),topicModules={research:['research_sets','survey_rows'],ip:['ip_profile','ip_series'],opc:['pages'],cooperation:['pages'],competition:['slides'],tour:['tours'],platform:['pages'],overview:['pages']};
+    const origin=req.headers.origin;if(origin&&new URL(origin).host!==req.get('host'))fail(403,'客服仅允许站点直接调用');if(req.headers['sec-fetch-site']==='cross-site')fail(403,'不接受跨站客服调用');
+    const context=conversation.get(req),plan=conversationPlan(p,context),local=conversationalReply(plan);
+    const saveConversation=async result=>{conversation.remember(req,plan,result);if(!req.customer.demo&&!req.demoMode)await db.query('INSERT INTO customer_chats(id,account_id,question,answer,provider) VALUES($1,$2,$3,$4,$5)',[randomUUID(),req.customer.id,plan.kind==='privacy'?'已拦截的私密信息请求':redact(p.message),result.answer,result.provider]);await db.query("DELETE FROM customer_chats WHERE created_at<now()-interval '7 days'");send(res,result);};
+    if(local)return saveConversation(local);
+    const effective={...p,message:plan.query,productId:plan.productId},selected=selectProjectKnowledge(p.message,{context}),topicModules={research:['research_sets','survey_rows'],ip:['ip_profile','ip_series'],opc:['pages'],cooperation:['pages'],competition:['slides'],tour:['tours'],platform:['pages'],overview:['pages']};
     const modules=[...new Set(['products','faqs','batches',...selected.topics.flatMap(t=>topicModules[t]||[])])];
     const publicContent=Object.fromEntries(await Promise.all(modules.map(async m=>[m,await published(db,m)])));
-    const digital=await digitalChatFacts(db,req,p);publicContent.products=digital.products.map(v=>({...v,price:'¥'+v.price.toFixed(2),priceNote:v.realEnabled?'当前公开价格，提交后尚未付款':'示例价格，仅模拟下单',scene:/gift/.test(v.id)?'gift':'family',fields:[['规格',v.weight]],desc:v.description,sourceRef:'网站当前公开商品'}));publicContent.batches=digital.products.filter(v=>v.realEnabled).map(v=>({id:v.batchCode,productId:v.id,status:'verified',shippingRegions:v.regions,shippingWindow:v.dispatch,shippingFee:v.shippingFee,stock:v.stock,availableQuantity:v.availableStock}));const {products,faqs,batches}=publicContent;
-    const origin=req.headers.origin;if(origin&&new URL(origin).host!==req.get('host'))fail(403,'客服仅允许站点直接调用');if(req.headers['sec-fetch-site']==='cross-site')fail(403,'不接受跨站客服调用');
+    const digital=await digitalChatFacts(db,req,{...effective,message:p.message}),mention=resolveProductMention(p.message,digital.products);
+    if(mention.matched)digital.selected=mention.product;
+    effective.productId=plan.productId=digital.selected?.id||'';
+    if(digital.selected&&plan.topics.includes('sales'))effective.message='桃子选购：'+plan.query;
+    publicContent.products=digital.products.map(v=>({...v,price:'¥'+v.price.toFixed(2),priceNote:v.realEnabled?'当前公开价格，提交后尚未付款':'示例价格，仅模拟下单',scene:/gift/.test(v.id)?'gift':'family',fields:[['规格',v.weight]],desc:v.description,sourceRef:'网站当前公开商品'}));publicContent.batches=digital.products.filter(v=>v.realEnabled).map(v=>({id:v.batchCode,productId:v.id,status:'verified',shippingRegions:v.regions,shippingWindow:v.dispatch,shippingFee:v.shippingFee,stock:v.stock,availableQuantity:v.availableStock}));const {products,faqs,batches}=publicContent;
     const release=await reserveChat(db,req);let result,attempts=0;
     try{
-      const base=digitalChatReply(answerQuestion({...p,products,faqs,batches,config,publicContent,logistics:digital.logistics||await ownLogistics(db,req,p.recordId)}),digital);
+      const knowledge=selectProjectKnowledge(p.message,{publicContent,context}),raw=digitalChatReply(answerQuestion({...effective,products,faqs,batches,config,publicContent,logistics:digital.logistics||await ownLogistics(db,req,p.recordId)}),digital),base=naturalProjectReply(raw,plan,{knowledge,digital});
       const onAttempt=async()=>{
         if(attempts>0)await takeModelBudget(db);
         attempts++;
       };
-      result=(req.demoMode||req.customer.demo)?{...base,label:'演示规则回答',modelUsed:false,modelAttempted:false,modelAttempts:0}:await customerAnswer({message:p.message,base,onAttempt});
-      if(!req.customer.demo)await db.query('INSERT INTO customer_chats(id,account_id,question,answer,provider) VALUES($1,$2,$3,$4,$5)',[randomUUID(),req.customer.id,redact(p.message),result.answer,result.provider]);
-      await db.query("DELETE FROM customer_chats WHERE created_at<now()-interval '7 days'");send(res,result);
+      result=(req.demoMode||req.customer.demo||base.localOnly)?{...base,label:req.demoMode||req.customer.demo?'演示规则回答':'小桃满 · 项目建议',modelUsed:false,modelAttempted:false,modelAttempts:0}:await customerAnswer({message:p.message,base,onAttempt});
+      await saveConversation(result);
     }finally{await release({refund:attempts===0});}
   });
   r.post('/ai/recommendations',limiter(90,60000),async(req,res)=>{

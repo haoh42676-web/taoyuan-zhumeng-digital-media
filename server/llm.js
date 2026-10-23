@@ -31,7 +31,7 @@ function grounded(raw,base,refs){
  return output;
 }
 export async function customerAnswer({message,base,knowledge,fetcher=fetch,timeouts={},onAttempt=async()=>{}}){
- if(['handoff','logistics','unrelated','privacy'].includes(base.intent))return{...base,modelUsed:false,modelAttempted:false,modelAttempts:0};
+ if(['handoff','logistics','unrelated','privacy','conversation','greeting','clarify','thanks','acknowledgment'].includes(base.intent))return{...base,modelUsed:false,modelAttempted:false,modelAttempts:0};
  const refs=base.sources.map((_,i)=>'F'+i),safeAnswer=redact(base.answer),trusted={authoritativeAnswer:safeAnswer,sentences:sentences(safeAnswer).map((text,id)=>({id,text})),evidence:base.sources.map((s,i)=>({id:refs[i],title:redact(s.title),ref:redact(s.ref||s.sourceRef||'已发布资料')}))};
  // Match the raw question locally. Only a fixed intent label and allowlisted public facts leave the server.
  const question=({project:'项目公开知识咨询',product:'商品公开规格咨询',shipping:'公开配送规则咨询',aftercare:'公开售后规则咨询',storage:'公开保存指引咨询',description:'商品规格文案草稿整理'})[base.intent]||'项目公开事实咨询';
