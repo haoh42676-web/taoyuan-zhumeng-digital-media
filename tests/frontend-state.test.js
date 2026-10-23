@@ -67,3 +67,65 @@ test('admin default date inputs include the current UTC+8 day after midnight',as
  const context=vm.createContext({Date:FixedDate});vm.runInContext(adminCode.slice(0,adminCode.indexOf('let generation='))+'\nglobalThis.initialRange={start:state.start,end:state.end};',context);
  assert.equal(context.initialRange.start,'2026-10-13');assert.equal(context.initialRange.end,'2026-10-19');
 });
+
+const adminSource=await readFile(new URL('../admin/admin.js',import.meta.url),'utf8');
+const deferred=()=>{let resolve,reject;const promise=new Promise((yes,no)=>{resolve=yes;reject=no;});return{promise,resolve,reject};};
+const newAdmin={id:'new-admin',name:'Current administrator',role:'admin',demo:false,mustChangePassword:false};
+const oldAdmin={id:'old-admin',name:'Previous identity',role:'viewer',demo:false,mustChangePassword:false};
+const authResponse=(user,csrf)=>({data:{user,csrf}});
+const tick=()=>new Promise(resolve=>setImmediate(resolve));
+
+function adminAuthRuntime({initialStatus=401,loginStatus=200,deferLogin=false}={}){
+ const initialBody=deferred(),loginBody=deferred(),listeners={},requests=[];
+ const element=()=>({hidden:false,open:false,isConnected:true,innerHTML:'',textContent:'',dataset:{},classList:{add(){},remove(){}},addEventListener(){},prepend(){},close(){this.open=false;},showModal(){this.open=true;}});
+ const nodes=Object.fromEntries(['workspace','login-screen','editor','navigation','current-user','sidebar','breadcrumb','main-content','notice','dialog-title','dialog-body'].map(id=>['#'+id,element()]));
+ nodes['#workspace'].hidden=true;const password=element(),submit=element(),error=element();error.hidden=true;
+ const form={...element(),id:'login-form',reset(){this.resetCalled=true;},querySelector(selector){if(selector==='[type="submit"]')return submit;if(selector==='.form-error')return error;throw Error('Unexpected form selector '+selector);}};
+ const document={title:'',addEventListener(type,handler){listeners[type]=handler;},querySelector(selector){if(selector==='[data-action="password"]')return password;if(selector==='.demo-scope-banner')return null;if(nodes[selector])return nodes[selector];throw Error('Unexpected selector '+selector);},querySelectorAll(){return[];}};
+ const response=(status,payload)=>({status,ok:status>=200&&status<300,json:async()=>payload});
+ const context=vm.createContext({document,window:{addEventListener(){},PeachDigitalAdmin:{page:async()=>'<h1>Current workspace</h1>'}},location:{pathname:'/admin/',hash:''},Date,URLSearchParams,AbortSignal,setTimeout:()=>0,clearTimeout(){},
+  FormData:class{constructor(){return new Map([['email','fixture-admin'],['password','fixture-only-password']]);}},
+  fetch:async(url,options)=>{requests.push({url,method:options.method});if(url==='/api/auth/me')return{status:initialStatus,ok:initialStatus>=200&&initialStatus<300,json:()=>initialBody.promise};if(url==='/api/auth/login')return deferLogin?{status:loginStatus,ok:loginStatus>=200&&loginStatus<300,json:()=>loginBody.promise}:response(loginStatus,loginStatus===200?authResponse(newAdmin,'new-csrf'):{error:{message:'Invalid fixture login'}});if(url==='/api/admin/schema')return response(200,{data:{modules:{}}});if(url==='/api/admin/denied')return response(401,{error:{message:'Session expired'}});throw Error('Unexpected request '+url);}
+ });
+ vm.runInContext(adminSource,context);
+ const snapshot=()=>JSON.parse(vm.runInContext('JSON.stringify({user:state.user?.id||null,csrf:state.csrf,route:state.route})',context));
+ return{context,nodes,error,requests,initialBody,loginBody,snapshot,login:()=>listeners.submit({target:form,preventDefault(){}})};
+}
+
+test('a delayed initial 401 cannot hide the workspace after a successful manual login',async()=>{
+ const h=adminAuthRuntime();await h.login();assert.equal(h.nodes['#workspace'].hidden,false);
+ h.initialBody.resolve({error:{message:'Not signed in'}});await tick();
+ assert.deepEqual(h.snapshot(),{user:'new-admin',csrf:'new-csrf',route:'overview'});assert.equal(h.nodes['#workspace'].hidden,false);assert.equal(h.nodes['#login-screen'].hidden,true);
+});
+
+test('a delayed initial identity cannot replace the account or CSRF token from a newer login',async()=>{
+ const h=adminAuthRuntime({initialStatus:200});await h.login();h.initialBody.resolve(authResponse(oldAdmin,'old-csrf'));await tick();
+ assert.deepEqual(h.snapshot(),{user:'new-admin',csrf:'new-csrf',route:'overview'});assert.equal(h.nodes['#workspace'].hidden,false);
+});
+
+test('a delayed initial network failure cannot reset a newer authenticated workspace',async()=>{
+ const h=adminAuthRuntime({initialStatus:200});await h.login();h.initialBody.reject(new Error('Delayed initial timeout'));await tick();
+ assert.equal(h.snapshot().user,'new-admin');assert.equal(h.nodes['#workspace'].hidden,false);assert.equal(h.nodes['#notice'].textContent,'');
+});
+
+test('starting manual login invalidates the initial check before the login response arrives',async()=>{
+ const h=adminAuthRuntime({initialStatus:200,deferLogin:true}),login=h.login();h.initialBody.resolve(authResponse(oldAdmin,'old-csrf'));await tick();
+ assert.equal(h.snapshot().user,null);assert.equal(h.nodes['#workspace'].hidden,true);assert.equal(h.requests.filter(r=>r.url==='/api/admin/schema').length,0);
+ h.loginBody.resolve(authResponse(newAdmin,'new-csrf'));await login;assert.equal(h.snapshot().user,'new-admin');assert.equal(h.nodes['#workspace'].hidden,false);
+});
+
+test('an unchanged anonymous initial check still keeps the login screen available',async()=>{
+ const h=adminAuthRuntime();h.initialBody.resolve({error:{message:'Not signed in'}});await tick();
+ assert.equal(h.snapshot().user,null);assert.equal(h.nodes['#workspace'].hidden,true);assert.equal(h.nodes['#login-screen'].hidden,false);
+});
+
+test('an unchanged authenticated initial check still opens its workspace',async()=>{
+ const h=adminAuthRuntime({initialStatus:200});h.initialBody.resolve(authResponse(oldAdmin,'old-csrf'));await tick();
+ assert.equal(h.snapshot().user,'old-admin');assert.equal(h.snapshot().csrf,'old-csrf');assert.equal(h.nodes['#workspace'].hidden,false);assert.equal(h.nodes['#login-screen'].hidden,true);
+});
+
+test('an authenticated business request returning 401 still resets the login state',async()=>{
+ const h=adminAuthRuntime();await h.login();await assert.rejects(vm.runInContext('api("/admin/denied")',h.context),/Session expired/);
+ assert.equal(h.snapshot().user,null);assert.equal(h.nodes['#workspace'].hidden,true);assert.equal(h.nodes['#login-screen'].hidden,false);
+ h.initialBody.resolve({error:{message:'Not signed in'}});await tick();
+});
