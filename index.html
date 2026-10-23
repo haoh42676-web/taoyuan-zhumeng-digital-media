@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-theme="light">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
   <meta name="theme-color" content="#f0f3ee">
   <meta name="description" content="走进桃园日常，认识小桃满，了解桃乡的桃子。看清规格与履约信息，选桃下单，加入桃乡推广。">
   <title>数商桃乡 · 让好桃被看见</title>
@@ -20,14 +20,15 @@
     <nav class="main-nav" aria-label="主导航"><a href="#home" data-nav="home">首页</a><a href="#stories" data-nav="stories">桃乡见闻</a><a href="#shop" data-nav="shop">买桃下单</a><a href="#join" data-nav="join">加入我们</a></nav>
     <button class="account-button" type="button" data-action="account" aria-label="登录或管理我的账号"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg><span data-account-label>登录</span></button>
   </header>
+  <p id="storage-notice" class="storage-notice" role="status" hidden></p>
   <main id="app" class="site-main" tabindex="-1" aria-live="polite" aria-busy="true"><div class="loading-state"><img src="assets/ip-actions/welcome.webp" width="120" height="120" alt=""><p>小桃满正在整理桃乡的故事…</p></div></main>
   <footer class="site-footer"><a href="#home">数商桃乡</a><span>从一颗桃，到一份信任。</span><button type="button" data-action="shipping">配送与售后</button><button type="button" data-action="privacy">隐私说明</button></footer>
   <button class="chat-launcher" type="button" data-action="chat" aria-haspopup="dialog"><img src="assets/ip-actions/service.webp" width="64" height="64" alt=""><span><strong>问小桃满</strong><small>选桃 · 订单 · 项目咨询</small></span></button>
-  <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="dialog-title"><div class="dialog-shell"><button class="icon-button dialog-close" type="button" data-action="close-dialog" aria-label="关闭窗口">×</button><div id="dialog-content"></div></div></dialog>
+  <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="dialog-title"><div class="dialog-toolbar"><button class="icon-button dialog-close" type="button" data-action="close-dialog" aria-label="关闭窗口">×</button></div><div class="dialog-shell"><div id="dialog-content"></div></div></dialog>
   <dialog id="ai-chat" class="chat-dialog" aria-labelledby="chat-title" data-draggable-panel>
     <header class="chat-heading" data-panel-handle><img src="assets/ip-actions/service.webp" width="62" height="62" alt="小桃满"><div><h2 id="chat-title">小桃满，听你说</h2><p>选桃、售后与桃乡项目咨询</p></div><button class="icon-button" type="button" data-action="close-chat" aria-label="关闭客服">×</button></header>
     <p class="chat-notice">回答依据项目公开资料；订单以“我的订单”状态为准。请勿发送密码、验证码或完整收货信息。</p>
-    <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"><article class="message assistant"><b>小桃满</b><p>你好呀！我是小桃满。可以帮你了解桃子规格、配送售后、IP故事、调研与合作。与项目无关的问题，我会婉拒。</p></article></div>
+    <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"><article class="message assistant"><b>小桃满</b><p>你好呀！我是小桃满。想选一箱桃、看看配送售后，还是认识桃乡的IP、调研和合作？把你想了解的告诉我，我们一起慢慢看。</p></article></div>
     <div class="chat-shortcuts"><button type="button" data-question="第一次买桃，怎么选规格？">怎么选桃</button><button type="button" data-question="收到桃子有破损怎么办？">收货售后</button><button type="button" data-question="小桃满和这个项目有什么关系？">认识项目</button></div>
     <form id="chat-form"><label class="sr-only" for="chat-input">输入项目相关问题</label><textarea id="chat-input" name="message" rows="2" maxlength="500" required placeholder="问问桃子、订单，或桃乡项目…"></textarea><button class="button primary" type="submit">发送 <span aria-hidden="true">↗</span></button></form>
     <p id="chat-status" class="form-hint" role="status"></p>

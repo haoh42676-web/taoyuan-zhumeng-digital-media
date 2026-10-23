@@ -12,6 +12,7 @@
   let navigation = 0;
   let toastTimer;
   let chatBusy = false;
+  let chatStream = null;
   const esc = value => String(value ?? '').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const money = value => new Intl.NumberFormat('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2}).format(Number(value) || 0);
   const date = value => value ? new Date(value).toLocaleString('zh-CN',{hour12:false,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}) : '待更新';
@@ -24,8 +25,18 @@
   function photo(item,{hero=false}={}) {const src=imagePath(item?.src || item?.image);const thumb=item?.thumb?imagePath(item.thumb):src;return `<img src="${src}" ${item?.thumb?`srcset="${thumb} 640w, ${src} ${item.width || 1280}w" sizes="${hero?'(max-width: 720px) 92vw, 52vw':'(max-width: 720px) 92vw, 33vw'}"`:''} alt="${esc(item?.alt || item?.title || '桃乡实践照片')}" width="${item?.width || 1280}" height="${item?.height || 853}" decoding="async" ${hero?'fetchpriority="high"':'loading="lazy"'}>`;}
   function toast(message) {const node=document.querySelector('#toast');node.textContent=message;node.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>node.classList.remove('visible'),3500);}
   function setAccountLabel() {document.querySelector('[data-account-label]').textContent=api.user?'我的账号':'登录';}
-  function modal(html,{wide=false}={}) {dialogContent.innerHTML=html;dialog.classList.toggle('wide',wide);if(!dialog.open)dialog.showModal();requestAnimationFrame(()=>dialog.querySelector('input:not([readonly]),textarea:not([readonly]),select,button:not(.dialog-close)')?.focus({preventScroll:true}));}
+  function updateStorageNotice() {const node=document.querySelector('#storage-notice');if(!node)return;node.textContent=api.storageNotice || '';node.hidden=!node.textContent;}
+  function modal(html,{wide=false}={}) {dialogContent.innerHTML=html;dialog.classList.toggle('wide',wide);if(!dialog.open)dialog.showModal();dialog.scrollTop=0;requestAnimationFrame(()=>dialog.querySelector('.dialog-close')?.focus({preventScroll:true}));}
   function closeModal() {dialog.close();}
+  // This identifier deduplicates an order; it is never used as an authentication token.
+  function orderKey() {if(typeof window.crypto?.randomUUID==='function')return window.crypto.randomUUID();if(typeof window.crypto?.getRandomValues==='function')return 'order-'+Array.from(window.crypto.getRandomValues(new Uint8Array(16)),n=>n.toString(16).padStart(2,'0')).join('');return 'order-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)+'-'+Math.random().toString(36).slice(2);}
+  async function copyText(text) {
+    if(navigator.clipboard?.writeText){try{await navigator.clipboard.writeText(text);return;}catch{}}
+    const active=document.activeElement,field=document.createElement('textarea');field.value=text;field.readOnly=true;field.tabIndex=-1;field.setAttribute('aria-hidden','true');field.style.cssText='position:fixed;left:0;top:0;width:1px;height:1px;padding:0;opacity:0;font-size:16px';(document.querySelector('dialog[open]') || document.body).append(field);
+    let copied=false;try{field.focus({preventScroll:true});field.select();field.setSelectionRange(0,field.value.length);copied=typeof document.execCommand==='function'&&document.execCommand('copy');}catch{}finally{field.remove();if(active?.isConnected)active.focus({preventScroll:true});}
+    if(!copied)throw new Error('浏览器暂不允许自动复制，请长按订单号或草稿文字手动复制。');
+  }
+  function scrollChat() {const messages=document.querySelector('#chat-messages');messages.scrollTop=messages.scrollHeight;}
   function note(text,kind='') {return `<p class="notice ${kind}">${esc(text)}</p>`;}
   function formError(form,error) {let node=form.querySelector('[data-form-error]');if(!node){node=document.createElement('p');node.dataset.formError='1';node.className='form-error';node.setAttribute('role','alert');form.append(node);}node.textContent=error.message || String(error);node.hidden=false;}
   function sectionHeading(title,text,action='') {return `<div class="section-heading"><div><h1>${title}</h1>${text?`<p>${esc(text)}</p>`:''}</div>${action}</div>`;}
@@ -66,7 +77,7 @@
     const p=product(id);if(!p)return;
     if(!requireLogin(()=>checkout(id)))return;
     const sim=simulated(p),staticOnly=sim || api.demo;
-    state.quote={id:p.id,version:p.version,key:crypto.randomUUID(),unitPrice:Number(p.price),shippingFee:Number(p.shippingFee)};
+    state.quote={id:p.id,version:p.version,key:orderKey(),unitPrice:Number(p.price),shippingFee:Number(p.shippingFee)};
     modal(`<span class="eyebrow">${sim?'交互体验 · 模拟订单':'填写订单'}</span><h2 id="dialog-title">把这一箱桃，安排妥当。</h2><form id="checkout-form" class="checkout-layout"><div class="form-fields">${sim?note(!api.server?'本页只保存浏览器模拟记录。请使用预填体验资料，不填写真实个人信息。':'你正在提交模拟订单，不付款、不计入真实销售、不实际发货。体验账号请使用预填示例资料。'):note('订单提交后尚未付款。管理员确认可供批次与配送安排后，再与你确认后续事项。')}<div class="form-grid"><label>收件人<input name="name" autocomplete="name" required maxlength="30" ${staticOnly?'value="体验收件人" readonly':''}></label><label>联系电话<input name="phone" type="tel" autocomplete="tel" inputmode="tel" required pattern="1[3-9][0-9]{9}" maxlength="11" ${staticOnly?'value="13800000000" readonly':''} placeholder="11位手机号"></label></div><label>省市区<input name="region" autocomplete="address-level1" required maxlength="100" ${staticOnly?'value="广东省 广州市" readonly':''} placeholder="例如：广东省 广州市 天河区"></label><label>详细地址<textarea name="address" autocomplete="street-address" required maxlength="200" rows="2" ${staticOnly?'readonly':''} placeholder="街道、门牌与收件补充信息">${staticOnly?'交互体验地址，不用于实际配送':''}</textarea></label><label>备注 <small>选填，请勿填写密码或证件信息</small><textarea name="note" maxlength="300" rows="2" placeholder="可填写方便联系的时间等"></textarea></label><label class="check-label"><input name="confirm" type="checkbox" required><span>我已阅读商品规格、配送与售后说明，知晓${sim?'这是模拟订单':'提交订单不代表已付款或已发货'}。</span></label></div><aside class="order-summary"><img src="${imagePath(p.image)}" width="320" height="200" alt="${esc(p.name)}实拍参考"><h3>${esc(p.name)}</h3><p>${esc(p.weight)} · ${esc(p.origin)}</p><label>箱数<select name="quantity">${Array.from({length:Math.min(20,available(p))},(_,i)=>`<option value="${i+1}">${i+1} 箱</option>`).join('')}</select></label><dl><div><dt>商品金额</dt><dd data-order-subtotal>¥${money(p.price)}</dd></div><div><dt>每单配送</dt><dd>¥${money(p.shippingFee)}</dd></div><div class="total"><dt>${sim?'模拟合计':'合计'}</dt><dd data-order-total>¥${money(Number(p.price)+Number(p.shippingFee))}</dd></div></dl><p class="form-hint">${esc(p.dispatch)}<br>${esc(p.regions)}</p><button class="button primary" type="submit">${sim?'提交模拟订单':'提交订单'} <span aria-hidden="true">↗</span></button><p data-form-error class="form-error" role="alert" hidden></p></aside></form>`,{wide:true});
     dialog.querySelector('[name=quantity]').addEventListener('change',event=>{const amount=Number(event.target.value)*Number(p.price);dialog.querySelector('[data-order-subtotal]').textContent='¥'+money(amount);dialog.querySelector('[data-order-total]').textContent='¥'+money(amount+Number(p.shippingFee));});
   }
@@ -130,20 +141,20 @@
   }
   function shipping() {modal(`<div class="order-detail-heading">${ip('service')}<div><span class="eyebrow">下单前，看清楚</span><h2 id="dialog-title">配送与售后</h2></div></div><div class="info-stack"><article><h3>规格与批次</h3><p>净重、分级、产地和批次以商品详情及管理员确认信息为准。不同成熟度与批次的口感会有差异，实拍照片不等于当前库存证明。</p></article><article><h3>订单与配送</h3><p>${esc(state.data.site.shippingNote)}</p><p>提交订单会生成订单号，仍需管理员确认。页面没有在线付款入口；未付款、未发货与已完成状态分别记录。</p></article><article><h3>收货与反馈</h3><p>${esc(state.data.site.aftercare)}</p><p>进入“买桃下单 → 我的订单”，打开对应订单即可提交物流、果况或其他问题。赔付与处理安排经核实后确认。</p></article></div><button type="button" class="button primary" data-action="my-orders">查看我的订单 ↗</button>`);}
   function privacy() {modal(`<span class="eyebrow">只收集完成服务需要的信息</span><h2 id="dialog-title">隐私说明</h2><div class="info-stack"><article><h3>谁能看见？</h3><p>你的收货信息、成员申请与订单反馈仅供你本人和管理员完成对应服务使用。推广成员看不到消费者地址、联系电话或其他人的订单。</p></article><article><h3>哪些不会公开？</h3><p>密码不会明文展示；模型密钥、数据库连接与内部资料不会发送到浏览器。客服不应接收密码、验证码、证件或完整收货信息。</p></article><article><h3>静态体验记录</h3><p>GitHub静态页面的账号与订单只用于浏览器交互体验，不连接线上数据库。请使用示例信息；清除浏览器数据后记录将消失。</p></article></div>${!api.server?'<button type="button" class="button ghost" data-action="clear-experience">清除本浏览器的体验记录</button>':''}`);}
-  function openChat() {closeModal();if(!chat.open)chat.showModal();document.querySelector('#chat-input').focus();document.querySelector('#chat-status').textContent=!api.server?'交互体验：使用项目知识规则，不调用外部模型。':!api.user?'登录后可以发送问题；选桃与公开信息仍可直接浏览。':'';}
-  function appendMessage(text,role,label='') {const article=document.createElement('article');article.className='message '+role;const b=document.createElement('b');b.textContent=role==='user'?'我':'小桃满';const p=document.createElement('p');p.textContent=text;article.append(b,p);if(label){const small=document.createElement('small');small.textContent=label;article.append(small);}document.querySelector('#chat-messages').append(article);article.scrollIntoView({block:'nearest',behavior:'smooth'});return p;}
+  function openChat() {closeModal();if(!chat.open)chat.showModal();chat.querySelector('[data-action=close-chat]').focus({preventScroll:true});document.querySelector('#chat-status').textContent=!api.server?'交互体验：使用项目知识规则，不调用外部模型。':!api.user?'登录后可以发送问题；选桃与公开信息仍可直接浏览。':'';requestAnimationFrame(scrollChat);}
+  function appendMessage(text,role,label='') {const article=document.createElement('article');article.className='message '+role;const b=document.createElement('b');b.textContent=role==='user'?'我':'小桃满';const p=document.createElement('p');p.textContent=text;article.append(b,p);if(label){const small=document.createElement('small');small.textContent=label;article.append(small);}document.querySelector('#chat-messages').append(article);requestAnimationFrame(scrollChat);return p;}
   async function sendChat(message) {
     if(chatBusy)return;
     if(!api.user){chat.close();state.resume=()=>{openChat();document.querySelector('#chat-input').value=message;};account();return;}
     chatBusy=true;const submit=document.querySelector('#chat-form [type=submit]');submit.disabled=true;document.querySelector('#chat-status').textContent='小桃满正在整理公开项目信息…';appendMessage(message,'user');
-    try {const result=await api.chat(message);const text=appendMessage('','assistant',result.label || (result.modelUsed?'AI辅助回答 · 请核实':'项目知识回答'));if(window.PeachUI?.streamText)await window.PeachUI.streamText(text,result.answer || '暂时未获得回答，请重新表述问题。');else text.textContent=result.answer || '暂时未获得回答';document.querySelector('#chat-status').textContent='订单处理请查看对应订单；回答不代替管理员确认。';}
+    try {const result=await api.chat(message);const text=appendMessage('','assistant',result.label || (result.modelUsed?'AI辅助回答 · 请核实':'项目知识回答'));chatStream=typeof AbortController==='function'?new AbortController():null;if(chat.open&&window.PeachUI?.streamText)await window.PeachUI.streamText(text,result.answer || '暂时未获得回答，请重新表述问题。',{signal:chatStream?.signal});else text.textContent=result.answer || '暂时未获得回答';document.querySelector('#chat-status').textContent='订单处理请查看对应订单；回答不代替管理员确认。';}
     catch(error){appendMessage('这次没有成功回复：'+error.message+'。请稍后重试；订单与售后仍可直接操作。','assistant');document.querySelector('#chat-status').textContent='问题保留在输入框中，可以再次发送。';document.querySelector('#chat-input').value=message;}
-    finally{chatBusy=false;submit.disabled=false;}
+    finally{chatStream=null;chatBusy=false;submit.disabled=false;}
   }
   async function navigate({focus=false}={}) {
-    if(!state.data)return;const n=++navigation;const name=location.hash.slice(1).split('?')[0] || 'home';state.route=Object.hasOwn(routeNames,name)?name:'home';
+    if(!state.data)return;const n=++navigation;const name=location.hash.slice(1).split('?')[0] || 'home';state.route=Object.prototype.hasOwnProperty.call(routeNames,name)?name:'home';
     document.querySelectorAll('[data-nav]').forEach(link=>{if(link.dataset.nav===state.route)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');});document.title=routeNames[state.route]+' · '+(state.data.site.name || '数商桃乡');app.setAttribute('aria-busy','true');
-    if(state.route==='home')home();if(state.route==='stories')stories();if(state.route==='shop')await shop();if(state.route==='join')await join();if(n!==navigation)return;app.setAttribute('aria-busy','false');if(focus){window.scrollTo({top:0,behavior:'instant'});app.focus({preventScroll:true});}
+    if(state.route==='home')home();if(state.route==='stories')stories();if(state.route==='shop')await shop();if(state.route==='join')await join();if(n!==navigation)return;app.setAttribute('aria-busy','false');if(focus){window.scrollTo({top:0,behavior:'auto'});app.focus({preventScroll:true});}
   }
   async function action(button) {
     const a=button.dataset.action,id=button.dataset.id;
@@ -156,13 +167,13 @@
     if(a==='my-orders'){closeModal();state.shopTab='orders';if(state.route==='shop')await shop();else location.hash='shop';return;}
     if(a==='apply'){await apply();return;}if(a==='reapply'){await apply(true);return;}if(a==='workspace'){await workspace();return;}if(a==='member-tab'){state.memberTab=button.dataset.tab;renderWorkspace();return;}if(a==='lesson'){lessonDetail(id);return;}if(a==='task'){taskDetail(id);return;}
     if(a==='shipping'){shipping();return;}if(a==='privacy'){privacy();return;}if(a==='chat'){openChat();return;}
-    if(a==='copy'){await navigator.clipboard.writeText(button.dataset.value);window.PeachUI?.copied(button);toast('订单号已复制');return;}
-    if(a==='copy-draft'){const text=document.querySelector('#assistant-output').value;if(!text.trim())throw new Error('先生成或填写草稿，再复制');await navigator.clipboard.writeText(text);window.PeachUI?.copied(button);return;}
-    if(a==='download-draft'){const text=document.querySelector('#assistant-output').value;if(!text.trim())throw new Error('先生成或填写草稿，再下载');const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const link=document.createElement('a');link.href=url;link.download='小桃满-内容草稿.txt';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);return;}
+    if(a==='copy'){await copyText(button.dataset.value);window.PeachUI?.copied(button);toast('订单号已复制');return;}
+    if(a==='copy-draft'){const text=document.querySelector('#assistant-output').value;if(!text.trim())throw new Error('先生成或填写草稿，再复制');await copyText(text);window.PeachUI?.copied(button);return;}
+    if(a==='download-draft'){const text=document.querySelector('#assistant-output').value;if(!text.trim())throw new Error('先生成或填写草稿，再下载');const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const link=document.createElement('a');link.href=url;link.download='小桃满-内容草稿.txt';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);return;}
     if(a==='logout'){await api.logout();setAccountLabel();state.member=null;state.resume=null;state.authTab='login';closeModal();toast('已退出账号');if(state.route==='shop')await shop();return;}
     if(a==='clear-experience'){api.clearExperience();state.data=await api.site();closeModal();toast('本浏览器的体验记录已清除');await navigate();}
   }
-  document.addEventListener('click',async event=>{const shortcut=event.target.closest('[data-question]');if(shortcut){document.querySelector('#chat-input').value=shortcut.dataset.question;document.querySelector('#chat-input').focus();return;}const button=event.target.closest('[data-action]');if(!button || button.disabled)return;try{await action(button);}catch(error){toast(error.message || '操作暂未完成，请稍后重试');}});
+  document.addEventListener('click',async event=>{const shortcut=event.target.closest('[data-question]');if(shortcut){document.querySelector('#chat-input').value=shortcut.dataset.question;document.querySelector('#chat-status').textContent='问题已填入；可以直接发送，也可以点输入框修改。';return;}const button=event.target.closest('[data-action]');if(!button || button.disabled)return;try{await action(button);}catch(error){toast(error.message || '操作暂未完成，请稍后重试');}});
   document.addEventListener('submit',async event=>{
     const form=event.target;if(!['checkout-form','application-form','account-form','claim-form','lesson-form','task-form','assistant-form','chat-form'].includes(form.id))return;event.preventDefault();if(!form.reportValidity())return;
     if(form.id==='chat-form'){const input=form.querySelector('textarea'),message=input.value.trim();if(message){input.value='';await sendChat(message);}return;}
@@ -180,13 +191,15 @@
     finally{if(submit.isConnected){submit.disabled=false;submit.textContent=old;}}
   });
   dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});chat.addEventListener('click',event=>{if(event.target===chat)chat.close();});
+  chat.addEventListener('close',()=>chatStream?.abort());
   document.addEventListener('input',event=>{if(event.target.id==='assistant-output')state.assistantDraft=event.target.value;});
-  window.addEventListener('hashchange',()=>{closeModal();navigate({focus:true}).catch(error=>toast(error.message));});
+  window.addEventListener('hashchange',()=>{chatStream?.abort();closeModal();navigate({focus:true}).catch(error=>toast(error.message));});
   window.addEventListener('storage',event=>{if(event.key==='peach-digital-media-focused:v1'&&!api.server)api.site().then(data=>{state.data=data;return navigate();}).catch(()=>{});});
   window.addEventListener('digital:network-wake',()=>{const message=document.querySelector('.loading-state p');if(message)message.textContent='服务正在唤醒，正在继续连接桃乡…';});
+  window.addEventListener('digital:storage-notice',updateStorageNotice);
   async function init() {
     if(api.server){const message=document.querySelector('.loading-state p');if(message)message.textContent='正在载入桃乡。首次访问可能需要稍候，服务正在唤醒…';}
-    try {const result=await Promise.allSettled([api.site(),api.init()]);if(result[0].status!=='fulfilled')throw result[0].reason;state.data=result[0].value;document.querySelector('.brand strong').textContent=state.data.site.name || '数商桃乡';document.querySelector('.site-footer>a').textContent=state.data.site.name || '数商桃乡';setAccountLabel();await navigate();}
+    try {const result=await Promise.allSettled([api.site(),api.init()]);if(result[0].status!=='fulfilled')throw result[0].reason;state.data=result[0].value;document.querySelector('.brand strong').textContent=state.data.site.name || '数商桃乡';document.querySelector('.site-footer>a').textContent=state.data.site.name || '数商桃乡';updateStorageNotice();setAccountLabel();await navigate();}
     catch(error){app.setAttribute('aria-busy','false');app.innerHTML=`<div class="error-state">${ip('service')}<h1>桃乡信息暂未加载成功</h1><p>${esc(error.message || '请检查网络后重新打开页面。')}</p><button type="button" class="button primary" id="reload-page">重新加载</button></div>`;document.querySelector('#reload-page').onclick=()=>location.reload();}
   }
   init();

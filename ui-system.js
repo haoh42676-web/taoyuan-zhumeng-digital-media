@@ -1,6 +1,7 @@
 /* Shared behavior: themes, native disclosures, readable streaming and copy feedback. */
 (()=>{'use strict';
  const key='peach-digital-media-ui-theme:v1',root=document.documentElement,reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ const listenMedia=(query,listener)=>{if(query.addEventListener){query.addEventListener('change',listener);return()=>query.removeEventListener('change',listener);}if(query.addListener){query.addListener(listener);return()=>query.removeListener(listener);}return()=>{};};
  function theme(){
   root.dataset.theme='light';try{localStorage.removeItem(key);}catch{}
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content','#eef2ee');
@@ -38,12 +39,12 @@
  }
  const activeStreams=new WeakMap();
  function streamText(target,text,{signal}={}){
-  activeStreams.get(target)?.();target.textContent='';const chars=Array.from(String(text)),item=target.closest('.chat-message');
+  activeStreams.get(target)?.();target.textContent='';const chars=Array.from(String(text)),item=target.closest('.chat-message,.message');
   if(reduced.matches||signal?.aborted||!chars.length){target.textContent=text;return Promise.resolve();}
   if(item)item.dataset.streaming='true';target.setAttribute('aria-hidden','true');
   const fragment=document.createDocumentFragment();chars.forEach((char,i)=>{const span=document.createElement('span');span.className='ink-token';span.style.setProperty('--token-index',i);span.textContent=char;fragment.append(span);});target.append(fragment);
   const controls=document.createElement('div');controls.className='stream-controls';const note=document.createElement('span');note.textContent='正在显示回答';const show=document.createElement('button');show.type='button';show.textContent='立即显示';controls.append(note,show);target.after(controls);
-  return new Promise(resolve=>{let timer,done=false;const finish=()=>{if(done)return;done=true;clearTimeout(timer);signal?.removeEventListener('abort',finish);reduced.removeEventListener('change',motion);target.textContent=text;target.removeAttribute('aria-hidden');if(item)delete item.dataset.streaming;controls.remove();activeStreams.delete(target);resolve();};const motion=()=>{if(reduced.matches)finish();};activeStreams.set(target,finish);show.addEventListener('click',finish);signal?.addEventListener('abort',finish,{once:true});reduced.addEventListener('change',motion);timer=setTimeout(finish,(chars.length-1)*30+120);});
+  return new Promise(resolve=>{let timer,done=false,unlisten=()=>{};const finish=()=>{if(done)return;done=true;clearTimeout(timer);signal?.removeEventListener('abort',finish);unlisten();target.textContent=text;target.removeAttribute('aria-hidden');if(item)delete item.dataset.streaming;controls.remove();activeStreams.delete(target);resolve();};const motion=()=>{if(reduced.matches)finish();};activeStreams.set(target,finish);show.addEventListener('click',finish);signal?.addEventListener('abort',finish,{once:true});unlisten=listenMedia(reduced,motion);timer=setTimeout(finish,(chars.length-1)*30+120);});
  }
  // Overdamped, unit-mass analytical spring. Zero release velocity keeps the path monotonic.
  const SPRING_PHYSICS=Object.freeze({drag:Object.freeze({stiffness:1200,damping:80}),click:Object.freeze({stiffness:420,damping:20})});
@@ -70,13 +71,33 @@
   panel.addEventListener('close',()=>{drag=null;delete panel.dataset.uiDragging;cancelAnimationFrame(s.frame);positionPanel(panel,0,0);});
  }
  const overlayOpeners=new WeakMap();let lastActivator;
+ let scrollLock=null,viewportFrame=0,viewportBaseline=innerHeight,viewportWidth=innerWidth;
+ const lockProperties=['position','top','left','right','width','overflow','paddingRight'];
+ function syncDialogScroll(){
+  const opened=document.querySelector('dialog[open]');
+  if(opened&&!scrollLock){const body=document.body,gap=Math.max(0,innerWidth-root.clientWidth);scrollLock={x:scrollX,y:scrollY,body:Object.fromEntries(lockProperties.map(key=>[key,body.style[key]])),overflow:root.style.overflow,behavior:root.style.scrollBehavior};root.style.overflow='hidden';root.style.scrollBehavior='auto';Object.assign(body.style,{position:'fixed',top:-scrollLock.y+'px',left:'0',right:'0',width:'100%',overflow:'hidden'});if(gap)body.style.paddingRight=(parseFloat(getComputedStyle(body).paddingRight)+gap)+'px';}
+  else if(!opened&&scrollLock){const saved=scrollLock;scrollLock=null;Object.assign(document.body.style,saved.body);root.style.overflow=saved.overflow;window.scrollTo({left:saved.x,top:saved.y,behavior:'auto'});root.style.scrollBehavior=saved.behavior;}
+  scheduleDialogViewport();
+ }
+ function scheduleDialogViewport(){cancelAnimationFrame(viewportFrame);viewportFrame=requestAnimationFrame(fitEditedDialog);}
+ function fitEditedDialog(){
+  document.querySelectorAll('dialog[data-ui-keyboard]').forEach(dialog=>{delete dialog.dataset.uiKeyboard;dialog.style.removeProperty('--ui-visible-height');dialog.style.removeProperty('--ui-visible-top');});
+  const viewport=window.visualViewport,active=document.activeElement,dialog=active?.closest('dialog[open]'),editable=active?.matches('textarea:not([readonly]):not([disabled]),input:not([type=checkbox]):not([type=radio]):not([readonly]):not([disabled]),[contenteditable=true]');
+  if(!viewport)return;
+  if(Math.abs(innerWidth-viewportWidth)>80){viewportWidth=innerWidth;viewportBaseline=Math.max(innerHeight,viewport.height);}
+  viewportBaseline=Math.max(viewportBaseline,viewport.height);
+  if(!editable){viewportBaseline=Math.max(innerHeight,viewport.height);return;}
+  // Only the edited modal follows a reduced visual viewport. Pinch zoom stays native.
+  if(!dialog||viewport.scale>1.01||Math.max(viewportBaseline,innerHeight)-viewport.height<110)return;
+  dialog.dataset.uiKeyboard='true';dialog.style.setProperty('--ui-visible-height',Math.max(180,viewport.height)+'px');dialog.style.setProperty('--ui-visible-top',Math.max(0,viewport.offsetTop)+'px');
+ }
  const visible=element=>element?.isConnected&&element.getClientRects().length&&!element.closest('[inert]');
  function restoreFocus(overlay){const opener=overlayOpeners.get(overlay);queueMicrotask(()=>{const active=document.activeElement;if(document.querySelector('dialog[open]')&&!opener?.closest('dialog[open]'))return;if(visible(opener)&&(!active||active===document.body||active===document.documentElement||overlay.contains(active)))opener.focus({preventScroll:true});});}
  function enhanceOverlay(overlay){
   if(overlay.dataset.uiOverlay)return;overlay.dataset.uiOverlay='1';
   overlay.addEventListener('beforetoggle',e=>{if(e.newState==='open')overlayOpeners.set(overlay,e.source||((document.activeElement!==document.body&&!overlay.contains(document.activeElement))?document.activeElement:lastActivator));});
   overlay.addEventListener('toggle',e=>{if(e.newState==='open'&&!overlayOpeners.has(overlay))overlayOpeners.set(overlay,lastActivator);if(e.newState==='closed'&&overlay.tagName!=='DIALOG')restoreFocus(overlay);});
-  if(overlay.tagName==='DIALOG')overlay.addEventListener('close',()=>restoreFocus(overlay));
+  if(overlay.tagName==='DIALOG')overlay.addEventListener('close',()=>{syncDialogScroll();restoreFocus(overlay);});
   if(overlay.id==='ai-chat'||overlay.hasAttribute('data-draggable-panel'))enhancePanel(overlay);
  }
  function enhanceNode(node){if(node.matches('details'))enhanceDisclosure(node);node.querySelectorAll('details').forEach(enhanceDisclosure);if(node.matches('dialog,[popover]'))enhanceOverlay(node);node.querySelectorAll('dialog,[popover]').forEach(enhanceOverlay);}
@@ -86,9 +107,14 @@
   theme(root.dataset.theme);enhanceNode(document.body);sidebarState();
   const skip=document.createElement('a');skip.className='ui-skip-link';skip.href=document.querySelector('#app')?'#app':'#main-content';skip.textContent='跳至主要内容';skip.addEventListener('click',e=>{e.preventDefault();const target=['#main-content','#app','main','#login-form'].map(s=>document.querySelector(s)).find(visible);if(target){if(!target.hasAttribute('tabindex'))target.tabIndex=-1;target.focus({preventScroll:true});target.scrollIntoView({block:'start',behavior:'instant'});}});document.body.prepend(skip);
   document.addEventListener('click',e=>{const active=e.target.closest('button,a,input,summary,[tabindex]');if(active)lastActivator=active;if(desktop.matches||e.target.closest('#sidebar,.menu-toggle')||document.querySelector('dialog[open]'))return;closeSidebar();},true);
+  // Keep an edited modal still between press and click. Blur would otherwise
+  // dismiss the keyboard and move the clicked close/send button under the pointer.
+  const keepEditorFocus=e=>{if(e.button!==0||e.defaultPrevented)return;const button=e.target.closest('button'),active=document.activeElement,modal=active?.closest('dialog[open]');if(button&&modal&&button.closest('dialog[open]')===modal&&active.matches('textarea:not([readonly]):not([disabled]),input:not([type=checkbox]):not([type=radio]):not([readonly]):not([disabled]),[contenteditable=true]'))e.preventDefault();};
+  document.addEventListener('pointerdown',keepEditorFocus,{capture:true,passive:false});document.addEventListener('mousedown',keepEditorFocus,{capture:true,passive:false});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!e.defaultPrevented&&!document.querySelector('dialog[open]')&&document.querySelector('#sidebar.open')){closeSidebar(true);e.preventDefault();}});
-  const resetPanels=()=>{for(const panel of panelElements){cancelAnimationFrame(panelState(panel).frame);positionPanel(panel,0,0);const handle=panel.querySelector('.ui-panel-handle');if(handle)handle.tabIndex=desktop.matches?0:-1;}};window.addEventListener('resize',resetPanels);desktop.addEventListener('change',resetPanels);reduced.addEventListener('change',()=>{if(reduced.matches)resetPanels();});
-  new MutationObserver(records=>{for(const record of records){if(record.type==='attributes'){sidebarState();continue;}for(const n of record.addedNodes){if(n.nodeType===1)enhanceNode(n);}}}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+  const resetPanels=()=>{for(const panel of panelElements){cancelAnimationFrame(panelState(panel).frame);positionPanel(panel,0,0);const handle=panel.querySelector('.ui-panel-handle');if(handle)handle.tabIndex=desktop.matches?0:-1;}};window.addEventListener('resize',resetPanels);listenMedia(desktop,resetPanels);listenMedia(reduced,()=>{if(reduced.matches)resetPanels();});
+  window.addEventListener('resize',scheduleDialogViewport);window.visualViewport?.addEventListener('resize',scheduleDialogViewport);window.visualViewport?.addEventListener('scroll',scheduleDialogViewport);document.addEventListener('focusin',scheduleDialogViewport);document.addEventListener('focusout',scheduleDialogViewport);
+  new MutationObserver(records=>{let dialogsChanged=false;for(const record of records){if(record.type==='attributes'){if(record.attributeName==='open')dialogsChanged=true;else sidebarState();continue;}for(const n of record.addedNodes){if(n.nodeType===1)enhanceNode(n);}}if(dialogsChanged)syncDialogScroll();}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class','open']});
  }
  window.PeachUI={theme,copied,streamText,setDisclosure,springPanel,springPhysics:SPRING_PHYSICS};
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();

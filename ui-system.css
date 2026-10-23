@@ -78,7 +78,8 @@ details.compact-details>summary::after{content:'＋';font-size:20px;transition:t
 :where(input,textarea,select)[aria-invalid=true]{box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--peach-deep) 42%,transparent)}
 :where(dialog,.table-scroll,.long-table,.chat-conversation){overscroll-behavior:contain;scrollbar-gutter:stable}
 :where(button,a,input,select,textarea,summary,[tabindex]){scroll-margin-block:100px 28px}
-dialog{max-height:calc(100dvh - 24px)}
+dialog{max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px)}
+dialog[data-ui-keyboard=true]{position:fixed!important;top:calc(var(--ui-visible-top) + 8px)!important;bottom:auto!important;left:0!important;right:0!important;margin:0 auto!important;max-height:calc(var(--ui-visible-height) - 16px)!important;translate:none!important;overflow:auto;overscroll-behavior:contain}
 /* Drag is deliberate and constrained to the desktop panel header. */
 .ui-draggable-panel{translate:var(--ui-panel-x,0px) var(--ui-panel-y,0px);will-change:auto}
 .ui-draggable-panel[data-ui-dragging=true]{will-change:translate}
