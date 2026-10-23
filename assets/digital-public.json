@@ -1,0 +1,293 @@
+{
+  "site": {
+    "name": "数商桃乡",
+    "intro": "从广东古坑村的桃园出发，记录采摘、分拣与卖桃的真实过程。小桃满陪你认识一箱桃，也陪青年伙伴把产地故事讲清楚。",
+    "slogan": "数商桃乡，让好桃被看见",
+    "aftercare": "收到商品后请核对包装与数量；如有损坏、物流异常或其他问题，请在该订单下提交反馈。按当批公开规则由管理员联系处理。",
+    "joinIntro": "欢迎愿意了解产地、认真核对事实的青年伙伴。提交申请后由管理员审核，通过基础培训，再领取文案、图片整理或短视频脚本任务。所有对外内容都要经过审核。",
+    "shippingNote": "先核对规格、配送范围和到手价，再提交订单。订单提交后尚未付款，由管理员确认当批供应与配送安排。"
+  },
+  "gallery": [
+    {
+      "id": "orchard-hills",
+      "alt": "山林包围着绿色的果园，树行沿山坡延伸",
+      "image": "assets/orchard/orchard-hills.webp",
+      "thumb": "assets/orchard/orchard-hills-640.webp",
+      "title": "山林间的桃园",
+      "width": 1600,
+      "height": 900,
+      "caption": "航拍镜头记录果树与周围山林，保留真实的产地环境。",
+      "category": "orchard"
+    },
+    {
+      "id": "orchard-overview",
+      "alt": "空中俯瞰果园树行、道路和水塘",
+      "image": "assets/orchard/orchard-overview.webp",
+      "thumb": "assets/orchard/orchard-overview-640.webp",
+      "title": "换个角度看果园",
+      "width": 1280,
+      "height": 720,
+      "caption": "从空中俯瞰，果树、道路与水塘连成一幅完整的田间图景。",
+      "category": "orchard"
+    },
+    {
+      "id": "orchard-path",
+      "alt": "队员沿着果树旁的田埂向前行走",
+      "image": "assets/orchard/orchard-path.webp",
+      "thumb": "assets/orchard/orchard-path-640.webp",
+      "title": "沿着田埂走进去",
+      "width": 1280,
+      "height": 720,
+      "caption": "镜头跟随队员走进果园，树下的小路也是了解产地的一条路径。",
+      "category": "orchard"
+    },
+    {
+      "id": "harvest-team",
+      "alt": "队员在茂密桃树下观察果实",
+      "image": "assets/orchard/harvest-team.webp",
+      "thumb": "assets/orchard/harvest-team-640.webp",
+      "title": "到树下看一看",
+      "width": 1280,
+      "height": 853,
+      "caption": "队员在桃树下查看果实，把田间观察带进产地记录。",
+      "category": "harvest"
+    },
+    {
+      "id": "harvest-picking",
+      "alt": "两名队员在桃树旁观察和采摘",
+      "image": "assets/orchard/harvest-picking.webp",
+      "thumb": "assets/orchard/harvest-picking-640.webp",
+      "title": "一起体验采摘",
+      "width": 1280,
+      "height": 720,
+      "caption": "队员在树旁观察、体验采摘，记录从枝头开始的工作。",
+      "category": "harvest"
+    },
+    {
+      "id": "harvest-baskets",
+      "alt": "工作人员双手提着装有桃子的周转容器",
+      "image": "assets/orchard/harvest-baskets.webp",
+      "thumb": "assets/orchard/harvest-baskets-640.webp",
+      "title": "从枝头到周转筐",
+      "width": 1280,
+      "height": 720,
+      "caption": "工作人员提着装有桃子的周转容器，为后续分拣和装箱做准备。",
+      "category": "harvest"
+    },
+    {
+      "id": "harvest-grower",
+      "alt": "戴草帽的工作人员在桃树下采摘",
+      "image": "assets/orchard/harvest-grower.webp",
+      "thumb": "assets/orchard/harvest-grower-640.webp",
+      "title": "树下的采摘时刻",
+      "width": 1280,
+      "height": 720,
+      "caption": "戴草帽的工作人员在树下采摘，枝叶间留下一段劳动的实拍记录。",
+      "category": "harvest"
+    },
+    {
+      "id": "fruit-hand",
+      "alt": "手托一颗青黄相间的桃，背景可见周转筐",
+      "image": "assets/orchard/fruit-hand.webp",
+      "thumb": "assets/orchard/fruit-hand-640.webp",
+      "title": "一颗桃的真实模样",
+      "width": 960,
+      "height": 1280,
+      "caption": "手中的桃保留本来的颜色与外形。实拍资料用于认识产品，实际商品以当前批次说明为准。",
+      "category": "fruit"
+    },
+    {
+      "id": "fruit-table",
+      "alt": "白色桌面上的一颗桃子近景",
+      "image": "assets/orchard/fruit-table.webp",
+      "thumb": "assets/orchard/fruit-table-640.webp",
+      "title": "把细节看清楚",
+      "width": 1280,
+      "height": 960,
+      "caption": "近距离记录果实的外形与果皮，不用修饰性的文字替代真实观察。",
+      "category": "fruit"
+    },
+    {
+      "id": "fruit-branch",
+      "alt": "桃树枝叶间两颗尚在枝头的果实",
+      "image": "assets/orchard/fruit-branch.webp",
+      "thumb": "assets/orchard/fruit-branch-640.webp",
+      "title": "桃枝上的果实",
+      "width": 1280,
+      "height": 853,
+      "caption": "果实与枝叶同框，记录桃子在树上的样子。",
+      "category": "fruit"
+    },
+    {
+      "id": "fruit-basket",
+      "alt": "蓝色周转筐中装着颜色自然的桃子",
+      "image": "assets/orchard/fruit-basket.webp",
+      "thumb": "assets/orchard/fruit-basket-640.webp",
+      "title": "收拢一筐新鲜颜色",
+      "width": 960,
+      "height": 1280,
+      "caption": "周转筐中的果实呈现自然的颜色差异。照片不代表当前库存或等级承诺。",
+      "category": "fruit"
+    },
+    {
+      "id": "sorting-boxes",
+      "alt": "两名队员整理纸箱与包装内衬",
+      "image": "assets/orchard/sorting-boxes.webp",
+      "thumb": "assets/orchard/sorting-boxes-640.webp",
+      "title": "动手折箱与打包",
+      "width": 1280,
+      "height": 960,
+      "caption": "队员整理纸箱和内衬，参与装箱前的准备工作。",
+      "category": "sorting"
+    },
+    {
+      "id": "sorting-packed",
+      "alt": "纸箱内整齐摆放着套有保护网套的桃子",
+      "image": "assets/orchard/sorting-packed.webp",
+      "thumb": "assets/orchard/sorting-packed-640.webp",
+      "title": "一箱桃如何摆放",
+      "width": 960,
+      "height": 1280,
+      "caption": "实拍记录套有保护网套的桃子在箱内的摆放方式。包装细节以实际商品说明为准。",
+      "category": "sorting"
+    },
+    {
+      "id": "market-day",
+      "alt": "摊主手中展示桃子，身旁的周转筐摆满果实",
+      "image": "assets/orchard/market-day.webp",
+      "thumb": "assets/orchard/market-day-640.webp",
+      "title": "摊位上的桃子",
+      "width": 1280,
+      "height": 720,
+      "caption": "周转筐里的果实与摊主的展示，构成产地市场里一个真实的售卖场景。",
+      "category": "market"
+    },
+    {
+      "id": "market-conversation",
+      "alt": "两人在市场摊位旁查看手中的桃子",
+      "image": "assets/orchard/market-conversation.webp",
+      "thumb": "assets/orchard/market-conversation-640.webp",
+      "title": "把产品说给人听",
+      "width": 1280,
+      "height": 720,
+      "caption": "镜头记录市场摊位旁的交流，让推广从看见产品、听见需求开始。",
+      "category": "market"
+    }
+  ],
+  "training": [
+    {
+      "id": "facts",
+      "body": "文案必须使用管理员确认的规格、产地、批次、价格和配送规则。没有检测依据不能宣称有机、零农残或治疗功效；问卷比例不能当成实际销量。示例商品和模拟订单必须标明状态。",
+      "title": "先把产品事实说清楚",
+      "questions": [
+        {
+          "answer": 1,
+          "options": [
+            "直接发布吸引顾客",
+            "向管理员核对后再写入"
+          ],
+          "question": "未经核实的商品信息应该怎样处理？"
+        },
+        {
+          "answer": 0,
+          "options": [
+            "不能，需单独标记",
+            "可以直接累计"
+          ],
+          "question": "模拟订单能否作为实际销量？"
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "body": "以真实照片和当批事实为基础，围绕认识产地、选购说明、包装开箱与售后解释创作。小桃满帮助表达，不替代证据。不得公开客户姓名、电话、完整地址、账号凭据或未授权的私人资料。完成后先提交管理员审核，审核通过不代表已发布或已结算。",
+      "title": "用小桃满讲真实的桃乡",
+      "questions": [
+        {
+          "answer": 1,
+          "options": [
+            "客户完整地址和手机号",
+            "已授权照片与已核实的商品事实"
+          ],
+          "question": "推广素材可以包含什么？"
+        },
+        {
+          "answer": 0,
+          "options": [
+            "先提交管理员审核",
+            "直接承诺平台支付报酬"
+          ],
+          "question": "完成任务后下一步是什么？"
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "fresh-3",
+      "name": "3斤尝鲜装",
+      "grade": "当批分级确认",
+      "image": "assets/orchard/fruit-hand.webp",
+      "price": 39,
+      "stock": 60,
+      "active": true,
+      "origin": "广东古坑村项目产地资料，具体批次待核实",
+      "weight": "3斤",
+      "regions": "配送区域待管理员确认，当前仅开放模拟订单",
+      "dispatch": "示例配送条件，实际发货时间以确认后的当批安排为准",
+      "subtitle": "先尝一箱，认识桃乡",
+      "aftercare": "模拟订单用于体验流程，不发货、不收费；正式销售按已公布的当批售后规则处理。",
+      "batchCode": "",
+      "description": "规格与价格用于体验选购流程。当前批次、果品等级、配送区域和服务条件须由管理员核实后开放正式销售。",
+      "realEnabled": false,
+      "shippingFee": 0,
+      "version": 1,
+      "availableStock": 60,
+      "simulation": true
+    },
+    {
+      "id": "fresh-5",
+      "name": "5斤家庭装",
+      "grade": "当批分级确认",
+      "image": "assets/orchard/fruit-basket.webp",
+      "price": 59,
+      "stock": 80,
+      "active": true,
+      "origin": "广东古坑村项目产地资料，具体批次待核实",
+      "weight": "5斤",
+      "regions": "配送区域待管理员确认，当前仅开放模拟订单",
+      "dispatch": "示例配送条件，实际发货时间以确认后的当批安排为准",
+      "subtitle": "与家人分享时令桃香",
+      "aftercare": "模拟订单用于体验流程，不发货、不收费；正式销售按已公布的当批售后规则处理。",
+      "batchCode": "",
+      "description": "规格与价格用于体验选购流程。当前批次、果品等级、配送区域和服务条件须由管理员核实后开放正式销售。",
+      "realEnabled": false,
+      "shippingFee": 0,
+      "version": 1,
+      "availableStock": 80,
+      "simulation": true
+    },
+    {
+      "id": "gift-5",
+      "name": "5斤礼赠装",
+      "grade": "礼盒分级确认",
+      "image": "assets/orchard/sorting-packed.webp",
+      "price": 79,
+      "stock": 40,
+      "active": true,
+      "origin": "广东古坑村项目产地资料，具体批次待核实",
+      "weight": "5斤",
+      "regions": "配送区域待管理员确认，当前仅开放模拟订单",
+      "dispatch": "示例配送条件，实际发货时间以确认后的当批安排为准",
+      "subtitle": "小桃满陪你把心意送到",
+      "aftercare": "模拟订单用于体验流程，不发货、不收费；正式销售按已公布的当批售后规则处理。",
+      "batchCode": "",
+      "description": "规格与价格用于体验选购流程。当前批次、果品等级、配送区域和服务条件须由管理员核实后开放正式销售。",
+      "realEnabled": false,
+      "shippingFee": 0,
+      "version": 1,
+      "availableStock": 40,
+      "simulation": true
+    }
+  ]
+}
