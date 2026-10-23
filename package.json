@@ -1,0 +1,34 @@
+{
+  "name": "shushang-taoxiang-digital-media",
+  "version": "4.0.0",
+  "private": true,
+  "type": "module",
+  "description": "数商桃乡网站与运营后台，Neon PostgreSQL + Render",
+  "engines": {
+    "node": ">=22.16.0 <25"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server/index.js",
+    "dev": "node --env-file-if-exists=.env --watch server/index.js",
+    "db:migrate": "node --env-file-if-exists=.env server/cli.js migrate",
+    "db:seed": "node --env-file-if-exists=.env server/cli.js seed",
+    "admin:reset": "node --env-file-if-exists=.env server/cli.js admin-reset",
+    "backup": "node --env-file-if-exists=.env server/cli.js backup",
+    "restore": "node --env-file-if-exists=.env server/cli.js restore",
+    "test": "node --test --test-concurrency=1 tests/backend.test.js tests/operating.test.js tests/edge-cases.test.js tests/frontend-state.test.js tests/public-state.test.js tests/cms-account.test.js tests/source-library.test.js tests/ai.test.js tests/customer.test.js tests/materials.test.js server/llm.test.js tests/demo.test.js tests/knowledge.test.js tests/reliability.test.js tests/ai-dashboard.test.js"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.3.14",
+    "dotenv": "^17.2.3",
+    "echarts": "6.1.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "mammoth": "^1.13.0",
+    "multer": "^2.0.2",
+    "pdfjs-dist": "^6.4.299",
+    "pg": "^8.16.3",
+    "sharp": "^0.35.5",
+    "zod": "^4.1.12"
+  }
+}

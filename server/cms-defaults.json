@@ -1,0 +1,4003 @@
+[
+  {
+    "module": "navigation",
+    "slug": "evidence",
+    "data": {
+      "route": "evidence",
+      "title": "事实中心",
+      "description": "把问卷样本、题号、比例和可用结论放在同一张证据表里。",
+      "detail": "调查数据 · 来源映射 · 结论边界",
+      "number": "01",
+      "image": "",
+      "group": "learn",
+      "visible": true,
+      "showInMenu": true
+    },
+    "sort_order": 0
+  },
+  {
+    "module": "navigation",
+    "slug": "consumer",
+    "data": {
+      "route": "consumer",
+      "title": "消费者端",
+      "description": "按家庭、礼赠、团购切换场景，比较规格、价格和履约条件。",
+      "detail": "场景推荐 · 商品详情 · 咨询承接",
+      "number": "02",
+      "image": "",
+      "group": "buy",
+      "visible": true,
+      "showInMenu": true
+    },
+    "sort_order": 1
+  },
+  {
+    "module": "navigation",
+    "slug": "trace",
+    "data": {
+      "route": "trace",
+      "title": "批次事实链",
+      "description": "看清每一步事实由谁确认、什么时候更新、什么还不能承诺。",
+      "detail": "批次字段 · 责任人 · 售后边界",
+      "number": "03",
+      "image": "",
+      "group": "buy",
+      "visible": true,
+      "showInMenu": false
+    },
+    "sort_order": 2
+  },
+  {
+    "module": "navigation",
+    "slug": "ip",
+    "data": {
+      "route": "ip",
+      "title": "小桃满 IP",
+      "description": "角色、语气、视觉资产、内容栏目和服务触点完整展开。",
+      "detail": "IP 手册 · 内容日历 · 触点组件",
+      "number": "04",
+      "image": "",
+      "group": "create",
+      "visible": true,
+      "showInMenu": true
+    },
+    "sort_order": 3
+  },
+  {
+    "module": "navigation",
+    "slug": "operator",
+    "data": {
+      "route": "operator",
+      "title": "AI+OPC 运营台",
+      "description": "AI 负责整理和生成，OPC 负责事实核验、发布与回写。",
+      "detail": "任务状态 · 复核清单 · 反馈闭环",
+      "number": "05",
+      "image": "",
+      "group": "create",
+      "visible": true,
+      "showInMenu": true
+    },
+    "sort_order": 4
+  },
+  {
+    "module": "navigation",
+    "slug": "content",
+    "data": {
+      "route": "content",
+      "title": "内容传播矩阵",
+      "description": "一份真实素材如何进入短视频、直播、详情页、礼盒和社群。",
+      "detail": "内容资产 · 渠道 · 衡量指标",
+      "number": "06",
+      "image": "",
+      "group": "create",
+      "visible": true,
+      "showInMenu": false
+    },
+    "sort_order": 5
+  },
+  {
+    "module": "navigation",
+    "slug": "rural",
+    "data": {
+      "route": "rural",
+      "title": "农文旅路线",
+      "description": "从桃园观察到分拣体验，把 IP 变成线下导览和线上复购入口。",
+      "detail": "体验步骤 · 开放条件 · 承接方式",
+      "number": "07",
+      "image": "",
+      "group": "learn",
+      "visible": true,
+      "showInMenu": false
+    },
+    "sort_order": 6
+  },
+  {
+    "module": "navigation",
+    "slug": "service",
+    "data": {
+      "route": "service",
+      "title": "收货与售后",
+      "description": "购买前说清发货、保存、损耗和反馈，收货后继续回访。",
+      "detail": "FAQ · 二维码 · 回访字段",
+      "number": "08",
+      "image": "",
+      "group": "buy",
+      "visible": true,
+      "showInMenu": false
+    },
+    "sort_order": 7
+  },
+  {
+    "module": "navigation",
+    "slug": "competition",
+    "data": {
+      "route": "competition",
+      "title": "赛事讲解模式",
+      "description": "按“问题—证据—方案—推广”快速讲清项目价值和边界。",
+      "detail": "四类赛道 · 演示顺序 · 推广条件",
+      "number": "09",
+      "image": "",
+      "group": "learn",
+      "visible": true,
+      "showInMenu": true
+    },
+    "sort_order": 8
+  },
+  {
+    "module": "navigation",
+    "slug": "home",
+    "data": {
+      "route": "home",
+      "title": "总览",
+      "description": "",
+      "detail": "",
+      "number": "",
+      "image": "",
+      "group": "none",
+      "visible": true,
+      "showInMenu": true
+    },
+    "sort_order": 9
+  },
+  {
+    "module": "navigation",
+    "slug": "records",
+    "data": {
+      "route": "records",
+      "title": "我的记录",
+      "description": "",
+      "detail": "",
+      "number": "",
+      "image": "",
+      "group": "none",
+      "visible": true,
+      "showInMenu": true
+    },
+    "sort_order": 10
+  },
+  {
+    "module": "navigation",
+    "slug": "api",
+    "data": {
+      "route": "api",
+      "title": "功能与接口",
+      "description": "",
+      "detail": "",
+      "number": "",
+      "image": "",
+      "group": "none",
+      "visible": true,
+      "showInMenu": false
+    },
+    "sort_order": 11
+  },
+  {
+    "module": "home_groups",
+    "slug": "buy",
+    "data": {
+      "title": "选一箱桃 / 收货服务"
+    },
+    "sort_order": 12
+  },
+  {
+    "module": "home_groups",
+    "slug": "create",
+    "data": {
+      "title": "小桃满 / 内容运营"
+    },
+    "sort_order": 13
+  },
+  {
+    "module": "home_groups",
+    "slug": "learn",
+    "data": {
+      "title": "事实资料 / 项目讲解"
+    },
+    "sort_order": 14
+  },
+  {
+    "module": "feature_controls",
+    "slug": "site",
+    "data": {
+      "consultationEnabled": true,
+      "claimEnabled": true,
+      "tourEnabled": true,
+      "draftEnabled": true,
+      "apiEnabled": true,
+      "pausedMessage": "此功能暂时暂停，请通过项目联系入口咨询。",
+      "consentText": "同意将本次意向与反馈保存到项目后台用于跟进；不构成订单、预约或赔付确认。",
+      "quoteNote": "参考小计不含配送费；到手总价、库存与发货窗口需由运营确认。咨询不产生订单。",
+      "productOriginNote": "实际产地、采摘与发货安排请查看已核验批次；示例不代表当季在售。",
+      "productCareNote": "按购买前公开的批次规则；签收时留存外箱、面单与照片。",
+      "competitionBoundary": "已完成调研、IP设计、内容管理、咨询售后、客户回访和人工订单台账；尚未接入在线支付与物流系统。真实成交与经营效果需销售季验证。",
+      "recordsNote": "仅显示当前浏览器提交的最近100条记录。保留Cookie才能自动查询；不会向其他访客公开。",
+      "operatorIntro": "先核验商品，再用小桃满做表达；咨询进入客户卡，现有渠道成交进入订单台账，履约、回访和经营建议继续回写。"
+    },
+    "sort_order": 15
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-001",
+    "data": {
+      "scope": "global",
+      "title": "开始体验",
+      "original": "开始体验",
+      "replacement": "开始体验"
+    },
+    "sort_order": 16
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-002",
+    "data": {
+      "scope": "global",
+      "title": "← 返回总览",
+      "original": "← 返回总览",
+      "replacement": "← 返回总览"
+    },
+    "sort_order": 17
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-003",
+    "data": {
+      "scope": "global",
+      "title": "更多说明与依据",
+      "original": "更多说明与依据",
+      "replacement": "更多说明与依据"
+    },
+    "sort_order": 18
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-004",
+    "data": {
+      "scope": "global",
+      "title": "我的记录",
+      "original": "我的记录",
+      "replacement": "我的记录"
+    },
+    "sort_order": 19
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-005",
+    "data": {
+      "scope": "global",
+      "title": "功能与接口",
+      "original": "功能与接口",
+      "replacement": "功能与接口"
+    },
+    "sort_order": 20
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-006",
+    "data": {
+      "scope": "global",
+      "title": "刷新最新资料",
+      "original": "刷新最新资料",
+      "replacement": "刷新最新资料"
+    },
+    "sort_order": 21
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-007",
+    "data": {
+      "scope": "global",
+      "title": "导出 CSV",
+      "original": "导出 CSV",
+      "replacement": "导出 CSV"
+    },
+    "sort_order": 22
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-008",
+    "data": {
+      "scope": "global",
+      "title": "题号与指标",
+      "original": "题号与指标",
+      "replacement": "题号与指标"
+    },
+    "sort_order": 23
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-009",
+    "data": {
+      "scope": "global",
+      "title": "人数 / 分母",
+      "original": "人数 / 分母",
+      "replacement": "人数 / 分母"
+    },
+    "sort_order": 24
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-010",
+    "data": {
+      "scope": "global",
+      "title": "比例",
+      "original": "比例",
+      "replacement": "比例"
+    },
+    "sort_order": 25
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-011",
+    "data": {
+      "scope": "global",
+      "title": "来源",
+      "original": "来源",
+      "replacement": "来源"
+    },
+    "sort_order": 26
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-012",
+    "data": {
+      "scope": "global",
+      "title": "结论要有边界",
+      "original": "结论要有边界",
+      "replacement": "结论要有边界"
+    },
+    "sort_order": 27
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-013",
+    "data": {
+      "scope": "global",
+      "title": "调查用于安排规格、内容和协作顺序；购买意愿不等于成交，演示也不证明销量或服务改善。",
+      "original": "调查用于安排规格、内容和协作顺序；购买意愿不等于成交，演示也不证明销量或服务改善。",
+      "replacement": "调查用于安排规格、内容和协作顺序；购买意愿不等于成交，演示也不证明销量或服务改善。"
+    },
+    "sort_order": 28
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-014",
+    "data": {
+      "scope": "global",
+      "title": "消费者回答",
+      "original": "消费者回答",
+      "replacement": "消费者回答"
+    },
+    "sort_order": 29
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-015",
+    "data": {
+      "scope": "global",
+      "title": "偏好与购买阻力",
+      "original": "偏好与购买阻力",
+      "replacement": "偏好与购买阻力"
+    },
+    "sort_order": 30
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-016",
+    "data": {
+      "scope": "global",
+      "title": "农户转述",
+      "original": "农户转述",
+      "replacement": "农户转述"
+    },
+    "sort_order": 31
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-017",
+    "data": {
+      "scope": "global",
+      "title": "经营者视角",
+      "original": "经营者视角",
+      "replacement": "经营者视角"
+    },
+    "sort_order": 32
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-018",
+    "data": {
+      "scope": "global",
+      "title": "访谈材料",
+      "original": "访谈材料",
+      "replacement": "访谈材料"
+    },
+    "sort_order": 33
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-019",
+    "data": {
+      "scope": "global",
+      "title": "定性观察与口述估计",
+      "original": "定性观察与口述估计",
+      "replacement": "定性观察与口述估计"
+    },
+    "sort_order": 34
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-020",
+    "data": {
+      "scope": "global",
+      "title": "明细",
+      "original": "明细",
+      "replacement": "明细"
+    },
+    "sort_order": 35
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-021",
+    "data": {
+      "scope": "global",
+      "title": "访谈如何支撑方案",
+      "original": "访谈如何支撑方案",
+      "replacement": "访谈如何支撑方案"
+    },
+    "sort_order": 36
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-022",
+    "data": {
+      "scope": "global",
+      "title": "小桃满帮你选",
+      "original": "小桃满帮你选",
+      "replacement": "小桃满帮你选"
+    },
+    "sort_order": 37
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-023",
+    "data": {
+      "scope": "global",
+      "title": "这箱桃，准备寄给谁？",
+      "original": "这箱桃，准备寄给谁？",
+      "replacement": "这箱桃，准备寄给谁？"
+    },
+    "sort_order": 38
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-024",
+    "data": {
+      "scope": "global",
+      "title": "当前场景建议",
+      "original": "当前场景建议",
+      "replacement": "当前场景建议"
+    },
+    "sort_order": 39
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-025",
+    "data": {
+      "scope": "global",
+      "title": "先看清，再决定",
+      "original": "先看清，再决定",
+      "replacement": "先看清，再决定"
+    },
+    "sort_order": 40
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-026",
+    "data": {
+      "scope": "global",
+      "title": "参考规格 · 待核价",
+      "original": "参考规格 · 待核价",
+      "replacement": "参考规格 · 待核价"
+    },
+    "sort_order": 41
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-027",
+    "data": {
+      "scope": "global",
+      "title": "商品方案来自icanAIOPC。2—3斤尝鲜装为问卷支持的拟试行规格；图片用于说明，不代表当前可售批次。",
+      "original": "商品方案来自icanAIOPC。2—3斤尝鲜装为问卷支持的拟试行规格；图片用于说明，不代表当前可售批次。",
+      "replacement": "商品方案来自icanAIOPC。2—3斤尝鲜装为问卷支持的拟试行规格；图片用于说明，不代表当前可售批次。"
+    },
+    "sort_order": 42
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-028",
+    "data": {
+      "scope": "global",
+      "title": "咨询这个规格",
+      "original": "咨询这个规格",
+      "replacement": "咨询这个规格"
+    },
+    "sort_order": 43
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-029",
+    "data": {
+      "scope": "global",
+      "title": "查看与咨询",
+      "original": "查看与咨询",
+      "replacement": "查看与咨询"
+    },
+    "sort_order": 44
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-030",
+    "data": {
+      "scope": "global",
+      "title": "小桃满的批次小票",
+      "original": "小桃满的批次小票",
+      "replacement": "小桃满的批次小票"
+    },
+    "sort_order": 45
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-031",
+    "data": {
+      "scope": "global",
+      "title": "示例",
+      "original": "示例",
+      "replacement": "示例"
+    },
+    "sort_order": 46
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-032",
+    "data": {
+      "scope": "global",
+      "title": "查询批次",
+      "original": "查询批次",
+      "replacement": "查询批次"
+    },
+    "sort_order": 47
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-033",
+    "data": {
+      "scope": "global",
+      "title": "批次编号",
+      "original": "批次编号",
+      "replacement": "批次编号"
+    },
+    "sort_order": 48
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-034",
+    "data": {
+      "scope": "global",
+      "title": "状态",
+      "original": "状态",
+      "replacement": "状态"
+    },
+    "sort_order": 49
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-035",
+    "data": {
+      "scope": "global",
+      "title": "演示编号，非真实采摘记录",
+      "original": "演示编号，非真实采摘记录",
+      "replacement": "演示编号，非真实采摘记录"
+    },
+    "sort_order": 50
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-036",
+    "data": {
+      "scope": "global",
+      "title": "采摘日期",
+      "original": "采摘日期",
+      "replacement": "采摘日期"
+    },
+    "sort_order": 51
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-037",
+    "data": {
+      "scope": "global",
+      "title": "待当季填写",
+      "original": "待当季填写",
+      "replacement": "待当季填写"
+    },
+    "sort_order": 52
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-038",
+    "data": {
+      "scope": "global",
+      "title": "购买前必须补齐",
+      "original": "购买前必须补齐",
+      "replacement": "购买前必须补齐"
+    },
+    "sort_order": 53
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-039",
+    "data": {
+      "scope": "global",
+      "title": "查询",
+      "original": "查询",
+      "replacement": "查询"
+    },
+    "sort_order": 54
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-040",
+    "data": {
+      "scope": "global",
+      "title": "导出批次小票",
+      "original": "导出批次小票",
+      "replacement": "导出批次小票"
+    },
+    "sort_order": 55
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-041",
+    "data": {
+      "scope": "global",
+      "title": "选规格",
+      "original": "选规格",
+      "replacement": "选规格"
+    },
+    "sort_order": 56
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-042",
+    "data": {
+      "scope": "global",
+      "title": "小桃满",
+      "original": "小桃满",
+      "replacement": "小桃满"
+    },
+    "sort_order": 57
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-043",
+    "data": {
+      "scope": "global",
+      "title": "真诚 · 细致 · 有点俏皮",
+      "original": "真诚 · 细致 · 有点俏皮",
+      "replacement": "真诚 · 细致 · 有点俏皮"
+    },
+    "sort_order": 58
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-044",
+    "data": {
+      "scope": "global",
+      "title": "讲产地、讲规格，也提醒发货和保存。",
+      "original": "讲产地、讲规格，也提醒发货和保存。",
+      "replacement": "讲产地、讲规格，也提醒发货和保存。"
+    },
+    "sort_order": 59
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-045",
+    "data": {
+      "scope": "global",
+      "title": "先讲真实",
+      "original": "先讲真实",
+      "replacement": "先讲真实"
+    },
+    "sort_order": 60
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-046",
+    "data": {
+      "scope": "global",
+      "title": "事实由人确认",
+      "original": "事实由人确认",
+      "replacement": "事实由人确认"
+    },
+    "sort_order": 61
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-047",
+    "data": {
+      "scope": "global",
+      "title": "桃农确认产地与采摘，运营核对规格、价格和履约。",
+      "original": "桃农确认产地与采摘，运营核对规格、价格和履约。",
+      "replacement": "桃农确认产地与采摘，运营核对规格、价格和履约。"
+    },
+    "sort_order": 62
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-048",
+    "data": {
+      "scope": "global",
+      "title": "再讲故事",
+      "original": "再讲故事",
+      "replacement": "再讲故事"
+    },
+    "sort_order": 63
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-049",
+    "data": {
+      "scope": "global",
+      "title": "IP 帮助理解与记忆",
+      "original": "IP 帮助理解与记忆",
+      "replacement": "IP 帮助理解与记忆"
+    },
+    "sort_order": 64
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-050",
+    "data": {
+      "scope": "global",
+      "title": "礼盒、短视频、社群和导览使用统一角色，商品信息始终完整。",
+      "original": "礼盒、短视频、社群和导览使用统一角色，商品信息始终完整。",
+      "replacement": "礼盒、短视频、社群和导览使用统一角色，商品信息始终完整。"
+    },
+    "sort_order": 65
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-051",
+    "data": {
+      "scope": "global",
+      "title": "查看角色与素材使用规范",
+      "original": "查看角色与素材使用规范",
+      "replacement": "查看角色与素材使用规范"
+    },
+    "sort_order": 66
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-052",
+    "data": {
+      "scope": "global",
+      "title": "以icanAIOPC策划书4.2和项目现有素材为基准。保留桃形、草帽及服饰识别特征。角色故事不替代地方史或产地",
+      "original": "以icanAIOPC策划书4.2和项目现有素材为基准。保留桃形、草帽及服饰识别特征。角色故事不替代地方史或产地证据；背景图不作为真实产地证据。不虚构库存、检测或效果。",
+      "replacement": "以icanAIOPC策划书4.2和项目现有素材为基准。保留桃形、草帽及服饰识别特征。角色故事不替代地方史或产地证据；背景图不作为真实产地证据。不虚构库存、检测或效果。"
+    },
+    "sort_order": 67
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-053",
+    "data": {
+      "scope": "global",
+      "title": "复制栏目文案",
+      "original": "复制栏目文案",
+      "replacement": "复制栏目文案"
+    },
+    "sort_order": 68
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-054",
+    "data": {
+      "scope": "global",
+      "title": "写成渠道脚本",
+      "original": "写成渠道脚本",
+      "replacement": "写成渠道脚本"
+    },
+    "sort_order": 69
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-055",
+    "data": {
+      "scope": "global",
+      "title": "下载这张素材",
+      "original": "下载这张素材",
+      "replacement": "下载这张素材"
+    },
+    "sort_order": 70
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-056",
+    "data": {
+      "scope": "global",
+      "title": "下载使用说明",
+      "original": "下载使用说明",
+      "replacement": "下载使用说明"
+    },
+    "sort_order": 71
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-057",
+    "data": {
+      "scope": "global",
+      "title": "待跟进记录",
+      "original": "待跟进记录",
+      "replacement": "待跟进记录"
+    },
+    "sort_order": 72
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-058",
+    "data": {
+      "scope": "global",
+      "title": "来自你的本地操作",
+      "original": "来自你的本地操作",
+      "replacement": "来自你的本地操作"
+    },
+    "sort_order": 73
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-059",
+    "data": {
+      "scope": "global",
+      "title": "演练复核",
+      "original": "演练复核",
+      "replacement": "演练复核"
+    },
+    "sort_order": 74
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-060",
+    "data": {
+      "scope": "global",
+      "title": "本地发布记录",
+      "original": "本地发布记录",
+      "replacement": "本地发布记录"
+    },
+    "sort_order": 75
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-061",
+    "data": {
+      "scope": "global",
+      "title": "未对外发布",
+      "original": "未对外发布",
+      "replacement": "未对外发布"
+    },
+    "sort_order": 76
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-062",
+    "data": {
+      "scope": "global",
+      "title": "先保存草稿，提交复核，再完成7项演练检查。修改草稿后检查项自动重置。",
+      "original": "先保存草稿，提交复核，再完成7项演练检查。修改草稿后检查项自动重置。",
+      "replacement": "先保存草稿，提交复核，再完成7项演练检查。修改草稿后检查项自动重置。"
+    },
+    "sort_order": 77
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-063",
+    "data": {
+      "scope": "global",
+      "title": "开始内容草稿",
+      "original": "开始内容草稿",
+      "replacement": "开始内容草稿"
+    },
+    "sort_order": 78
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-064",
+    "data": {
+      "scope": "global",
+      "title": "咨询与回访",
+      "original": "咨询与回访",
+      "replacement": "咨询与回访"
+    },
+    "sort_order": 79
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-065",
+    "data": {
+      "scope": "global",
+      "title": "内容草稿",
+      "original": "内容草稿",
+      "replacement": "内容草稿"
+    },
+    "sort_order": 80
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-066",
+    "data": {
+      "scope": "global",
+      "title": "本地模板整理结构，未调用在线大模型。",
+      "original": "本地模板整理结构，未调用在线大模型。",
+      "replacement": "本地模板整理结构，未调用在线大模型。"
+    },
+    "sort_order": 81
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-067",
+    "data": {
+      "scope": "global",
+      "title": "标题",
+      "original": "标题",
+      "replacement": "标题"
+    },
+    "sort_order": 82
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-068",
+    "data": {
+      "scope": "global",
+      "title": "正文",
+      "original": "正文",
+      "replacement": "正文"
+    },
+    "sort_order": 83
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-069",
+    "data": {
+      "scope": "global",
+      "title": "来源：icanAIOPC商品方案、附件02、C14 / C20。真实发布前须补齐当季批次事实。",
+      "original": "来源：icanAIOPC商品方案、附件02、C14 / C20。真实发布前须补齐当季批次事实。",
+      "replacement": "来源：icanAIOPC商品方案、附件02、C14 / C20。真实发布前须补齐当季批次事实。"
+    },
+    "sort_order": 84
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-070",
+    "data": {
+      "scope": "global",
+      "title": "保存草稿",
+      "original": "保存草稿",
+      "replacement": "保存草稿"
+    },
+    "sort_order": 85
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-071",
+    "data": {
+      "scope": "global",
+      "title": "恢复模板",
+      "original": "恢复模板",
+      "replacement": "恢复模板"
+    },
+    "sort_order": 86
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-072",
+    "data": {
+      "scope": "global",
+      "title": "提交复核",
+      "original": "提交复核",
+      "replacement": "提交复核"
+    },
+    "sort_order": 87
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-073",
+    "data": {
+      "scope": "global",
+      "title": "OPC 演练复核",
+      "original": "OPC 演练复核",
+      "replacement": "OPC 演练复核"
+    },
+    "sort_order": 88
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-074",
+    "data": {
+      "scope": "global",
+      "title": "勾选仅用于演练，不构成当季事实核验。",
+      "original": "勾选仅用于演练，不构成当季事实核验。",
+      "replacement": "勾选仅用于演练，不构成当季事实核验。"
+    },
+    "sort_order": 89
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-075",
+    "data": {
+      "scope": "global",
+      "title": "责任人核对原始记录；当前仅演练此步骤",
+      "original": "责任人核对原始记录；当前仅演练此步骤",
+      "replacement": "责任人核对原始记录；当前仅演练此步骤"
+    },
+    "sort_order": 90
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-076",
+    "data": {
+      "scope": "global",
+      "title": "条件不足时点击会提示缺项；同一版本不会重复生成发布快照。",
+      "original": "条件不足时点击会提示缺项；同一版本不会重复生成发布快照。",
+      "replacement": "条件不足时点击会提示缺项；同一版本不会重复生成发布快照。"
+    },
+    "sort_order": 91
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-077",
+    "data": {
+      "scope": "global",
+      "title": "三类记录分别保存。处理备注写回原记录。",
+      "original": "三类记录分别保存。处理备注写回原记录。",
+      "replacement": "三类记录分别保存。处理备注写回原记录。"
+    },
+    "sort_order": 92
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-078",
+    "data": {
+      "scope": "global",
+      "title": "全部记录",
+      "original": "全部记录",
+      "replacement": "全部记录"
+    },
+    "sort_order": 93
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-079",
+    "data": {
+      "scope": "global",
+      "title": "小桃满运营台",
+      "original": "小桃满运营台",
+      "replacement": "小桃满运营台"
+    },
+    "sort_order": 94
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-080",
+    "data": {
+      "scope": "global",
+      "title": "本地流程演练",
+      "original": "本地流程演练",
+      "replacement": "本地流程演练"
+    },
+    "sort_order": 95
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-081",
+    "data": {
+      "scope": "global",
+      "title": "学生先培训、再执行；经验运营者核验、验收并承担经营责任。结算规则在试行前明确。",
+      "original": "学生先培训、再执行；经验运营者核验、验收并承担经营责任。结算规则在试行前明确。",
+      "replacement": "学生先培训、再执行；经验运营者核验、验收并承担经营责任。结算规则在试行前明确。"
+    },
+    "sort_order": 96
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-082",
+    "data": {
+      "scope": "global",
+      "title": "项目素材 · 不代表当季批次",
+      "original": "项目素材 · 不代表当季批次",
+      "replacement": "项目素材 · 不代表当季批次"
+    },
+    "sort_order": 97
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-083",
+    "data": {
+      "scope": "global",
+      "title": "实拍与商品事实为主体，小桃满负责解释、提醒和品牌识别。",
+      "original": "实拍与商品事实为主体，小桃满负责解释、提醒和品牌识别。",
+      "replacement": "实拍与商品事实为主体，小桃满负责解释、提醒和品牌识别。"
+    },
+    "sort_order": 98
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-084",
+    "data": {
+      "scope": "global",
+      "title": "可编辑、复制、下载，再保存到运营草稿。传播效果须另行采集。",
+      "original": "可编辑、复制、下载，再保存到运营草稿。传播效果须另行采集。",
+      "replacement": "可编辑、复制、下载，再保存到运营草稿。传播效果须另行采集。"
+    },
+    "sort_order": 99
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-085",
+    "data": {
+      "scope": "global",
+      "title": "查看试行指标与记录方式",
+      "original": "查看试行指标与记录方式",
+      "replacement": "查看试行指标与记录方式"
+    },
+    "sort_order": 100
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-086",
+    "data": {
+      "scope": "global",
+      "title": "短视频记录播放与完播，直播记录有效咨询，商品页记录咨询与转化，售后记录问题类型和处理耗时。演示不预填真实效果。",
+      "original": "短视频记录播放与完播，直播记录有效咨询，商品页记录咨询与转化，售后记录问题类型和处理耗时。演示不预填真实效果。",
+      "replacement": "短视频记录播放与完播，直播记录有效咨询，商品页记录咨询与转化，售后记录问题类型和处理耗时。演示不预填真实效果。"
+    },
+    "sort_order": 101
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-087",
+    "data": {
+      "scope": "global",
+      "title": "下载试行记录模板",
+      "original": "下载试行记录模板",
+      "replacement": "下载试行记录模板"
+    },
+    "sort_order": 102
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-088",
+    "data": {
+      "scope": "global",
+      "title": "一日桃乡",
+      "original": "一日桃乡",
+      "replacement": "一日桃乡"
+    },
+    "sort_order": 103
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-089",
+    "data": {
+      "scope": "global",
+      "title": "看见 → 参与 → 带走",
+      "original": "看见 → 参与 → 带走",
+      "replacement": "看见 → 参与 → 带走"
+    },
+    "sort_order": 104
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-090",
+    "data": {
+      "scope": "global",
+      "title": "先了解，再出发。",
+      "original": "先了解，再出发。",
+      "replacement": "先了解，再出发。"
+    },
+    "sort_order": 105
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-091",
+    "data": {
+      "scope": "global",
+      "title": "当前未开放预约。提交意向不锁定名额、不收费，也不代表果园已接受预约。",
+      "original": "当前未开放预约。提交意向不锁定名额、不收费，也不代表果园已接受预约。",
+      "replacement": "当前未开放预约。提交意向不锁定名额、不收费，也不代表果园已接受预约。"
+    },
+    "sort_order": 106
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-092",
+    "data": {
+      "scope": "global",
+      "title": "记录路线咨询意向",
+      "original": "记录路线咨询意向",
+      "replacement": "记录路线咨询意向"
+    },
+    "sort_order": 107
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-093",
+    "data": {
+      "scope": "global",
+      "title": "从收到，到回访",
+      "original": "从收到，到回访",
+      "replacement": "从收到，到回访"
+    },
+    "sort_order": 108
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-094",
+    "data": {
+      "scope": "global",
+      "title": "先说清，再发货。",
+      "original": "先说清，再发货。",
+      "replacement": "先说清，再发货。"
+    },
+    "sort_order": 109
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-095",
+    "data": {
+      "scope": "global",
+      "title": "到货时效、损耗和赔付结果须有当批依据。",
+      "original": "到货时效、损耗和赔付结果须有当批依据。",
+      "replacement": "到货时效、损耗和赔付结果须有当批依据。"
+    },
+    "sort_order": 110
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-096",
+    "data": {
+      "scope": "global",
+      "title": "01 · 购买前",
+      "original": "01 · 购买前",
+      "replacement": "01 · 购买前"
+    },
+    "sort_order": 111
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-097",
+    "data": {
+      "scope": "global",
+      "title": "确认规格、到手总价、发货窗口与售后。",
+      "original": "确认规格、到手总价、发货窗口与售后。",
+      "replacement": "确认规格、到手总价、发货窗口与售后。"
+    },
+    "sort_order": 112
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-098",
+    "data": {
+      "scope": "global",
+      "title": "02 · 签收时",
+      "original": "02 · 签收时",
+      "replacement": "02 · 签收时"
+    },
+    "sort_order": 113
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-099",
+    "data": {
+      "scope": "global",
+      "title": "检查外箱和果品，留存外箱、面单和照片。",
+      "original": "检查外箱和果品，留存外箱、面单和照片。",
+      "replacement": "检查外箱和果品，留存外箱、面单和照片。"
+    },
+    "sort_order": 114
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-100",
+    "data": {
+      "scope": "global",
+      "title": "03 · 反馈后",
+      "original": "03 · 反馈后",
+      "replacement": "03 · 反馈后"
+    },
+    "sort_order": 115
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-101",
+    "data": {
+      "scope": "global",
+      "title": "核验后记录处理备注，继续回访。",
+      "original": "核验后记录处理备注，继续回访。",
+      "replacement": "核验后记录处理备注，继续回访。"
+    },
+    "sort_order": 116
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-102",
+    "data": {
+      "scope": "global",
+      "title": "你可能想先问",
+      "original": "你可能想先问",
+      "replacement": "你可能想先问"
+    },
+    "sort_order": 117
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-103",
+    "data": {
+      "scope": "global",
+      "title": "点击放大二维码",
+      "original": "点击放大二维码",
+      "replacement": "点击放大二维码"
+    },
+    "sort_order": 118
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-104",
+    "data": {
+      "scope": "global",
+      "title": "填写售后反馈",
+      "original": "填写售后反馈",
+      "replacement": "填写售后反馈"
+    },
+    "sort_order": 119
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-105",
+    "data": {
+      "scope": "global",
+      "title": "查看反馈进度",
+      "original": "查看反馈进度",
+      "replacement": "查看反馈进度"
+    },
+    "sort_order": 120
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-106",
+    "data": {
+      "scope": "global",
+      "title": "=slides.length)state.slide=Math.max(0,slides.length-1);",
+      "original": "=slides.length)state.slide=Math.max(0,slides.length-1);const s=slides[state.slide];return shell('PRESENTATION / 09','把项目讲清楚，也把边界讲清楚。','按四步讲解，共同支持文化传播、品牌创意、数字乡村服务和农文旅方向的辅助演示。',`",
+      "replacement": "=slides.length)state.slide=Math.max(0,slides.length-1);const s=slides[state.slide];return shell('PRESENTATION / 09','把项目讲清楚，也把边界讲清楚。','按四步讲解，共同支持文化传播、品牌创意、数字乡村服务和农文旅方向的辅助演示。',`"
+    },
+    "sort_order": 121
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-107",
+    "data": {
+      "scope": "global",
+      "title": "打开对应页面",
+      "original": "打开对应页面",
+      "replacement": "打开对应页面"
+    },
+    "sort_order": 122
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-108",
+    "data": {
+      "scope": "global",
+      "title": "复制讲解",
+      "original": "复制讲解",
+      "replacement": "复制讲解"
+    },
+    "sort_order": 123
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-109",
+    "data": {
+      "scope": "global",
+      "title": "← 上一步",
+      "original": "← 上一步",
+      "replacement": "← 上一步"
+    },
+    "sort_order": 124
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-110",
+    "data": {
+      "scope": "global",
+      "title": "下一步 →",
+      "original": "下一步 →",
+      "replacement": "下一步 →"
+    },
+    "sort_order": 125
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-111",
+    "data": {
+      "scope": "global",
+      "title": "查看与跟进",
+      "original": "查看与跟进",
+      "replacement": "查看与跟进"
+    },
+    "sort_order": 126
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-112",
+    "data": {
+      "scope": "global",
+      "title": "state.records==='all'||state.records===r.kind);return s",
+      "original": "state.records==='all'||state.records===r.kind);return shell('MY RECORDS','每次操作，都有下文。','查看此浏览器里的咨询、售后与路线意向。进入记录详情可以演练运营跟进。',`",
+      "replacement": "state.records==='all'||state.records===r.kind);return shell('MY RECORDS','每次操作，都有下文。','查看此浏览器里的咨询、售后与路线意向。进入记录详情可以演练运营跟进。',`"
+    },
+    "sort_order": 127
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-113",
+    "data": {
+      "scope": "global",
+      "title": "无法持久保存，关闭页面后数据可能丢失，请及时导出。",
+      "original": "无法持久保存，关闭页面后数据可能丢失，请及时导出。",
+      "replacement": "无法持久保存，关闭页面后数据可能丢失，请及时导出。"
+    },
+    "sort_order": 128
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-114",
+    "data": {
+      "scope": "global",
+      "title": "本地完成",
+      "original": "本地完成",
+      "replacement": "本地完成"
+    },
+    "sort_order": 129
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-115",
+    "data": {
+      "scope": "global",
+      "title": "`).join(''):'尚无写入操作'}",
+      "original": "`).join(''):'尚无写入操作'}",
+      "replacement": "`).join(''):'尚无写入操作'}"
+    },
+    "sort_order": 130
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-116",
+    "data": {
+      "scope": "global",
+      "title": "导出演示记录",
+      "original": "导出演示记录",
+      "replacement": "导出演示记录"
+    },
+    "sort_order": 131
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-117",
+    "data": {
+      "scope": "global",
+      "title": "清空本地演练",
+      "original": "清空本地演练",
+      "replacement": "清空本地演练"
+    },
+    "sort_order": 132
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-118",
+    "data": {
+      "scope": "global",
+      "title": "接口试运行",
+      "original": "接口试运行",
+      "replacement": "接口试运行"
+    },
+    "sort_order": 133
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-119",
+    "data": {
+      "scope": "global",
+      "title": "请求会执行本地实现，写入会产生浏览器体验记录。",
+      "original": "请求会执行本地实现，写入会产生浏览器体验记录。",
+      "replacement": "请求会执行本地实现，写入会产生浏览器体验记录。"
+    },
+    "sort_order": 134
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-120",
+    "data": {
+      "scope": "global",
+      "title": "接口",
+      "original": "接口",
+      "replacement": "接口"
+    },
+    "sort_order": 135
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-121",
+    "data": {
+      "scope": "global",
+      "title": "请求路径",
+      "original": "请求路径",
+      "replacement": "请求路径"
+    },
+    "sort_order": 136
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-122",
+    "data": {
+      "scope": "global",
+      "title": "请求体 JSON",
+      "original": "请求体 JSON",
+      "replacement": "请求体 JSON"
+    },
+    "sort_order": 137
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-123",
+    "data": {
+      "scope": "global",
+      "title": "占位ID请替换成“我的记录”中的本地ID。校验与业务页面一致。",
+      "original": "占位ID请替换成“我的记录”中的本地ID。校验与业务页面一致。",
+      "replacement": "占位ID请替换成“我的记录”中的本地ID。校验与业务页面一致。"
+    },
+    "sort_order": 138
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-124",
+    "data": {
+      "scope": "global",
+      "title": "执行本地请求",
+      "original": "执行本地请求",
+      "replacement": "执行本地请求"
+    },
+    "sort_order": 139
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-125",
+    "data": {
+      "scope": "global",
+      "title": "等待执行",
+      "original": "等待执行",
+      "replacement": "等待执行"
+    },
+    "sort_order": 140
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-126",
+    "data": {
+      "scope": "global",
+      "title": "选择接口，点击执行查看响应。",
+      "original": "选择接口，点击执行查看响应。",
+      "replacement": "选择接口，点击执行查看响应。"
+    },
+    "sort_order": 141
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-127",
+    "data": {
+      "scope": "global",
+      "title": "接入约定",
+      "original": "接入约定",
+      "replacement": "接入约定"
+    },
+    "sort_order": 142
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-128",
+    "data": {
+      "scope": "global",
+      "title": "当前无远端服务器、文件上传或在线模型调用。完整接入说明见BACKEND.md。",
+      "original": "当前无远端服务器、文件上传或在线模型调用。完整接入说明见BACKEND.md。",
+      "replacement": "当前无远端服务器、文件上传或在线模型调用。完整接入说明见BACKEND.md。"
+    },
+    "sort_order": 143
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-129",
+    "data": {
+      "scope": "global",
+      "title": "复制响应",
+      "original": "复制响应",
+      "replacement": "复制响应"
+    },
+    "sort_order": 144
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-130",
+    "data": {
+      "scope": "global",
+      "title": "下载接口说明",
+      "original": "下载接口说明",
+      "replacement": "下载接口说明"
+    },
+    "sort_order": 145
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-131",
+    "data": {
+      "scope": "global",
+      "title": "查看接口清单",
+      "original": "查看接口清单",
+      "replacement": "查看接口清单"
+    },
+    "sort_order": 146
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-132",
+    "data": {
+      "scope": "global",
+      "title": "联系方式（选填）",
+      "original": "联系方式（选填）",
+      "replacement": "联系方式（选填）"
+    },
+    "sort_order": 147
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-133",
+    "data": {
+      "scope": "global",
+      "title": "同意将本次意向与反馈保存到项目后台用于跟进；不构成订单、预约或赔付确认。",
+      "original": "同意将本次意向与反馈保存到项目后台用于跟进；不构成订单、预约或赔付确认。",
+      "replacement": "同意将本次意向与反馈保存到项目后台用于跟进；不构成订单、预约或赔付确认。"
+    },
+    "sort_order": 148
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-134",
+    "data": {
+      "scope": "global",
+      "title": "仅在此浏览器保存演示记录；不填写真实联系方式或完整地址。",
+      "original": "仅在此浏览器保存演示记录；不填写真实联系方式或完整地址。",
+      "replacement": "仅在此浏览器保存演示记录；不填写真实联系方式或完整地址。"
+    },
+    "sort_order": 149
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-135",
+    "data": {
+      "scope": "global",
+      "title": "便于运营与你确认，不填写完整住址",
+      "original": "便于运营与你确认，不填写完整住址",
+      "replacement": "便于运营与你确认，不填写完整住址"
+    },
+    "sort_order": 150
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-136",
+    "data": {
+      "scope": "global",
+      "title": "取消",
+      "original": "取消",
+      "replacement": "取消"
+    },
+    "sort_order": 151
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-137",
+    "data": {
+      "scope": "global",
+      "title": "小桃满 · 先记下需要",
+      "original": "小桃满 · 先记下需要",
+      "replacement": "小桃满 · 先记下需要"
+    },
+    "sort_order": 152
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-138",
+    "data": {
+      "scope": "global",
+      "title": "咨询这一箱",
+      "original": "咨询这一箱",
+      "replacement": "咨询这一箱"
+    },
+    "sort_order": 153
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-139",
+    "data": {
+      "scope": "global",
+      "title": "保存后在“我的演示记录”和运营台查看、演练跟进。",
+      "original": "保存后在“我的演示记录”和运营台查看、演练跟进。",
+      "replacement": "保存后在“我的演示记录”和运营台查看、演练跟进。"
+    },
+    "sort_order": 154
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-140",
+    "data": {
+      "scope": "global",
+      "title": "参考规格",
+      "original": "参考规格",
+      "replacement": "参考规格"
+    },
+    "sort_order": 155
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-141",
+    "data": {
+      "scope": "global",
+      "title": "数量（箱／盒）",
+      "original": "数量（箱／盒）",
+      "replacement": "数量（箱／盒）"
+    },
+    "sort_order": 156
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-142",
+    "data": {
+      "scope": "global",
+      "title": "收货地区",
+      "original": "收货地区",
+      "replacement": "收货地区"
+    },
+    "sort_order": 157
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-143",
+    "data": {
+      "scope": "global",
+      "title": "称呼",
+      "original": "称呼",
+      "replacement": "称呼"
+    },
+    "sort_order": 158
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-144",
+    "data": {
+      "scope": "global",
+      "title": "想问清什么",
+      "original": "想问清什么",
+      "replacement": "想问清什么"
+    },
+    "sort_order": 159
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-145",
+    "data": {
+      "scope": "global",
+      "title": "如：广东深圳",
+      "original": "如：广东深圳",
+      "replacement": "如：广东深圳"
+    },
+    "sort_order": 160
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-146",
+    "data": {
+      "scope": "global",
+      "title": "可用演示昵称，无需手机号",
+      "original": "可用演示昵称，无需手机号",
+      "replacement": "可用演示昵称，无需手机号"
+    },
+    "sort_order": 161
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-147",
+    "data": {
+      "scope": "global",
+      "title": "如：送礼时间、运费、包装或口感",
+      "original": "如：送礼时间、运费、包装或口感",
+      "replacement": "如：送礼时间、运费、包装或口感"
+    },
+    "sort_order": 162
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-148",
+    "data": {
+      "scope": "global",
+      "title": "产地与批次",
+      "original": "产地与批次",
+      "replacement": "产地与批次"
+    },
+    "sort_order": 163
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-149",
+    "data": {
+      "scope": "global",
+      "title": "上坪产区示例 · 当季记录待确认",
+      "original": "上坪产区示例 · 当季记录待确认",
+      "replacement": "上坪产区示例 · 当季记录待确认"
+    },
+    "sort_order": 164
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-150",
+    "data": {
+      "scope": "global",
+      "title": "损耗与售后",
+      "original": "损耗与售后",
+      "replacement": "损耗与售后"
+    },
+    "sort_order": 165
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-151",
+    "data": {
+      "scope": "global",
+      "title": "按购买前公开的批次规则；签收时留存外箱、面单与照片",
+      "original": "按购买前公开的批次规则；签收时留存外箱、面单与照片",
+      "replacement": "按购买前公开的批次规则；签收时留存外箱、面单与照片"
+    },
+    "sort_order": 166
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-152",
+    "data": {
+      "scope": "global",
+      "title": "填写咨询意向",
+      "original": "填写咨询意向",
+      "replacement": "填写咨询意向"
+    },
+    "sort_order": 167
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-153",
+    "data": {
+      "scope": "global",
+      "title": "看批次字段",
+      "original": "看批次字段",
+      "replacement": "看批次字段"
+    },
+    "sort_order": 168
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-154",
+    "data": {
+      "scope": "global",
+      "title": "看售后说明",
+      "original": "看售后说明",
+      "replacement": "看售后说明"
+    },
+    "sort_order": 169
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-155",
+    "data": {
+      "scope": "global",
+      "title": "一日桃乡 · 意向咨询",
+      "original": "一日桃乡 · 意向咨询",
+      "replacement": "一日桃乡 · 意向咨询"
+    },
+    "sort_order": 170
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-156",
+    "data": {
+      "scope": "global",
+      "title": "记录想去的一天",
+      "original": "记录想去的一天",
+      "replacement": "记录想去的一天"
+    },
+    "sort_order": 171
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-157",
+    "data": {
+      "scope": "global",
+      "title": "开放条件待确认；这里不生成预约凭证。",
+      "original": "开放条件待确认；这里不生成预约凭证。",
+      "replacement": "开放条件待确认；这里不生成预约凭证。"
+    },
+    "sort_order": 172
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-158",
+    "data": {
+      "scope": "global",
+      "title": "意向日期",
+      "original": "意向日期",
+      "replacement": "意向日期"
+    },
+    "sort_order": 173
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-159",
+    "data": {
+      "scope": "global",
+      "title": "同行人数",
+      "original": "同行人数",
+      "replacement": "同行人数"
+    },
+    "sort_order": 174
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-160",
+    "data": {
+      "scope": "global",
+      "title": "出行地区",
+      "original": "出行地区",
+      "replacement": "出行地区"
+    },
+    "sort_order": 175
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-161",
+    "data": {
+      "scope": "global",
+      "title": "想体验的内容",
+      "original": "想体验的内容",
+      "replacement": "想体验的内容"
+    },
+    "sort_order": 176
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-162",
+    "data": {
+      "scope": "global",
+      "title": "演示昵称",
+      "original": "演示昵称",
+      "replacement": "演示昵称"
+    },
+    "sort_order": 177
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-163",
+    "data": {
+      "scope": "global",
+      "title": "如：河源市区",
+      "original": "如：河源市区",
+      "replacement": "如：河源市区"
+    },
+    "sort_order": 178
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-164",
+    "data": {
+      "scope": "global",
+      "title": "如：亲子观察、分拣体验",
+      "original": "如：亲子观察、分拣体验",
+      "replacement": "如：亲子观察、分拣体验"
+    },
+    "sort_order": 179
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-165",
+    "data": {
+      "scope": "global",
+      "title": "收货与售后 · 本地反馈",
+      "original": "收货与售后 · 本地反馈",
+      "replacement": "收货与售后 · 本地反馈"
+    },
+    "sort_order": 180
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-166",
+    "data": {
+      "scope": "global",
+      "title": "把问题说清楚",
+      "original": "把问题说清楚",
+      "replacement": "把问题说清楚"
+    },
+    "sort_order": 181
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-167",
+    "data": {
+      "scope": "global",
+      "title": "反馈类型",
+      "original": "反馈类型",
+      "replacement": "反馈类型"
+    },
+    "sort_order": 182
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-168",
+    "data": {
+      "scope": "global",
+      "title": "到货破损",
+      "original": "到货破损",
+      "replacement": "到货破损"
+    },
+    "sort_order": 183
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-169",
+    "data": {
+      "scope": "global",
+      "title": "物流与发货",
+      "original": "物流与发货",
+      "replacement": "物流与发货"
+    },
+    "sort_order": 184
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-170",
+    "data": {
+      "scope": "global",
+      "title": "保存与食用",
+      "original": "保存与食用",
+      "replacement": "保存与食用"
+    },
+    "sort_order": 185
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-171",
+    "data": {
+      "scope": "global",
+      "title": "其他问题",
+      "original": "其他问题",
+      "replacement": "其他问题"
+    },
+    "sort_order": 186
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-172",
+    "data": {
+      "scope": "global",
+      "title": "批次号",
+      "original": "批次号",
+      "replacement": "批次号"
+    },
+    "sort_order": 187
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-173",
+    "data": {
+      "scope": "global",
+      "title": "问题说明",
+      "original": "问题说明",
+      "replacement": "问题说明"
+    },
+    "sort_order": 188
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-174",
+    "data": {
+      "scope": "global",
+      "title": "问题照片（最多3张，每张≤5MB）",
+      "original": "问题照片（最多3张，每张≤5MB）",
+      "replacement": "问题照片（最多3张，每张≤5MB）"
+    },
+    "sort_order": 189
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-175",
+    "data": {
+      "scope": "global",
+      "title": "照片可在当前弹窗预览，仅保存文件名，未上传图片。正式受理需接入文件存储。",
+      "original": "照片可在当前弹窗预览，仅保存文件名，未上传图片。正式受理需接入文件存储。",
+      "replacement": "照片可在当前弹窗预览，仅保存文件名，未上传图片。正式受理需接入文件存储。"
+    },
+    "sort_order": 190
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-176",
+    "data": {
+      "scope": "global",
+      "title": "可暂不填",
+      "original": "可暂不填",
+      "replacement": "可暂不填"
+    },
+    "sort_order": 191
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-177",
+    "data": {
+      "scope": "global",
+      "title": "如：广东广州",
+      "original": "如：广东广州",
+      "replacement": "如：广东广州"
+    },
+    "sort_order": 192
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-178",
+    "data": {
+      "scope": "global",
+      "title": "至少5个字，说明签收情况与问题",
+      "original": "至少5个字，说明签收情况与问题",
+      "replacement": "至少5个字，说明签收情况与问题"
+    },
+    "sort_order": 193
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-179",
+    "data": {
+      "scope": "global",
+      "title": "写成一条内容",
+      "original": "写成一条内容",
+      "replacement": "写成一条内容"
+    },
+    "sort_order": 194
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-180",
+    "data": {
+      "scope": "global",
+      "title": "可编辑正文",
+      "original": "可编辑正文",
+      "replacement": "可编辑正文"
+    },
+    "sort_order": 195
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-181",
+    "data": {
+      "scope": "global",
+      "title": "未调用在线AI；方括号内容需责任人补齐后才能对外使用。",
+      "original": "未调用在线AI；方括号内容需责任人补齐后才能对外使用。",
+      "replacement": "未调用在线AI；方括号内容需责任人补齐后才能对外使用。"
+    },
+    "sort_order": 196
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-182",
+    "data": {
+      "scope": "global",
+      "title": "保存到运营草稿",
+      "original": "保存到运营草稿",
+      "replacement": "保存到运营草稿"
+    },
+    "sort_order": 197
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-183",
+    "data": {
+      "scope": "global",
+      "title": "复制正文",
+      "original": "复制正文",
+      "replacement": "复制正文"
+    },
+    "sort_order": 198
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-184",
+    "data": {
+      "scope": "global",
+      "title": "下载文本",
+      "original": "下载文本",
+      "replacement": "下载文本"
+    },
+    "sort_order": 199
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-185",
+    "data": {
+      "scope": "global",
+      "title": "x.id===id);if(!r){toast('这条记录已不存在，请刷新列表。');return;}open",
+      "original": "x.id===id);if(!r){toast('这条记录已不存在，请刷新列表。');return;}openModal(`",
+      "replacement": "x.id===id);if(!r){toast('这条记录已不存在，请刷新列表。');return;}openModal(`"
+    },
+    "sort_order": 200
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-186",
+    "data": {
+      "scope": "global",
+      "title": "编号",
+      "original": "编号",
+      "replacement": "编号"
+    },
+    "sort_order": 201
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-187",
+    "data": {
+      "scope": "global",
+      "title": "称呼 / 地区",
+      "original": "称呼 / 地区",
+      "replacement": "称呼 / 地区"
+    },
+    "sort_order": 202
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-188",
+    "data": {
+      "scope": "global",
+      "title": "规格 / 数量",
+      "original": "规格 / 数量",
+      "replacement": "规格 / 数量"
+    },
+    "sort_order": 203
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-189",
+    "data": {
+      "scope": "global",
+      "title": "运费 / 到手总价",
+      "original": "运费 / 到手总价",
+      "replacement": "运费 / 到手总价"
+    },
+    "sort_order": 204
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-190",
+    "data": {
+      "scope": "global",
+      "title": "待真实批次报价",
+      "original": "待真实批次报价",
+      "replacement": "待真实批次报价"
+    },
+    "sort_order": 205
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-191",
+    "data": {
+      "scope": "global",
+      "title": "意向日期 / 人数",
+      "original": "意向日期 / 人数",
+      "replacement": "意向日期 / 人数"
+    },
+    "sort_order": 206
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-192",
+    "data": {
+      "scope": "global",
+      "title": "说明",
+      "original": "说明",
+      "replacement": "说明"
+    },
+    "sort_order": 207
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-193",
+    "data": {
+      "scope": "global",
+      "title": "照片文件名",
+      "original": "照片文件名",
+      "replacement": "照片文件名"
+    },
+    "sort_order": 208
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-194",
+    "data": {
+      "scope": "global",
+      "title": "演示跟进状态",
+      "original": "演示跟进状态",
+      "replacement": "演示跟进状态"
+    },
+    "sort_order": 209
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-195",
+    "data": {
+      "scope": "global",
+      "title": "处理备注",
+      "original": "处理备注",
+      "replacement": "处理备注"
+    },
+    "sort_order": 210
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-196",
+    "data": {
+      "scope": "global",
+      "title": "保存跟进",
+      "original": "保存跟进",
+      "replacement": "保存跟进"
+    },
+    "sort_order": 211
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-197",
+    "data": {
+      "scope": "global",
+      "title": "关闭",
+      "original": "关闭",
+      "replacement": "关闭"
+    },
+    "sort_order": 212
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-198",
+    "data": {
+      "scope": "global",
+      "title": "完成前至少填写5个字；演示不构成真实发货或赔付承诺",
+      "original": "完成前至少填写5个字；演示不构成真实发货或赔付承诺",
+      "replacement": "完成前至少填写5个字；演示不构成真实发货或赔付承诺"
+    },
+    "sort_order": 213
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-199",
+    "data": {
+      "scope": "global",
+      "title": "本地发布快照 · 未对外发布",
+      "original": "本地发布快照 · 未对外发布",
+      "replacement": "本地发布快照 · 未对外发布"
+    },
+    "sort_order": 214
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-200",
+    "data": {
+      "scope": "global",
+      "title": "复制内容",
+      "original": "复制内容",
+      "replacement": "复制内容"
+    },
+    "sort_order": 215
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-201",
+    "data": {
+      "scope": "global",
+      "title": "浏览器未允许自动复制，请选中下方文字复制。",
+      "original": "浏览器未允许自动复制，请选中下方文字复制。",
+      "replacement": "浏览器未允许自动复制，请选中下方文字复制。"
+    },
+    "sort_order": 216
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-202",
+    "data": {
+      "scope": "global",
+      "title": "选项 / 指标",
+      "original": "选项 / 指标",
+      "replacement": "选项 / 指标"
+    },
+    "sort_order": 217
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-203",
+    "data": {
+      "scope": "global",
+      "title": "人数",
+      "original": "人数",
+      "replacement": "人数"
+    },
+    "sort_order": 218
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-204",
+    "data": {
+      "scope": "global",
+      "title": "本页为所引指标，完整选项以附件04原表为准。Q09、Q10、Q14分母分别为195、198、189。",
+      "original": "本页为所引指标，完整选项以附件04原表为准。Q09、Q10、Q14分母分别为195、198、189。",
+      "replacement": "本页为所引指标，完整选项以附件04原表为准。Q09、Q10、Q14分母分别为195、198、189。"
+    },
+    "sort_order": 219
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-205",
+    "data": {
+      "scope": "global",
+      "title": "定性材料 · 口述边界",
+      "original": "定性材料 · 口述边界",
+      "replacement": "定性材料 · 口述边界"
+    },
+    "sort_order": 220
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-206",
+    "data": {
+      "scope": "global",
+      "title": "附件01 · 河源市民",
+      "original": "附件01 · 河源市民",
+      "replacement": "附件01 · 河源市民"
+    },
+    "sort_order": 221
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-207",
+    "data": {
+      "scope": "global",
+      "title": "理解购买场景与沟通需求，个人经历不能计入团队销量。",
+      "original": "理解购买场景与沟通需求，个人经历不能计入团队销量。",
+      "replacement": "理解购买场景与沟通需求，个人经历不能计入团队销量。"
+    },
+    "sort_order": 222
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-208",
+    "data": {
+      "scope": "global",
+      "title": "附件02 · 企业负责人",
+      "original": "附件02 · 企业负责人",
+      "replacement": "附件02 · 企业负责人"
+    },
+    "sort_order": 223
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-209",
+    "data": {
+      "scope": "global",
+      "title": "分拣、物流与短销售季提示经营约束；48小时冷链讨论不构成配送承诺。投流、产量和运费均为口述估计。",
+      "original": "分拣、物流与短销售季提示经营约束；48小时冷链讨论不构成配送承诺。投流、产量和运费均为口述估计。",
+      "replacement": "分拣、物流与短销售季提示经营约束；48小时冷链讨论不构成配送承诺。投流、产量和运费均为口述估计。"
+    },
+    "sort_order": 224
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-210",
+    "data": {
+      "scope": "global",
+      "title": "附件06 · 30人次记录",
+      "original": "附件06 · 30人次记录",
+      "replacement": "附件06 · 30人次记录"
+    },
+    "sort_order": 225
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-211",
+    "data": {
+      "scope": "global",
+      "title": "按受访对象、原话和情境引用，与独立访谈可能重合，不简单相加。80／120／150箱采购经历不属于团队交易。",
+      "original": "按受访对象、原话和情境引用，与独立访谈可能重合，不简单相加。80／120／150箱采购经历不属于团队交易。",
+      "replacement": "按受访对象、原话和情境引用，与独立访谈可能重合，不简单相加。80／120／150箱采购经历不属于团队交易。"
+    },
+    "sort_order": 226
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-212",
+    "data": {
+      "scope": "global",
+      "title": "访谈口述与问卷比例分开引用，未经账目核验不写成经营实绩。",
+      "original": "访谈口述与问卷比例分开引用，未经账目核验不写成经营实绩。",
+      "replacement": "访谈口述与问卷比例分开引用，未经账目核验不写成经营实绩。"
+    },
+    "sort_order": 227
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-213",
+    "data": {
+      "scope": "global",
+      "title": "批次查询 · 示例",
+      "original": "批次查询 · 示例",
+      "replacement": "批次查询 · 示例"
+    },
+    "sort_order": 228
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-214",
+    "data": {
+      "scope": "global",
+      "title": "演示编号，非真实采摘记录。未知字段保留null。",
+      "original": "演示编号，非真实采摘记录。未知字段保留null。",
+      "replacement": "演示编号，非真实采摘记录。未知字段保留null。"
+    },
+    "sort_order": 229
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-215",
+    "data": {
+      "scope": "global",
+      "title": "一日桃乡 · 路线节点",
+      "original": "一日桃乡 · 路线节点",
+      "replacement": "一日桃乡 · 路线节点"
+    },
+    "sort_order": 230
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-216",
+    "data": {
+      "scope": "global",
+      "title": "体验设计示意，当前未确认开放。",
+      "original": "体验设计示意，当前未确认开放。",
+      "replacement": "体验设计示意，当前未确认开放。"
+    },
+    "sort_order": 231
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-217",
+    "data": {
+      "scope": "global",
+      "title": "记录路线意向",
+      "original": "记录路线意向",
+      "replacement": "记录路线意向"
+    },
+    "sort_order": 232
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-218",
+    "data": {
+      "scope": "global",
+      "title": "项目现有社交入口",
+      "original": "项目现有社交入口",
+      "replacement": "项目现有社交入口"
+    },
+    "sort_order": 233
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-219",
+    "data": {
+      "scope": "global",
+      "title": "二维码来自项目资料，实时账号状态请在对应应用确认。",
+      "original": "二维码来自项目资料，实时账号状态请在对应应用确认。",
+      "replacement": "二维码来自项目资料，实时账号状态请在对应应用确认。"
+    },
+    "sort_order": 234
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-220",
+    "data": {
+      "scope": "global",
+      "title": "下载二维码",
+      "original": "下载二维码",
+      "replacement": "下载二维码"
+    },
+    "sort_order": 235
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-221",
+    "data": {
+      "scope": "global",
+      "title": "清空本地演练记录？",
+      "original": "清空本地演练记录？",
+      "replacement": "清空本地演练记录？"
+    },
+    "sort_order": 236
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-222",
+    "data": {
+      "scope": "global",
+      "title": "将清空此浏览器的咨询、售后、路线意向、草稿、复核及发布记录。项目调研数据和素材仍可使用。",
+      "original": "将清空此浏览器的咨询、售后、路线意向、草稿、复核及发布记录。项目调研数据和素材仍可使用。",
+      "replacement": "将清空此浏览器的咨询、售后、路线意向、草稿、复核及发布记录。项目调研数据和素材仍可使用。"
+    },
+    "sort_order": 237
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-223",
+    "data": {
+      "scope": "global",
+      "title": "先导出备份",
+      "original": "先导出备份",
+      "replacement": "先导出备份"
+    },
+    "sort_order": 238
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-224",
+    "data": {
+      "scope": "global",
+      "title": "确认清空",
+      "original": "确认清空",
+      "replacement": "确认清空"
+    },
+    "sort_order": 239
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-225",
+    "data": {
+      "scope": "global",
+      "title": "本地接口清单",
+      "original": "本地接口清单",
+      "replacement": "本地接口清单"
+    },
+    "sort_order": 240
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-226",
+    "data": {
+      "scope": "global",
+      "title": "查看这条记录",
+      "original": "查看这条记录",
+      "replacement": "查看这条记录"
+    },
+    "sort_order": 241
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-227",
+    "data": {
+      "scope": "global",
+      "title": "运营已发布内容",
+      "original": "运营已发布内容",
+      "replacement": "运营已发布内容"
+    },
+    "sort_order": 242
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-228",
+    "data": {
+      "scope": "consumer",
+      "title": "p.id!=='ip-card'&&(state.filter==='all'||state.filter==",
+      "original": "p.id!=='ip-card'&&(state.filter==='all'||state.filter==='scene'&&p.scene===state.scenario||state.filter==='fresh'&&p.category==='fresh'||state.filter==='gift'&&p.category==='gift'));return shell('CHOOSE / 02','选好规格，再问清到手总价。','按场景选择参考规格，先确认当季批次与履约条件。',`",
+      "replacement": "p.id!=='ip-card'&&(state.filter==='all'||state.filter==='scene'&&p.scene===state.scenario||state.filter==='fresh'&&p.category==='fresh'||state.filter==='gift'&&p.category==='gift'));return shell('CHOOSE / 02','选好规格，再问清到手总价。','按场景选择参考规格，先确认当季批次与履约条件。',`"
+    },
+    "sort_order": 243
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-229",
+    "data": {
+      "scope": "consumer",
+      "title": "小桃满帮你选",
+      "original": "小桃满帮你选",
+      "replacement": "小桃满帮你选"
+    },
+    "sort_order": 244
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-230",
+    "data": {
+      "scope": "consumer",
+      "title": "这箱桃，准备寄给谁？",
+      "original": "这箱桃，准备寄给谁？",
+      "replacement": "这箱桃，准备寄给谁？"
+    },
+    "sort_order": 245
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-231",
+    "data": {
+      "scope": "consumer",
+      "title": "当前场景建议",
+      "original": "当前场景建议",
+      "replacement": "当前场景建议"
+    },
+    "sort_order": 246
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-232",
+    "data": {
+      "scope": "consumer",
+      "title": "p.id===sc.productId)?btn('咨询这个规格','consult',sc.productI",
+      "original": "p.id===sc.productId)?btn('咨询这个规格','consult',sc.productId):''}",
+      "replacement": "p.id===sc.productId)?btn('咨询这个规格','consult',sc.productId):''}"
+    },
+    "sort_order": 247
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-233",
+    "data": {
+      "scope": "consumer",
+      "title": "先看清，再决定",
+      "original": "先看清，再决定",
+      "replacement": "先看清，再决定"
+    },
+    "sort_order": 248
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-234",
+    "data": {
+      "scope": "consumer",
+      "title": "商品为公开的参考方案。咨询不产生订单、付款或发货确认。",
+      "original": "商品为公开的参考方案。咨询不产生订单、付款或发货确认。",
+      "replacement": "商品为公开的参考方案。咨询不产生订单、付款或发货确认。"
+    },
+    "sort_order": 249
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-235",
+    "data": {
+      "scope": "consumer",
+      "title": "咨询这个规格",
+      "original": "咨询这个规格",
+      "replacement": "咨询这个规格"
+    },
+    "sort_order": 250
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-236",
+    "data": {
+      "scope": "consumer",
+      "title": "查看与咨询",
+      "original": "查看与咨询",
+      "replacement": "查看与咨询"
+    },
+    "sort_order": 251
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-237",
+    "data": {
+      "scope": "trace",
+      "title": "{const b=batch();if(!b)return shell('BATCH / 03','一批桃，每",
+      "original": "{const b=batch();if(!b)return shell('BATCH / 03','一批桃，每一步都有记录。','按批次查阅。',empty('当前没有公开批次','请等待运营补齐资料。'));if(!traceData[state.trace])state.trace=Object.keys(traceData)[0];const t=traceData[state.trace];return shell('BATCH / 03','一批桃，每一步都有记录。','实际记录与示例明确区分，未知字段保留待确认。',`",
+      "replacement": "{const b=batch();if(!b)return shell('BATCH / 03','一批桃，每一步都有记录。','按批次查阅。',empty('当前没有公开批次','请等待运营补齐资料。'));if(!traceData[state.trace])state.trace=Object.keys(traceData)[0];const t=traceData[state.trace];return shell('BATCH / 03','一批桃，每一步都有记录。','实际记录与示例明确区分，未知字段保留待确认。',`"
+    },
+    "sort_order": 252
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-238",
+    "data": {
+      "scope": "trace",
+      "title": "小桃满的批次小票",
+      "original": "小桃满的批次小票",
+      "replacement": "小桃满的批次小票"
+    },
+    "sort_order": 253
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-239",
+    "data": {
+      "scope": "trace",
+      "title": "查询批次",
+      "original": "查询批次",
+      "replacement": "查询批次"
+    },
+    "sort_order": 254
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-240",
+    "data": {
+      "scope": "trace",
+      "title": "批次编号",
+      "original": "批次编号",
+      "replacement": "批次编号"
+    },
+    "sort_order": 255
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-241",
+    "data": {
+      "scope": "trace",
+      "title": "产地",
+      "original": "产地",
+      "replacement": "产地"
+    },
+    "sort_order": 256
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-242",
+    "data": {
+      "scope": "trace",
+      "title": "采摘日期",
+      "original": "采摘日期",
+      "replacement": "采摘日期"
+    },
+    "sort_order": 257
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-243",
+    "data": {
+      "scope": "trace",
+      "title": "这一批的公开信息",
+      "original": "这一批的公开信息",
+      "replacement": "这一批的公开信息"
+    },
+    "sort_order": 258
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-244",
+    "data": {
+      "scope": "trace",
+      "title": "查询",
+      "original": "查询",
+      "replacement": "查询"
+    },
+    "sort_order": 259
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-245",
+    "data": {
+      "scope": "trace",
+      "title": "导出批次小票",
+      "original": "导出批次小票",
+      "replacement": "导出批次小票"
+    },
+    "sort_order": 260
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-246",
+    "data": {
+      "scope": "trace",
+      "title": "选规格",
+      "original": "选规格",
+      "replacement": "选规格"
+    },
+    "sort_order": 261
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-247",
+    "data": {
+      "scope": "ip",
+      "title": "{const keys=Object.keys(ipData);if(!keys.includes(state",
+      "original": "{const keys=Object.keys(ipData);if(!keys.includes(state.ip))state.ip=keys[0];const d=ipData[state.ip],p=first('ip_profile');if(!d||!p)return shell('XIAOTAOMAN / 04','小桃满 IP','资料更新中',empty());return shell('XIAOTAOMAN / 04',p.name+'，陪一箱桃走得更远。',p.identity,`",
+      "replacement": "{const keys=Object.keys(ipData);if(!keys.includes(state.ip))state.ip=keys[0];const d=ipData[state.ip],p=first('ip_profile');if(!d||!p)return shell('XIAOTAOMAN / 04','小桃满 IP','资料更新中',empty());return shell('XIAOTAOMAN / 04',p.name+'，陪一箱桃走得更远。',p.identity,`"
+    },
+    "sort_order": 262
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-248",
+    "data": {
+      "scope": "ip",
+      "title": "角色与素材使用规范",
+      "original": "角色与素材使用规范",
+      "replacement": "角色与素材使用规范"
+    },
+    "sort_order": 263
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-249",
+    "data": {
+      "scope": "ip",
+      "title": "复制栏目文案",
+      "original": "复制栏目文案",
+      "replacement": "复制栏目文案"
+    },
+    "sort_order": 264
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-250",
+    "data": {
+      "scope": "ip",
+      "title": "写成渠道脚本",
+      "original": "写成渠道脚本",
+      "replacement": "写成渠道脚本"
+    },
+    "sort_order": 265
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-251",
+    "data": {
+      "scope": "ip",
+      "title": "下载这张素材",
+      "original": "下载这张素材",
+      "replacement": "下载这张素材"
+    },
+    "sort_order": 266
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-252",
+    "data": {
+      "scope": "ip",
+      "title": "下载使用说明",
+      "original": "下载使用说明",
+      "replacement": "下载使用说明"
+    },
+    "sort_order": 267
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-253",
+    "data": {
+      "scope": "operator",
+      "title": "shell('OPERATIONS / 05','把一批桃，讲清楚、跟到底。','桃农确认事实，学生采集与表达",
+      "original": "shell('OPERATIONS / 05','把一批桃，讲清楚、跟到底。','桃农确认事实，学生采集与表达，经验运营者审核、发布和回访。',`",
+      "replacement": "shell('OPERATIONS / 05','把一批桃，讲清楚、跟到底。','桃农确认事实，学生采集与表达，经验运营者审核、发布和回访。',`"
+    },
+    "sort_order": 268
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-254",
+    "data": {
+      "scope": "operator",
+      "title": "运营工作已接入独立后台。",
+      "original": "运营工作已接入独立后台。",
+      "replacement": "运营工作已接入独立后台。"
+    },
+    "sort_order": 269
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-255",
+    "data": {
+      "scope": "operator",
+      "title": "先核验商品，再用小桃满做表达；咨询进入客户卡，已有渠道成交进入订单台账，履约、回访和经营建议接着回写。",
+      "original": "先核验商品，再用小桃满做表达；咨询进入客户卡，已有渠道成交进入订单台账，履约、回访和经营建议接着回写。",
+      "replacement": "先核验商品，再用小桃满做表达；咨询进入客户卡，已有渠道成交进入订单台账，履约、回访和经营建议接着回写。"
+    },
+    "sort_order": 270
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-256",
+    "data": {
+      "scope": "operator",
+      "title": "进入具体工作",
+      "original": "进入具体工作",
+      "replacement": "进入具体工作"
+    },
+    "sort_order": 271
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-257",
+    "data": {
+      "scope": "operator",
+      "title": "看公开内容",
+      "original": "看公开内容",
+      "replacement": "看公开内容"
+    },
+    "sort_order": 272
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-258",
+    "data": {
+      "scope": "operator",
+      "title": "查看我的记录",
+      "original": "查看我的记录",
+      "replacement": "查看我的记录"
+    },
+    "sort_order": 273
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-259",
+    "data": {
+      "scope": "content",
+      "title": "模板可编辑、复制、下载；保存与审核需要运营成员登录。模板不冒充在线AI。",
+      "original": "模板可编辑、复制、下载；保存与审核需要运营成员登录。模板不冒充在线AI。",
+      "replacement": "模板可编辑、复制、下载；保存与审核需要运营成员登录。模板不冒充在线AI。"
+    },
+    "sort_order": 274
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-260",
+    "data": {
+      "scope": "rural",
+      "title": "{const r=tour();if(!r)return shell('PEACH VILLAGE / 07'",
+      "original": "{const r=tour();if(!r)return shell('PEACH VILLAGE / 07','一日桃乡','路线更新中',empty());const nodes=r.stops.slice(0,3);return shell('PEACH VILLAGE / 07','跟着小桃满，走一趟桃乡。',r.description,`",
+      "replacement": "{const r=tour();if(!r)return shell('PEACH VILLAGE / 07','一日桃乡','路线更新中',empty());const nodes=r.stops.slice(0,3);return shell('PEACH VILLAGE / 07','跟着小桃满，走一趟桃乡。',r.description,`"
+    },
+    "sort_order": 275
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-261",
+    "data": {
+      "scope": "rural",
+      "title": "选择路线",
+      "original": "选择路线",
+      "replacement": "选择路线"
+    },
+    "sort_order": 276
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-262",
+    "data": {
+      "scope": "rural",
+      "title": "先了解，再出发。",
+      "original": "先了解，再出发。",
+      "replacement": "先了解，再出发。"
+    },
+    "sort_order": 277
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-263",
+    "data": {
+      "scope": "service",
+      "title": "shell('CARE / 08','收到桃之后，小桃满还在。','购买前确认规则，签收后留存凭据，遇到问题可",
+      "original": "shell('CARE / 08','收到桃之后，小桃满还在。','购买前确认规则，签收后留存凭据，遇到问题可在这里反馈。',`",
+      "replacement": "shell('CARE / 08','收到桃之后，小桃满还在。','购买前确认规则，签收后留存凭据，遇到问题可在这里反馈。',`"
+    },
+    "sort_order": 278
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-264",
+    "data": {
+      "scope": "service",
+      "title": "从收到，到回访",
+      "original": "从收到，到回访",
+      "replacement": "从收到，到回访"
+    },
+    "sort_order": 279
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-265",
+    "data": {
+      "scope": "service",
+      "title": "先说清，再发货。",
+      "original": "先说清，再发货。",
+      "replacement": "先说清，再发货。"
+    },
+    "sort_order": 280
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-266",
+    "data": {
+      "scope": "service",
+      "title": "当批发货、保存及售后说明，以公开批次信息为准。提交反馈后，在原浏览器的“我的记录”中查看处理进度。",
+      "original": "当批发货、保存及售后说明，以公开批次信息为准。提交反馈后，在原浏览器的“我的记录”中查看处理进度。",
+      "replacement": "当批发货、保存及售后说明，以公开批次信息为准。提交反馈后，在原浏览器的“我的记录”中查看处理进度。"
+    },
+    "sort_order": 281
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-267",
+    "data": {
+      "scope": "service",
+      "title": "你可能想先问",
+      "original": "你可能想先问",
+      "replacement": "你可能想先问"
+    },
+    "sort_order": 282
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-268",
+    "data": {
+      "scope": "service",
+      "title": "点击放大二维码",
+      "original": "点击放大二维码",
+      "replacement": "点击放大二维码"
+    },
+    "sort_order": 283
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-269",
+    "data": {
+      "scope": "service",
+      "title": "填写售后反馈",
+      "original": "填写售后反馈",
+      "replacement": "填写售后反馈"
+    },
+    "sort_order": 284
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-270",
+    "data": {
+      "scope": "service",
+      "title": "查看反馈进度",
+      "original": "查看反馈进度",
+      "replacement": "查看反馈进度"
+    },
+    "sort_order": 285
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-271",
+    "data": {
+      "scope": "service",
+      "title": "查看批次",
+      "original": "查看批次",
+      "replacement": "查看批次"
+    },
+    "sort_order": 286
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-272",
+    "data": {
+      "scope": "records",
+      "title": "state.records==='all'||x.kind===state.records);return s",
+      "original": "state.records==='all'||x.kind===state.records);return shell('MY RECORDS','每次操作，都有下文。','这里显示当前浏览器提交的最近100条记录。保留Cookie才能自动查询；记录不会向其他访客公开。',`",
+      "replacement": "state.records==='all'||x.kind===state.records);return shell('MY RECORDS','每次操作，都有下文。','这里显示当前浏览器提交的最近100条记录。保留Cookie才能自动查询；记录不会向其他访客公开。',`"
+    },
+    "sort_order": 287
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-273",
+    "data": {
+      "scope": "records",
+      "title": "导出我的记录",
+      "original": "导出我的记录",
+      "replacement": "导出我的记录"
+    },
+    "sort_order": 288
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-274",
+    "data": {
+      "scope": "records",
+      "title": "刷新处理进度",
+      "original": "刷新处理进度",
+      "replacement": "刷新处理进度"
+    },
+    "sort_order": 289
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-275",
+    "data": {
+      "scope": "records",
+      "title": "查看详情",
+      "original": "查看详情",
+      "replacement": "查看详情"
+    },
+    "sort_order": 290
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-276",
+    "data": {
+      "scope": "competition",
+      "title": "x.id===value);if(!r)throw Error('记录不存在，请刷新');openModal(",
+      "original": "x.id===value);if(!r)throw Error('记录不存在，请刷新');openModal(`",
+      "replacement": "x.id===value);if(!r)throw Error('记录不存在，请刷新');openModal(`"
+    },
+    "sort_order": 291
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-277",
+    "data": {
+      "scope": "competition",
+      "title": "关闭",
+      "original": "关闭",
+      "replacement": "关闭"
+    },
+    "sort_order": 292
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-278",
+    "data": {
+      "scope": "competition",
+      "title": "访谈与使用边界",
+      "original": "访谈与使用边界",
+      "replacement": "访谈与使用边界"
+    },
+    "sort_order": 293
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-279",
+    "data": {
+      "scope": "competition",
+      "title": "x.id===value);if(!s)throw Error('联系入口不存在');if(type==='d",
+      "original": "x.id===value);if(!s)throw Error('联系入口不存在');if(type==='download-social')asset(s.image,s.title+'.'+s.image.split('.').pop());else openModal(`",
+      "replacement": "x.id===value);if(!s)throw Error('联系入口不存在');if(type==='download-social')asset(s.image,s.title+'.'+s.image.split('.').pop());else openModal(`"
+    },
+    "sort_order": 294
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-280",
+    "data": {
+      "scope": "competition",
+      "title": "下载二维码",
+      "original": "下载二维码",
+      "replacement": "下载二维码"
+    },
+    "sort_order": 295
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-281",
+    "data": {
+      "scope": "home",
+      "title": "数商桃乡 · 小桃满工作台",
+      "original": "数商桃乡 · 小桃满工作台",
+      "replacement": "数商桃乡 · 小桃满工作台"
+    },
+    "sort_order": 296
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-282",
+    "data": {
+      "scope": "home",
+      "title": "数商桃乡",
+      "original": "数商桃乡",
+      "replacement": "数商桃乡"
+    },
+    "sort_order": 297
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-283",
+    "data": {
+      "scope": "home",
+      "title": "小桃满 · 上坪鹰嘴蜜桃",
+      "original": "小桃满 · 上坪鹰嘴蜜桃",
+      "replacement": "小桃满 · 上坪鹰嘴蜜桃"
+    },
+    "sort_order": 298
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-284",
+    "data": {
+      "scope": "home",
+      "title": "浏览器体验",
+      "original": "浏览器体验",
+      "replacement": "浏览器体验"
+    },
+    "sort_order": 299
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-285",
+    "data": {
+      "scope": "home",
+      "title": "目录",
+      "original": "目录",
+      "replacement": "目录"
+    },
+    "sort_order": 300
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-286",
+    "data": {
+      "scope": "home",
+      "title": "总览",
+      "original": "总览",
+      "replacement": "总览"
+    },
+    "sort_order": 301
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-287",
+    "data": {
+      "scope": "home",
+      "title": "事实中心",
+      "original": "事实中心",
+      "replacement": "事实中心"
+    },
+    "sort_order": 302
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-288",
+    "data": {
+      "scope": "home",
+      "title": "消费者端",
+      "original": "消费者端",
+      "replacement": "消费者端"
+    },
+    "sort_order": 303
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-289",
+    "data": {
+      "scope": "home",
+      "title": "小桃满 IP",
+      "original": "小桃满 IP",
+      "replacement": "小桃满 IP"
+    },
+    "sort_order": 304
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-290",
+    "data": {
+      "scope": "home",
+      "title": "我的记录",
+      "original": "我的记录",
+      "replacement": "我的记录"
+    },
+    "sort_order": 305
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-291",
+    "data": {
+      "scope": "home",
+      "title": "赛事讲解",
+      "original": "赛事讲解",
+      "replacement": "赛事讲解"
+    },
+    "sort_order": 306
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-292",
+    "data": {
+      "scope": "home",
+      "title": "桃源筑梦团队 · 项目服务平台",
+      "original": "桃源筑梦团队 · 项目服务平台",
+      "replacement": "桃源筑梦团队 · 项目服务平台"
+    },
+    "sort_order": 307
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-293",
+    "data": {
+      "scope": "home",
+      "title": "数商桃乡，",
+      "original": "数商桃乡，",
+      "replacement": "数商桃乡，"
+    },
+    "sort_order": 308
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-294",
+    "data": {
+      "scope": "home",
+      "title": "让好桃被看见",
+      "original": "让好桃被看见",
+      "replacement": "让好桃被看见"
+    },
+    "sort_order": 309
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-295",
+    "data": {
+      "scope": "home",
+      "title": "看真实桃园，选合适规格，让小桃满陪你问清一箱桃。商品咨询、内容复核与售后回访，在这里连成一条完整的体验。",
+      "original": "看真实桃园，选合适规格，让小桃满陪你问清一箱桃。商品咨询、内容复核与售后回访，在这里连成一条完整的体验。",
+      "replacement": "看真实桃园，选合适规格，让小桃满陪你问清一箱桃。商品咨询、内容复核与售后回访，在这里连成一条完整的体验。"
+    },
+    "sort_order": 310
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-296",
+    "data": {
+      "scope": "home",
+      "title": "开始看消费者路径",
+      "original": "开始看消费者路径",
+      "replacement": "开始看消费者路径"
+    },
+    "sort_order": 311
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-297",
+    "data": {
+      "scope": "home",
+      "title": "先看事实依据",
+      "original": "先看事实依据",
+      "replacement": "先看事实依据"
+    },
+    "sort_order": 312
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-298",
+    "data": {
+      "scope": "home",
+      "title": "商品、批次、订单与效果数据均有明确状态标识",
+      "original": "商品、批次、订单与效果数据均有明确状态标识",
+      "replacement": "商品、批次、订单与效果数据均有明确状态标识"
+    },
+    "sort_order": 313
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-299",
+    "data": {
+      "scope": "home",
+      "title": "小桃满",
+      "original": "小桃满",
+      "replacement": "小桃满"
+    },
+    "sort_order": 314
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-300",
+    "data": {
+      "scope": "home",
+      "title": "把复杂的桃园事实，翻译成消费者听得懂的选择。",
+      "original": "把复杂的桃园事实，翻译成消费者听得懂的选择。",
+      "replacement": "把复杂的桃园事实，翻译成消费者听得懂的选择。"
+    },
+    "sort_order": 315
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-301",
+    "data": {
+      "scope": "home",
+      "title": "产业端受访者",
+      "original": "产业端受访者",
+      "replacement": "产业端受访者"
+    },
+    "sort_order": 316
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-302",
+    "data": {
+      "scope": "home",
+      "title": "159户自有果园 + 47名代管者",
+      "original": "159户自有果园 + 47名代管者",
+      "replacement": "159户自有果园 + 47名代管者"
+    },
+    "sort_order": 317
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-303",
+    "data": {
+      "scope": "home",
+      "title": "消费者有效样本",
+      "original": "消费者有效样本",
+      "replacement": "消费者有效样本"
+    },
+    "sort_order": 318
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-304",
+    "data": {
+      "scope": "home",
+      "title": "购买偏好与首购阻力",
+      "original": "购买偏好与首购阻力",
+      "replacement": "购买偏好与首购阻力"
+    },
+    "sort_order": 319
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-305",
+    "data": {
+      "scope": "home",
+      "title": "学生与 OPC 调查",
+      "original": "学生与 OPC 调查",
+      "replacement": "学生与 OPC 调查"
+    },
+    "sort_order": 320
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-306",
+    "data": {
+      "scope": "home",
+      "title": "其中351人在校",
+      "original": "其中351人在校",
+      "replacement": "其中351人在校"
+    },
+    "sort_order": 321
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-307",
+    "data": {
+      "scope": "home",
+      "title": "1 批桃",
+      "original": "1 批桃",
+      "replacement": "1 批桃"
+    },
+    "sort_order": 322
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-308",
+    "data": {
+      "scope": "home",
+      "title": "从采摘到回访",
+      "original": "从采摘到回访",
+      "replacement": "从采摘到回访"
+    },
+    "sort_order": 323
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-309",
+    "data": {
+      "scope": "home",
+      "title": "示例流程，非实际经营数据",
+      "original": "示例流程，非实际经营数据",
+      "replacement": "示例流程，非实际经营数据"
+    },
+    "sort_order": 324
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-310",
+    "data": {
+      "scope": "home",
+      "title": "从这里开始",
+      "original": "从这里开始",
+      "replacement": "从这里开始"
+    },
+    "sort_order": 325
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-311",
+    "data": {
+      "scope": "home",
+      "title": "你想先做什么？",
+      "original": "你想先做什么？",
+      "replacement": "你想先做什么？"
+    },
+    "sort_order": 326
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-312",
+    "data": {
+      "scope": "home",
+      "title": "选购、创作或了解项目，详细操作进入下一页。",
+      "original": "选购、创作或了解项目，详细操作进入下一页。",
+      "replacement": "选购、创作或了解项目，详细操作进入下一页。"
+    },
+    "sort_order": 327
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-313",
+    "data": {
+      "scope": "home",
+      "title": "选一箱桃 / 收货服务",
+      "original": "选一箱桃 / 收货服务",
+      "replacement": "选一箱桃 / 收货服务"
+    },
+    "sort_order": 328
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-314",
+    "data": {
+      "scope": "home",
+      "title": "小桃满 / 内容运营",
+      "original": "小桃满 / 内容运营",
+      "replacement": "小桃满 / 内容运营"
+    },
+    "sort_order": 329
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-315",
+    "data": {
+      "scope": "home",
+      "title": "事实资料 / 项目讲解",
+      "original": "事实资料 / 项目讲解",
+      "replacement": "事实资料 / 项目讲解"
+    },
+    "sort_order": 330
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-316",
+    "data": {
+      "scope": "home",
+      "title": "把问卷样本、题号、比例和可用结论放在同一张证据表里。",
+      "original": "把问卷样本、题号、比例和可用结论放在同一张证据表里。",
+      "replacement": "把问卷样本、题号、比例和可用结论放在同一张证据表里。"
+    },
+    "sort_order": 331
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-317",
+    "data": {
+      "scope": "home",
+      "title": "调查数据 · 来源映射 · 结论边界",
+      "original": "调查数据 · 来源映射 · 结论边界",
+      "replacement": "调查数据 · 来源映射 · 结论边界"
+    },
+    "sort_order": 332
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-318",
+    "data": {
+      "scope": "home",
+      "title": "按家庭、礼赠、团购切换场景，比较规格、价格和履约条件。",
+      "original": "按家庭、礼赠、团购切换场景，比较规格、价格和履约条件。",
+      "replacement": "按家庭、礼赠、团购切换场景，比较规格、价格和履约条件。"
+    },
+    "sort_order": 333
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-319",
+    "data": {
+      "scope": "home",
+      "title": "场景推荐 · 商品详情 · 咨询承接",
+      "original": "场景推荐 · 商品详情 · 咨询承接",
+      "replacement": "场景推荐 · 商品详情 · 咨询承接"
+    },
+    "sort_order": 334
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-320",
+    "data": {
+      "scope": "home",
+      "title": "批次事实链",
+      "original": "批次事实链",
+      "replacement": "批次事实链"
+    },
+    "sort_order": 335
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-321",
+    "data": {
+      "scope": "home",
+      "title": "看清每一步事实由谁确认、什么时候更新、什么还不能承诺。",
+      "original": "看清每一步事实由谁确认、什么时候更新、什么还不能承诺。",
+      "replacement": "看清每一步事实由谁确认、什么时候更新、什么还不能承诺。"
+    },
+    "sort_order": 336
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-322",
+    "data": {
+      "scope": "home",
+      "title": "批次字段 · 责任人 · 售后边界",
+      "original": "批次字段 · 责任人 · 售后边界",
+      "replacement": "批次字段 · 责任人 · 售后边界"
+    },
+    "sort_order": 337
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-323",
+    "data": {
+      "scope": "home",
+      "title": "角色、语气、视觉资产、内容栏目和服务触点完整展开。",
+      "original": "角色、语气、视觉资产、内容栏目和服务触点完整展开。",
+      "replacement": "角色、语气、视觉资产、内容栏目和服务触点完整展开。"
+    },
+    "sort_order": 338
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-324",
+    "data": {
+      "scope": "home",
+      "title": "IP 手册 · 内容日历 · 触点组件",
+      "original": "IP 手册 · 内容日历 · 触点组件",
+      "replacement": "IP 手册 · 内容日历 · 触点组件"
+    },
+    "sort_order": 339
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-325",
+    "data": {
+      "scope": "home",
+      "title": "AI+OPC 运营台",
+      "original": "AI+OPC 运营台",
+      "replacement": "AI+OPC 运营台"
+    },
+    "sort_order": 340
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-326",
+    "data": {
+      "scope": "home",
+      "title": "AI 负责整理和生成，OPC 负责事实核验、发布与回写。",
+      "original": "AI 负责整理和生成，OPC 负责事实核验、发布与回写。",
+      "replacement": "AI 负责整理和生成，OPC 负责事实核验、发布与回写。"
+    },
+    "sort_order": 341
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-327",
+    "data": {
+      "scope": "home",
+      "title": "任务状态 · 复核清单 · 反馈闭环",
+      "original": "任务状态 · 复核清单 · 反馈闭环",
+      "replacement": "任务状态 · 复核清单 · 反馈闭环"
+    },
+    "sort_order": 342
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-328",
+    "data": {
+      "scope": "home",
+      "title": "内容传播矩阵",
+      "original": "内容传播矩阵",
+      "replacement": "内容传播矩阵"
+    },
+    "sort_order": 343
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-329",
+    "data": {
+      "scope": "home",
+      "title": "一份真实素材如何进入短视频、直播、详情页、礼盒和社群。",
+      "original": "一份真实素材如何进入短视频、直播、详情页、礼盒和社群。",
+      "replacement": "一份真实素材如何进入短视频、直播、详情页、礼盒和社群。"
+    },
+    "sort_order": 344
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-330",
+    "data": {
+      "scope": "home",
+      "title": "内容资产 · 渠道 · 衡量指标",
+      "original": "内容资产 · 渠道 · 衡量指标",
+      "replacement": "内容资产 · 渠道 · 衡量指标"
+    },
+    "sort_order": 345
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-331",
+    "data": {
+      "scope": "home",
+      "title": "农文旅路线",
+      "original": "农文旅路线",
+      "replacement": "农文旅路线"
+    },
+    "sort_order": 346
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-332",
+    "data": {
+      "scope": "home",
+      "title": "从桃园观察到分拣体验，把 IP 变成线下导览和线上复购入口。",
+      "original": "从桃园观察到分拣体验，把 IP 变成线下导览和线上复购入口。",
+      "replacement": "从桃园观察到分拣体验，把 IP 变成线下导览和线上复购入口。"
+    },
+    "sort_order": 347
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-333",
+    "data": {
+      "scope": "home",
+      "title": "体验步骤 · 开放条件 · 承接方式",
+      "original": "体验步骤 · 开放条件 · 承接方式",
+      "replacement": "体验步骤 · 开放条件 · 承接方式"
+    },
+    "sort_order": 348
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-334",
+    "data": {
+      "scope": "home",
+      "title": "收货与售后",
+      "original": "收货与售后",
+      "replacement": "收货与售后"
+    },
+    "sort_order": 349
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-335",
+    "data": {
+      "scope": "home",
+      "title": "购买前说清发货、保存、损耗和反馈，收货后继续回访。",
+      "original": "购买前说清发货、保存、损耗和反馈，收货后继续回访。",
+      "replacement": "购买前说清发货、保存、损耗和反馈，收货后继续回访。"
+    },
+    "sort_order": 350
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-336",
+    "data": {
+      "scope": "home",
+      "title": "FAQ · 二维码 · 回访字段",
+      "original": "FAQ · 二维码 · 回访字段",
+      "replacement": "FAQ · 二维码 · 回访字段"
+    },
+    "sort_order": 351
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-337",
+    "data": {
+      "scope": "home",
+      "title": "赛事讲解模式",
+      "original": "赛事讲解模式",
+      "replacement": "赛事讲解模式"
+    },
+    "sort_order": 352
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-338",
+    "data": {
+      "scope": "home",
+      "title": "按“问题—证据—方案—推广”快速讲清项目价值和边界。",
+      "original": "按“问题—证据—方案—推广”快速讲清项目价值和边界。",
+      "replacement": "按“问题—证据—方案—推广”快速讲清项目价值和边界。"
+    },
+    "sort_order": 353
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-339",
+    "data": {
+      "scope": "home",
+      "title": "四类赛道 · 演示顺序 · 推广条件",
+      "original": "四类赛道 · 演示顺序 · 推广条件",
+      "replacement": "四类赛道 · 演示顺序 · 推广条件"
+    },
+    "sort_order": 354
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-340",
+    "data": {
+      "scope": "home",
+      "title": "真实事实 → 内容整理 → 人工核验 → 服务与回访",
+      "original": "真实事实 → 内容整理 → 人工核验 → 服务与回访",
+      "replacement": "真实事实 → 内容整理 → 人工核验 → 服务与回访"
+    },
+    "sort_order": 355
+  },
+  {
+    "module": "interface_text",
+    "slug": "text-341",
+    "data": {
+      "scope": "home",
+      "title": "功能与接口 ↗",
+      "original": "功能与接口 ↗",
+      "replacement": "功能与接口 ↗"
+    },
+    "sort_order": 356
+  },
+  {
+    "module": "ai_settings",
+    "slug": "default",
+    "data": {
+      "chatEnabled": true,
+      "descriptionEnabled": true,
+      "recommendationEnabled": true,
+      "lowStockThreshold": 10,
+      "recommendationLimit": 3,
+      "welcomeMessage": "我是小桃满，可以聊选桃与售后、项目调研、IP营销、青年协作、赛事演示和合作流程。请先告诉我你想了解哪一部分。",
+      "fallbackMessage": "这条项目问题还没有足够的已发布依据，请通过对应咨询入口交给运营核实。"
+    },
+    "sort_order": 10000
+  }
+]

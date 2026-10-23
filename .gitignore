@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+node_modules/
+.env
+.env.*
+!.env.example
+.data/
+backups/
+test-results/
+coverage/
+*.log
+
