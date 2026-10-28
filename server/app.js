@@ -1,4 +1,3 @@
-import {cloudRouter,ensureCloudSchema} from './cloud.js';
 import express from 'express';
 import helmet from 'helmet';
 import { rateLimit } from 'express-rate-limit';
@@ -27,7 +26,7 @@ import {ensureDigitalSchema,digitalRouter,digitalAdminRouter} from './digital.js
 const ROOT=resolve(fileURLToPath(new URL('../',import.meta.url)));
 export async function purgeExpired(db){await ensureCustomerSchema(db);const config=await settings(db);const analyticsDays=Math.max(7,Math.min(730,config?.analyticsRetentionDays||180)),requestDays=Math.max(1,Math.min(180,config?.requestRetentionDays||30));return db.transaction(async tx=>{await tx.query('DELETE FROM sessions WHERE expires_at<now()');await tx.query('DELETE FROM customer_sessions WHERE expires_at<now()');await tx.query('DELETE FROM ai_usage WHERE expires_at<now()');await tx.query('DELETE FROM ai_leases WHERE expires_at<now()');await tx.query("DELETE FROM customer_chats WHERE created_at<now()-interval '7 days'");const events=await tx.query(`DELETE FROM analytics_events WHERE created_at<now()-($1*interval '1 day') RETURNING id`,[analyticsDays]);const logs=await tx.query(`DELETE FROM request_logs WHERE created_at<now()-($1*interval '1 day') RETURNING id`,[requestDays]);return{events:events.rows.length,requests:logs.rows.length};});}
 export function createApp(db,{production=false,secret=token(),appUrl='http://localhost:8787',disableLimits=false,demoMode=false,demoApp=null}={}){
-  const app=express();if(demoApp)app.use('/demo',demoApp);const schemaReady=Promise.all([ensureCustomerSchema(db),ensureMaterialsSchema(db),ensureDigitalSchema(db),ensureCloudSchema(db)]);app.locals.ready=schemaReady;app.use((req,res,next)=>{req.demoMode=demoMode;schemaReady.then(()=>next(),next);});app.disable('x-powered-by');if(process.env.TRUST_PROXY)app.set('trust proxy',Number(process.env.TRUST_PROXY));
+  const app=express();if(demoApp)app.use('/demo',demoApp);const schemaReady=Promise.all([ensureCustomerSchema(db),ensureMaterialsSchema(db),ensureDigitalSchema(db)]);app.locals.ready=schemaReady;app.use((req,res,next)=>{req.demoMode=demoMode;schemaReady.then(()=>next(),next);});app.disable('x-powered-by');if(process.env.TRUST_PROXY)app.set('trust proxy',Number(process.env.TRUST_PROXY));
   app.use(helmet({contentSecurityPolicy:{directives:{defaultSrc:["'self'"],scriptSrc:["'self'"],styleSrc:["'self'","'unsafe-inline'"],imgSrc:["'self'",'blob:','data:'],connectSrc:["'self'"],objectSrc:["'none'"],frameAncestors:["'none'"],formAction:["'self'"],upgradeInsecureRequests:production?[]:null}},crossOriginEmbedderPolicy:false,strictTransportSecurity:production?undefined:false}));
   app.use((req,res,next)=>{res.locals.requestId=uid('REQ');res.setHeader('X-Request-ID',res.locals.requestId);const started=performance.now();res.on('finish',()=>{const raw=req.originalUrl.split('?')[0],path=raw.length<250?raw.slice(0,200):'/oversized-path';if(!raw.startsWith('/health'))db.query('INSERT INTO request_logs(id,method,path,status,duration) VALUES($1,$2,$3,$4,$5)',[res.locals.requestId,req.method,path,res.statusCode,Math.round(performance.now()-started)]).catch(()=>{});});next();});
   const send=(res,data,status=200)=>res.status(status).json({data,meta:{mode:'server',persisted:true,requestId:res.locals.requestId,updatedAt:new Date().toISOString()}});
@@ -40,7 +39,6 @@ export function createApp(db,{production=false,secret=token(),appUrl='http://loc
   const limiter=(max,windowMs=15*60000)=>rateLimit({windowMs,limit:max,standardHeaders:'draft-8',legacyHeaders:false,skip:()=>disableLimits,message:{error:{status:429,message:'操作过于频繁，请稍后重试'}}});
   if(demoApp)app.post('/api/auth/login',(req,res,next)=>{if(req.body.email==='test1')return res.redirect(307,'/demo/api/auth/login');next();});
   app.use('/api/customer',customerRouter(db,send,{production,limiter}));
-  app.use('/api/cloud',cloudRouter(db,send,{limiter}));
   app.use('/api/digital',digitalRouter(db,send,{limiter}));
   app.use('/api/admin/digital',digitalAdminRouter(db,send));
   app.get('/api/ai/status',(req,res)=>send(res,{...providerStatus(),loginRequired:true,demo:demoMode}));
@@ -92,10 +90,9 @@ export function createApp(db,{production=false,secret=token(),appUrl='http://loc
   app.get('/admin/',(req,res,next)=>{if(!demoMode)return next();res.sendFile(resolve(ROOT,'admin/index.html'));});
   app.get('/admin/:file',async(req,res,next)=>{if(!/^[a-z0-9-]+\.(?:js|css)$/.test(req.params.file))return next();try{return await sendPublicAsset(req,res,resolve(ROOT,'admin',req.params.file));}catch(e){if(e.code==='ENOENT')return next();next(e);}});
   app.get('/assets/vendor/echarts.min.js',(req,res)=>sendPublicAsset(req,res,resolve(ROOT,'assets/vendor/echarts.min.js')));
-  app.use('/cloud',express.static(resolve(ROOT,'cloud'),{index:'index.html',dotfiles:'deny'}));
   app.use('/admin',express.static(resolve(ROOT,'admin'),{index:'index.html',dotfiles:'deny'}));
   app.use('/assets',express.static(resolve(ROOT,'assets'),{maxAge:'1d',dotfiles:'deny',setHeaders:(res,file)=>{if(/(?:wechat|douyin|xiaohongshu|contact-safe|origin-walk|peach-market|sorting-check)/i.test(file))res.setHeader('Cache-Control','no-store');}}));
-  const publicFiles=new Set(['cloud-addon.js','cloud-addon.css','index.html','digital.js','digital.css','digital-api.js','styles.css','interactions.css','source-data.js','project-data.js','api.js','remote-api.js','front-cms.js','presentation-cms.js','analytics-client.js','app.js','BACKEND.md','ai-core.js','project-knowledge.js','ai-features.js','ai-features.css','ui-system.css','ui-system.js','account.js','account.css','demo-data.js','ip-experience.js','ip-experience.css']);
+  const publicFiles=new Set(['index.html','digital.js','digital.css','digital-api.js','styles.css','interactions.css','source-data.js','project-data.js','api.js','remote-api.js','front-cms.js','presentation-cms.js','analytics-client.js','app.js','BACKEND.md','ai-core.js','project-knowledge.js','ai-features.js','ai-features.css','ui-system.css','ui-system.js','account.js','account.css','demo-data.js','ip-experience.js','ip-experience.css']);
   app.get('/',(req,res)=>res.sendFile(resolve(ROOT,'index.html')));
   app.get('/:file',(req,res,next)=>{if(!publicFiles.has(req.params.file))return next();if(/\.(?:js|css)$/.test(req.params.file))return sendPublicAsset(req,res,resolve(ROOT,req.params.file));res.sendFile(resolve(ROOT,req.params.file));});
   app.use((req,res)=>res.status(404).type('text/plain').send('页面不存在'));
