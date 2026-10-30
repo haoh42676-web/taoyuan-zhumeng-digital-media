@@ -1,6 +1,6 @@
 /* Shared behavior: themes, native disclosures, readable streaming and copy feedback. */
 (()=>{'use strict';
- const key='peach-digital-media-ui-theme:v1',root=document.documentElement,reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ const key='peach-northflank-ui-theme:v1',root=document.documentElement,reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const listenMedia=(query,listener)=>{if(query.addEventListener){query.addEventListener('change',listener);return()=>query.removeEventListener('change',listener);}if(query.addListener){query.addListener(listener);return()=>query.removeListener(listener);}return()=>{};};
  function theme(){
   root.dataset.theme='light';try{localStorage.removeItem(key);}catch{}

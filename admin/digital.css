@@ -1,0 +1,25 @@
+.dm-tabs,.dm-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.dm-tabs{margin:0 0 24px}.dm-tabs a{padding:12px 20px;border-radius:16px;background:var(--surface-2);text-decoration:none;font-weight:var(--weight-500)}.dm-tabs a[aria-current]{background:var(--accent);color:var(--on-accent)}.dm-start{display:flex;gap:24px;align-items:center;margin:0 0 24px}.dm-start>img{width:110px;height:140px;object-fit:contain}.dm-start h2{font-size:24px}.dm-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-bottom:24px}.dm-gallery article{padding:0;overflow:hidden}.dm-gallery article>img{width:100%;height:200px;object-fit:cover}.dm-gallery article>div{padding:22px}.dm-gallery h2{font-size:20px}.dm-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.dm-form input,.dm-form textarea,.dm-form select{width:100%;min-height:46px}.dm-wide{grid-column:1/-1}.dm-form label{display:flex;flex-direction:column;gap:8px}.dm-form .dm-check{flex-direction:row;align-items:center}.dm-check input{width:20px;min-height:20px}.dm-form fieldset{border:0;padding:18px;background:var(--surface-2);border-radius:18px;display:grid;gap:16px}.dm-pre{white-space:pre-wrap;overflow-wrap:anywhere;text-wrap:pretty}#main-content>.panel{margin-bottom:24px}.nav-fold summary{min-height:44px;display:flex;align-items:center}.nav-fold .nav-group{margin:4px 0 16px}.dm-form a,.dm-actions a{min-height:44px;display:inline-flex;align-items:center}#dialog-body>.panel{margin:16px 0}
+@media(max-width:1100px){.dm-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.dm-gallery,.dm-form{grid-template-columns:1fr}.dm-wide{grid-column:auto}.dm-start{align-items:flex-start;gap:14px}.dm-start>img{width:64px;height:95px}.dm-start h2{font-size:21px}.dm-tabs{gap:8px}.dm-tabs a{padding:10px 14px}.dm-form fieldset{min-width:0}.dm-actions{align-items:stretch}.dm-actions>*{justify-content:center}.top-actions{gap:8px}}
+/* Touch editing keeps close controls and text fields within the usable viewport. */
+.sidebar { height:100vh;height:100dvh;padding-bottom:max(14px,env(safe-area-inset-bottom)); }
+.toolbar input,.toolbar select,.list-row input,.upload-box input { font-size:16px; }
+.dialog-header { gap:12px; }
+.dialog-header h2 { min-width:0;overflow-wrap:anywhere; }
+.dialog-header button { width:44px;min-width:44px;min-height:44px; }
+.dm-form>* { min-width:0; }
+@media(max-width:800px) {
+ .main-area { padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right)); }
+ .sidebar { padding-top:max(15px,env(safe-area-inset-top)); }
+ .workspace-top { padding-top:env(safe-area-inset-top);flex-wrap:wrap; }
+ .top-actions button,.menu-toggle,button.small { min-height:44px; }
+ .toolbar label,.toolbar .search { min-width:0;max-width:100%; }
+ .dialog-actions { position:static;margin-bottom:0; }
+ #dialog-body { padding-bottom:max(20px,env(safe-area-inset-bottom)); }
+ .detail-list { grid-template-columns:minmax(70px,.45fr) minmax(0,1fr); }
+}
+@media(max-width:380px) {
+ .dm-start { flex-direction:column; }
+ .dm-start>img { width:64px;height:70px; }
+ .list-row,.list-row.proof,.list-row.metric { grid-template-columns:minmax(0,1fr) minmax(0,1fr) 32px; }
+}
