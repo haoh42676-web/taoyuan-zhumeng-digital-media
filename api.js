@@ -1,7 +1,7 @@
 /* Local implementation of the API contract. Replace the adapter to connect a server. */
 (() => {
   'use strict';
-  const KEY = 'peach-digital-media-demo:v3';
+  const KEY = 'peach-northflank-demo:v3';
   const fresh = () => ({version:3, records:[], logs:[], ops:{draft:null, revision:0, checks:Array(7).fill(false), publications:[]}});
   let db = fresh(), storageAvailable = true;
   try {

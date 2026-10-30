@@ -3,7 +3,7 @@ window.PeachDigitalAdmin=(()=>{
   let data={},config=null,selected=null;
   const labels={pending:'待确认',confirmed:'已确认 · 未付款',paid:'收款已核实',shipped:'已发货',completed:'已完成',cancelled:'已取消',approved:'已通过',rejected:'未通过',assigned:'待完成',submitted:'待审核',changes_requested:'需修改'};
   const money=v=>'¥'+Number(v||0).toFixed(2);
-  const tag=o=>`<span class="pill">${o.simulation?'模拟 · ':''}${esc(labels[o.status]||o.status)}</span>`;
+  const tag=o=>`<span class="pill">${o.simulation?'演示 · ':''}${esc(labels[o.status]||o.status)}</span>`;
   const btn=(s,a,v='',c='small')=>button(s,'dm-'+a,v,c);
   const field=(label,name,value='',type='text',extra='')=>`<label>${esc(label)}<input name="${name}" type="${type}" value="${esc(value)}" ${extra}></label>`;
   const area=(label,name,value='',rows=3)=>`<label class="dm-wide">${esc(label)}<textarea name="${name}" rows="${rows}" required>${esc(value)}</textarea></label>`;
@@ -55,7 +55,7 @@ window.PeachDigitalAdmin=(()=>{
   }
   function orderEditor(o){
     selected=o;const r=o.recipient;
-    const choices={pending:[['confirm','确认当批供应'],['paid',o.simulation?'模拟确认付款':'核实已收款'],['cancel','取消未付款订单']],confirmed:[['paid',o.simulation?'模拟确认付款':'核实已收款'],['cancel','取消未付款订单']],paid:[['ship','登记发货']],shipped:[['complete','确认完成']]};
+    const choices={pending:[['confirm','确认当批供应'],['paid',o.simulation?'确认付款':'核实已收款'],['cancel','取消未付款订单']],confirmed:[['paid',o.simulation?'确认付款':'核实已收款'],['cancel','取消未付款订单']],paid:[['ship','登记发货']],shipped:[['complete','确认完成']]};
     const actions=choices[o.status]||[];
     modal('订单 '+o.id,`<p>${tag(o)} ${esc(o.notice)}</p><section class="panel"><h3>${esc(o.product.name)} × ${o.quantity}</h3><p>${esc(o.product.weight)} · ${esc(o.product.grade)} · ${esc(o.product.origin)}</p><p>商品 ${money(o.unitPrice*o.quantity)} + 配送 ${money(o.shippingFee)} = <b>${money(o.total)}</b></p><p>${esc(r.name)} · ${esc(r.phone)}<br>${esc(r.region)} ${esc(r.address)}</p><p>顾客备注：${esc(o.note||'无')}</p>${o.tracking?`<p>物流：${esc(o.carrier)} · ${esc(o.tracking)}</p>`:''}</section>`+
       (actions.length?form('order',`<label>下一步<select name="action">${actions.map(([v,n])=>`<option value="${v}">${n}</option>`).join('')}</select></label>${field('实收金额（元，核实付款时填写）','paidAmount',o.total,'number','min="0" step="0.01"')}${field('收款凭据编号（真实付款必填）','paymentReference')}${field('快递公司（发货时必填）','carrier')}${field('运单号（发货时必填）','tracking')}${area('处理说明','note','',2).replace('required','')}`,'保存处理记录'):'')+

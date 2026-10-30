@@ -1,10 +1,12 @@
+import {assertIndependentDatabase} from './instance.js';
 import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 export async function openDatabase({ url = process.env.DATABASE_URL, dataDir = process.env.LOCAL_DATA_DIR || '.data/postgres' } = {}) {
   if (url) {
+    assertIndependentDatabase({url});
     const { Pool } = await import('pg');
-    const pool = new Pool({ connectionString: url, max: 8, connectionTimeoutMillis: 15000, idleTimeoutMillis: 30000 });
+    const pool = new Pool({ connectionString: url, max: Number(process.env.DB_POOL_MAX||10), connectionTimeoutMillis: 15000, idleTimeoutMillis: 30000, statement_timeout: 8000 });
     return { kind: 'postgres', query: (sql, args = []) => pool.query(sql, args), async transaction(fn) {
       const client = await pool.connect();
       try { await client.query('BEGIN'); const result = await fn(client); await client.query('COMMIT'); return result; }

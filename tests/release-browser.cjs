@@ -10,7 +10,7 @@ const ok=s=>{checks.push(s);console.log('PASS '+s);};
 const safe=async(name,fn)=>{try{await fn();ok(name);}catch(e){const failure={name,message:clean(e.message)};failures.push(failure);console.log('FAIL '+name+' '+failure.message);}};
 (async()=>{await fs.mkdir(out,{recursive:true});const browser=await chromium.launch({channel:'msedge',headless:true});
  const context=await browser.newContext({viewport:{width:1440,height:1000}});
- await context.addInitScript(()=>{localStorage.setItem('peach-digital-media-analytics-optout','1');});
+ await context.addInitScript(()=>{localStorage.setItem('peach-northflank-analytics-optout','1');});
  await context.route('**/*',async route=>{const req=route.request(),u=new URL(req.url());if(!['GET','HEAD','OPTIONS'].includes(req.method())){const allowed=u.origin===new URL(render).origin&&['/api/customer/login','/api/auth/login','/api/ai/chat','/demo/api/customer/login','/demo/api/auth/login','/demo/api/ai/chat'].includes(u.pathname);if(!allowed){blockedWrites.push(req.method()+' '+u.pathname);return route.abort();}}return route.continue();});
  const front=await context.newPage(),admin=await context.newPage();for(const p of [front,admin])p.on('pageerror',e=>errors.push(clean(e.message)));
  const load=async(p,url)=>{await p.goto(url,{waitUntil:'domcontentloaded',timeout:90000});};

@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const $=s=>document.querySelector(s),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),key='peach-digital-media-focused:v1:admin';
+const $=s=>document.querySelector(s),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),key='peach-northflank-focused:v1:admin';
 let data={},selected=null,route='overview',sessionActive=false,sessionTemporary=false;
 function hasSession(){if(!sessionTemporary)try{sessionActive=sessionStorage.getItem(key)==='1';}catch{sessionTemporary=true;}return sessionActive;}
 function setSession(active){sessionActive=active;if(!sessionTemporary)try{if(active)sessionStorage.setItem(key,'1');else sessionStorage.removeItem(key);}catch{sessionTemporary=true;}}

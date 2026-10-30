@@ -12,10 +12,10 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'C:/Users/Administrator/
  const ok=x=>{checks.push(x);console.log('PASS '+x);};
  const route=async hash=>{await a.goto(base+'/admin/#'+hash);await a.locator('#main-content[data-route="'+hash+'"] .page-heading').waitFor();assert.doesNotMatch(await a.locator('#main-content').innerText(),/暂时无法读取/);};
  try{
-  await v.goto(base);await v.locator('#ai-chat-open').waitFor();await v.locator('.recommendation-card').first().waitFor();assert.equal(await v.evaluate(()=>localStorage.getItem('peach-digital-media-recommendations:v1')),null);
+  await v.goto(base);await v.locator('#ai-chat-open').waitFor();await v.locator('.recommendation-card').first().waitFor();assert.equal(await v.evaluate(()=>localStorage.getItem('peach-northflank-recommendations:v1')),null);
   await v.locator('#recommend-scene').selectOption('gift');await v.waitForFunction(()=>document.querySelector('.recommendation-card h3')?.textContent.includes('礼盒'));
-  await v.locator('#recommend-consent').check();await v.locator('.recommendation-card button').first().click();await v.locator('#app-modal[open]').waitFor();await v.keyboard.press('Escape');assert.equal(await v.evaluate(()=>JSON.parse(localStorage.getItem('peach-digital-media-recommendations:v1')).history.length),1);
-  await v.locator('#recommend-clear').click();assert.equal(await v.evaluate(()=>localStorage.getItem('peach-digital-media-recommendations:v1')),null);
+  await v.locator('#recommend-consent').check();await v.locator('.recommendation-card button').first().click();await v.locator('#app-modal[open]').waitFor();await v.keyboard.press('Escape');assert.equal(await v.evaluate(()=>JSON.parse(localStorage.getItem('peach-northflank-recommendations:v1')).history.length),1);
+  await v.locator('#recommend-clear').click();assert.equal(await v.evaluate(()=>localStorage.getItem('peach-northflank-recommendations:v1')),null);
   ok('Recommendation scene, opt-in browsing, 30-day local preference storage and deletion');
   await v.locator('#ai-recommendations').screenshot({path:path.join(out,'05_首页推荐_实际运行.png')});
   await v.locator('#ai-chat-open').click();await v.locator('#chat-account-open').click();await v.locator('#customer-login [name="account"]').fill('test1');await v.locator('#customer-login [name="password"]').fill('123456');await v.locator('#customer-login [type="submit"]').click();await v.locator('#ai-chat[open]').waitFor();await v.locator('#chat-product').selectOption('fresh-5');

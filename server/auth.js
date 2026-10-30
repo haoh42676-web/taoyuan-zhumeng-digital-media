@@ -44,7 +44,7 @@ export async function bootstrapAdmin(db,{production,env=process.env}){
   if(!production&&!env.ADMIN_PASSWORD){await mkdir('.data',{recursive:true});await writeFile('.data/first-login.txt',`数商桃乡本地后台\n地址：http://localhost:${env.PORT||8787}/admin/\n账号：${email}\n临时密码：${password}\n首次登录后请立即更换。此文件只在本地，已从Git忽略。\n`,{mode:0o600});}
 }
 export async function audit(tx,user,action,entity='',detail={}){await tx.query('INSERT INTO audit_logs(actor_id,actor_name,action,entity,detail) VALUES($1,$2,$3,$4,$5)',[user?.id||null,user?.name||'访客',action,entity,JSON.stringify(detail)]);}
-export function authMiddleware(db,{production=false,secret,sessionCookie='peach_session',allowAnyStaff=false}){return async(req,res,next)=>{try{
+export function authMiddleware(db,{production=false,secret,sessionCookie='peach_nf_session',allowAnyStaff=false}){return async(req,res,next)=>{try{
   const cookies=cookieMap(req);let visitor=cookies.peach_visitor;
   if(!visitor||!/^[a-zA-Z0-9_-]{43}$/.test(visitor)){visitor=token();setCookie(res,'peach_visitor',visitor,{production,maxAge:365*86400000});}
   req.visitorHash=hash(secret+':'+visitor);

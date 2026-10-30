@@ -6,7 +6,7 @@ import {runInNewContext} from 'node:vm';
 async function adapter({blocked=false,broken=false,server=false}={}){
   const source=await readFile(new URL('../digital-api.js',import.meta.url),'utf8');
   const seed=JSON.parse(await readFile(new URL('../assets/digital-public.json',import.meta.url),'utf8'));
-  const state=new Map(broken?[['peach-digital-media-focused:v1','not-json']]:[]);
+  const state=new Map(broken?[['peach-northflank-focused:v1','not-json']]:[]);
   const storage={getItem:k=>{if(blocked)throw Error('Storage disabled');return state.get(k)||null;},setItem:(k,v)=>{if(blocked)throw Error('Storage disabled');state.set(k,v);},removeItem:k=>{if(blocked)throw Error('Storage disabled');state.delete(k);}};
   const window={PEACH_CONFIG:{mode:server?'server':'local'},addEventListener(){},dispatchEvent(){}};
   const fetch=async path=>({ok:true,status:200,json:async()=>String(path).includes('/customer/session')?{data:{user:null,csrf:''}}:String(path).includes('/api/digital/site')?{data:seed}:structuredClone(seed)});

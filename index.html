@@ -1,38 +1,19 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="light">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
-  <meta name="theme-color" content="#f0f3ee">
-  <meta name="description" content="走进桃园日常，认识小桃满，了解桃乡的桃子。看清规格与履约信息，选桃下单，加入桃乡推广。">
-  <title>数商桃乡 · 让好桃被看见</title>
-  <link rel="icon" href="assets/web/xiaotaoman.webp">
-  <link rel="stylesheet" href="ui-system.css">
-  <link rel="stylesheet" href="digital.css">
-  <script src="runtime-config.js" defer></script>
-  <script src="ui-system.js" defer></script>
-  <script src="digital-api.js" defer></script>
-  <script src="digital.js" defer></script>
-</head>
-<body>
-  <header class="site-header">
-    <a class="brand" href="#home" aria-label="数商桃乡首页"><img src="assets/ip-actions/welcome.webp" width="54" height="54" alt="小桃满"><span><strong>数商桃乡</strong><small>桃园里，有好故事</small></span></a>
-    <nav class="main-nav" aria-label="主导航"><a href="#home" data-nav="home">首页</a><a href="#stories" data-nav="stories">桃乡见闻</a><a href="#shop" data-nav="shop">买桃下单</a><a href="#join" data-nav="join">加入我们</a></nav>
-    <button class="account-button" type="button" data-action="account" aria-label="登录或管理我的账号"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg><span data-account-label>登录</span></button>
-  </header>
-  <p id="storage-notice" class="storage-notice" role="status" hidden></p>
-  <main id="app" class="site-main" tabindex="-1" aria-live="polite" aria-busy="true"><div class="loading-state"><img src="assets/ip-actions/welcome.webp" width="120" height="120" alt=""><p>小桃满正在整理桃乡的故事…</p></div></main>
-  <footer class="site-footer"><a href="#home">数商桃乡</a><span>从一颗桃，到一份信任。</span><button type="button" data-action="shipping">配送与售后</button><button type="button" data-action="privacy">隐私说明</button></footer>
-  <button class="chat-launcher" type="button" data-action="chat" aria-haspopup="dialog"><img src="assets/ip-actions/service.webp" width="64" height="64" alt=""><span><strong>问小桃满</strong><small>选桃 · 订单 · 项目咨询</small></span></button>
-  <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="dialog-title"><div class="dialog-toolbar"><button class="icon-button dialog-close" type="button" data-action="close-dialog" aria-label="关闭窗口">×</button></div><div class="dialog-shell"><div id="dialog-content"></div></div></dialog>
-  <dialog id="ai-chat" class="chat-dialog" aria-labelledby="chat-title" data-draggable-panel>
-    <header class="chat-heading" data-panel-handle><img src="assets/ip-actions/service.webp" width="62" height="62" alt="小桃满"><div><h2 id="chat-title">小桃满，听你说</h2><p>选桃、售后与桃乡项目咨询</p></div><button class="icon-button" type="button" data-action="close-chat" aria-label="关闭客服">×</button></header>
-    <p class="chat-notice">回答依据项目公开资料；订单以“我的订单”状态为准。请勿发送密码、验证码或完整收货信息。</p>
-    <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"><article class="message assistant"><b>小桃满</b><p>你好呀！我是小桃满。想选一箱桃、看看配送售后，还是认识桃乡的IP、调研和合作？把你想了解的告诉我，我们一起慢慢看。</p></article></div>
-    <div class="chat-shortcuts"><button type="button" data-question="第一次买桃，怎么选规格？">怎么选桃</button><button type="button" data-question="收到桃子有破损怎么办？">收货售后</button><button type="button" data-question="小桃满和这个项目有什么关系？">认识项目</button></div>
-    <form id="chat-form"><label class="sr-only" for="chat-input">输入项目相关问题</label><textarea id="chat-input" name="message" rows="2" maxlength="500" required placeholder="问问桃子、订单，或桃乡项目…"></textarea><button class="button primary" type="submit">发送 <span aria-hidden="true">↗</span></button></form>
-    <p id="chat-status" class="form-hint" role="status"></p>
-  </dialog>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-</body>
-</html>
+<html lang="zh-CN"><head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f8f8ef">
+<meta name="description" content="跟着原创向导小桃满走进广东连平上坪桃园，选择一季、参与成长、寄出心意，把七月的期待收藏起来。">
+<title>小桃满 · 桃园云养</title><link rel="icon" href="assets/ip-season/welcome.webp"><link rel="preload" as="image" href="assets/orchard/orchard-hills.webp"><link rel="stylesheet" href="season.css">
+<script src="runtime-config.js" defer></script><script type="application/x-peach-script" data-peach-src="digital-api.js"></script><script type="application/x-peach-script" data-peach-src="cloud/seed.js"></script><script type="application/x-peach-script" data-peach-src="assets/vendor/qrcode.js"></script><script type="application/x-peach-script" data-peach-src="season-data.js"></script><script type="application/x-peach-script" data-peach-src="season-views.js"></script><script type="application/x-peach-script" data-peach-src="season-app.js"></script>
+<link rel="stylesheet" href="browser-adapt.css"></head><body>
+<a class="skip-link" href="#season-app">跳到主要内容</a>
+<header class="site-header"><div class="header-inner"><a class="brand" href="#home" aria-label="桃园云养首页"><img src="assets/ip-season/welcome.webp" width="50" height="58" alt="小桃满"><span><strong>桃园云养</strong><small>小桃满和你的四季约定</small></span></a>
+<nav class="main-nav" id="main-nav" aria-label="主要导航"><a href="#home" data-route="home">桃园首页</a><a href="#garden" data-route="garden">四季桃园</a><a href="#plans" data-route="plans">认养一季</a><a href="#gift" data-route="gift">寄份心意</a><a href="#mine" data-route="mine">我的桃园</a></nav>
+<div class="header-right"><a class="header-shop" href="market.html#shop">桃乡商城 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17 17 7M7 7h10v10"/></svg></a><button class="account-link" type="button" data-do="account" aria-label="登录或查看桃乡账号"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><span data-account-name>登录</span></button><button class="mobile-menu" type="button" data-do="menu" aria-controls="main-nav" aria-expanded="false" aria-label="展开导航"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></header>
+<div class="connection-banner" id="connection-banner" role="status" hidden><p></p><button type="button" data-do="reconnect">重新连接</button></div>
+<main id="season-app" class="site-main" tabindex="-1" aria-busy="true"><div class="page-loading"><img src="assets/ip-season/guide.webp" alt="小桃满"><p>正在翻开这一季的桃园手记…</p></div></main>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-top"><div class="footer-brand"><a class="brand" href="#home"><img src="assets/ip-season/welcome.webp" alt=""><span><strong>桃园云养</strong><small>小桃满和你的四季约定</small></span></a><p>把一份期待，种进四季里。</p></div><div class="footer-links"><div><b>走进这一季</b><a href="#garden">四季成长手记</a><a href="#plans">认养方案与权益</a><a href="#gift">寄份心意</a></div><div><b>桃乡的更多日常</b><a href="market.html#shop">桃乡商城</a><a href="market.html#stories">桃乡见闻</a><a href="market.html#join">成员共创</a></div><div><b>关于与服务</b><a href="#about">项目与资料来源</a><a href="#mine/service">服务与探园</a><a href="admin/#overview">运营工作台</a><button class="footer-privacy" data-do="privacy" type="button">隐私与记录</button></div></div></div><div class="footer-bottom"><span>2027桃季体验版 · 模拟记录带SIM编号 · 河源印象农业有限公司</span><span>广东 · 连平上坪 / A SEASON WITH YOUR PEACH TREE</span></div></div></footer>
+<button class="chat-launcher" type="button" data-do="assistant" aria-haspopup="dialog"><img src="assets/ip-season/service.webp" width="49" height="51" alt=""><span>问问小桃满</span></button>
+<nav class="mobile-bottom" aria-label="手机快捷导航"><a href="#home" data-route="home"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3 11 9-8 9 8M5 10v10h14V10M9 20v-7h6v7"/></svg>首页</a><a href="#garden" data-route="garden"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 2-6 7h3l-5 7h7v6h2v-6h7l-5-7h3l-6-7Z"/></svg>四季</a><a href="#plans" data-route="plans"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16v14H4zM8 7V5a4 4 0 0 1 8 0v2"/></svg>认养</a><a href="#gift" data-route="gift"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 10h18v4H3zM5 14v7h14v-7M12 10v11M12 10H8a3 3 0 1 1 3-3l1 3Zm0 0h4a3 3 0 1 0-3-3l-1 3Z"/></svg>心意</a><a href="#mine" data-route="mine"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg>我的</a></nav>
+<dialog id="season-dialog" class="season-dialog" aria-labelledby="dialog-label"><div class="dialog-top"><span id="dialog-label">桃园云养</span><button class="icon-button" type="button" data-do="close" aria-label="关闭窗口"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m6 6 12 12M6 18 18 6"/></svg></button></div><div class="dialog-body" id="dialog-body"></div></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="assets/compat/boot.js" data-peach-boot="season" defer></script></body></html>

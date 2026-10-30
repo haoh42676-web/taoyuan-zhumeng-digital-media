@@ -1,6 +1,6 @@
 /* Public, isolated demonstration fixtures. Never connected to a database or model provider. */
 (()=>{'use strict';
- const KEY='peach-digital-media-sandbox:v1',SESSION='peach-digital-media-static-account';
+ const KEY='peach-northflank-sandbox:v1',SESSION='peach-northflank-static-account';
  const clone=v=>JSON.parse(JSON.stringify(v));
  const marked=rows=>rows.map((r,i)=>({id:i+1,...r,demo:true,evidenceStatus:'simulation'}));
  const day=offset=>{const d=new Date();d.setUTCHours(12,0,0,0);d.setUTCDate(d.getUTCDate()+offset);return d.toISOString().slice(0,10);};

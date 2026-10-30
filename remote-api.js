@@ -23,7 +23,7 @@
     let body;
     if(method!=='GET'&&method!=='HEAD'){
       headers['Idempotency-Key']=crypto.randomUUID();
-      if(payload.files?.length){body=new FormData();const{files,...data}=payload;body.append('payload',JSON.stringify(data));for(const f of files)body.append('photos',f);}
+      if(payload.files?.length){if(payload.files.reduce((n,f)=>n+f.size,0)>4*1024*1024)throw Error('本次照片合计不能超过4MB，请压缩或减少照片');body=new FormData();const{files,...data}=payload;body.append('payload',JSON.stringify(data));for(const f of files)body.append('photos',f);}
       else{headers['Content-Type']='application/json';body=JSON.stringify(payload);}
     }
     let response;

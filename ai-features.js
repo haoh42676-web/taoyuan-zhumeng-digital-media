@@ -1,6 +1,6 @@
 import {AI_DEFAULTS,answerQuestion,recommendProducts} from './ai-core.js';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const KEY='peach-digital-media-recommendations:v1',DAY=86400000;
+const KEY='peach-northflank-recommendations:v1',DAY=86400000;
 let products=[],faqs=[],batches=[],config={...AI_DEFAULTS},scene='',history=[],consent=false,dialog,conversation,busy=false,requestVersion=0,streamController,providerStatus,chatIdentity=null;
 function restore(){try{const d=JSON.parse(localStorage.getItem(KEY)||'null');if(d?.enabled===true){consent=true;history=Array.isArray(d.history)?d.history.filter(x=>x&&typeof x.id==='string'&&Number.isFinite(x.at)&&Date.now()-x.at<30*DAY).slice(-50):[];}}catch{}}
 function persist(){try{if(consent)localStorage.setItem(KEY,JSON.stringify({enabled:true,history}));else localStorage.removeItem(KEY);}catch{}}

@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   if(window.PEACH_CONFIG?.mode!=='server')return;
-  const KEY='peach-digital-media-analytics-optout',SESSION='peach-digital-media-analytics-session';let optedOut=navigator.doNotTrack==='1'||!!new URLSearchParams(location.search).get('preview');
+  const KEY='peach-northflank-analytics-optout',SESSION='peach-northflank-analytics-session';let optedOut=navigator.doNotTrack==='1'||!!new URLSearchParams(location.search).get('preview');
   try{optedOut=optedOut||localStorage.getItem(KEY)==='1';}catch{}
   let session,route='',started=performance.now(),queue=[],sending=false;
   try{session=JSON.parse(sessionStorage.getItem(SESSION));}catch{}

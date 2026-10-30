@@ -1,3 +1,4 @@
+import {assertIndependentDatabase} from './instance.js';
 import {openDatabase,migrate,one} from './db.js';
 import {seed} from './content.js';
 import {passwordHash} from './auth.js';
@@ -50,14 +51,15 @@ export async function seedDemo(db){
 }
 
 /** Preserve URI/TLS settings; local search_path survives transaction pooling without leaking into real queries. */
-export async function openDemoDatabase(realDB,{url=process.env.DATABASE_URL,dataDir='.data/demo-postgres',pool:providedPool}={}){
+export async function openDemoDatabase(realDB,{url=process.env.DATABASE_URL,dataDir='.data/demo-postgres',pool:providedPool,initialize=true}={}){
  if(realDB.kind!=='postgres')return openDatabase({url:'',dataDir});
- await realDB.query('CREATE SCHEMA IF NOT EXISTS '+DEMO_SCHEMA);
- const pool=providedPool||new (await import('pg')).Pool({connectionString:url,max:3,connectionTimeoutMillis:15000,idleTimeoutMillis:30000});
+ if(process.env.NODE_ENV==='production'||process.env.SITE_INSTANCE_ID)assertIndependentDatabase({url});
+ if(initialize)await realDB.query('CREATE SCHEMA IF NOT EXISTS '+DEMO_SCHEMA);
+ const pool=providedPool||new (await import('pg')).Pool({connectionString:url,max:Number(process.env.DB_POOL_MAX||3),connectionTimeoutMillis:15000,idleTimeoutMillis:30000});
  async function transaction(fn){const client=await pool.connect();try{await client.query('BEGIN');await client.query('SET LOCAL search_path TO '+DEMO_SCHEMA);const result=await fn(client);await client.query('COMMIT');return result;}catch(e){try{await client.query('ROLLBACK');}catch{}throw e;}finally{client.release();}}
  return{kind:'postgres',schema:DEMO_SCHEMA,query:(sql,args=[])=>transaction(client=>client.query(sql,args)),transaction,close:()=>pool.end()};
 }
 export async function createDemoApp(realDB,options={}){
- const {demoDataDir,demoDatabaseURL,...appOptions}=options,db=await openDemoDatabase(realDB,{dataDir:demoDataDir||'.data/demo-postgres',url:demoDatabaseURL||process.env.DATABASE_URL});
- try{await migrate(db);await seed(db);await seedDemo(db);const app=createApp(db,{...appOptions,demoMode:true});app.locals.demoDatabase=db;await app.locals.ready;return app;}catch(e){await db.close();throw e;}
+ const {demoDataDir,demoDatabaseURL,initialize=true,...appOptions}=options,db=await openDemoDatabase(realDB,{dataDir:demoDataDir||'.data/demo-postgres',url:demoDatabaseURL||process.env.DATABASE_URL,initialize});
+ try{if(initialize){await migrate(db);await seed(db);await seedDemo(db);}const app=createApp(db,{...appOptions,demoMode:true,initialize});app.locals.demoDatabase=db;await app.locals.ready;return app;}catch(e){await db.close();throw e;}
 }
