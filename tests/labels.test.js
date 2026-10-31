@@ -13,6 +13,6 @@ test('stored corrections are backed up transactionally, preserve money and run o
  try{await migrate(db);await seed(db);await ensureCloudSchema(db);const old={id:'LABEL-LEGACY',simulation:true,amount:5456,status:'已关联模拟预订',paymentStatus:'待核对',title:'模拟管护情景'};
  await db.query("INSERT INTO cloud_items(id,kind,data) VALUES('LABEL-LEGACY','orders',$1)",[JSON.stringify(old)]);await correctStoredLabels(db);
  const row=(await db.query("SELECT data FROM cloud_items WHERE id='LABEL-LEGACY'")).rows[0].data;assert.equal(row.amount,5456);assert.equal(row.status,'已关联预订');assert.equal(row.paymentStatus,'待核对');assert.equal(row.simulation,false);assert.equal(row.title,'成长管护安排');
- const backup=(await db.query("SELECT value FROM app_meta WHERE key='record_labels_before_20261031_v3'")).rows[0].value;assert.deepEqual(backup.cloud_items.find(x=>x.id==='LABEL-LEGACY').data,old);await correctStoredLabels(db);assert.equal((await db.query("SELECT count(*) n FROM app_meta WHERE key='record_labels_before_20261031_v3'")).rows[0].n,1);
+ const backup=(await db.query("SELECT value FROM app_meta WHERE key='record_labels_before_20261031_v4'")).rows[0].value;assert.deepEqual(backup.cloud_items.find(x=>x.id==='LABEL-LEGACY').data,old);await correctStoredLabels(db);assert.equal((await db.query("SELECT count(*) n FROM app_meta WHERE key='record_labels_before_20261031_v4'")).rows[0].n,1);
  }finally{await db.close();}
 });
