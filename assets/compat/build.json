@@ -37,7 +37,7 @@
     "@babel/core"
   ],
   "inputs": {
-    "record-labels.js": "8bfb260c6b1d4fbbd20b0f4567f501c3b33213c9ec4e57a8993580b20fc1623a",
+    "record-labels.js": "d04b2564bf439f1c10ba9955131f7b90fd76235acfddcac8c13290891d1f7eac",
     "digital-api.js": "2150f72f7e6777f5a001a611a7886ff1006563a9c023b77eb5b3327c9d598a18",
     "cloud/seed.js": "78f86a7cdda1aa56ff4da3dbb6f8c1ce3040101f2ad5b837d8276b7d2596c60a",
     "assets/vendor/qrcode.js": "79ec86f82856005b1c887905cfccfcfbec3821ca61c7fd5a952faa5f778f791c",
@@ -51,12 +51,12 @@
     "admin/workflow.js": "b949ad4d8538ffe4eb834a67300bd5c9a860620cbc27e86609dc7ad0ba138fd4",
     "admin/materials.js": "25b893405478777291a4a66b92286eff72602a831ac2791fa3f15debd8a0852e",
     "admin/digital.js": "ff0e10c9312645048863f296a434c7e371c4b14cb8926d803700ffffaec4e821",
-    "admin/season.js": "e47cabdfefca50fc15929ccdceafc534cabc81b20f2013a96234c81b1fd49029",
+    "admin/season.js": "a63773cd86165bbd7a0946c95b45a69c0473065efc48286cfa9ecb8ad904d6e3",
     "admin/admin.js": "85887c2fd28589c241fab7678663e078e1c7709a5bb8f5361f4218f7ba831d54",
     "cloud/redirect.js": "9b7518125346772f5bcc76c43aa21291f8ab15b910c84206145f5bb4724d5136",
     "cloud/admin-redirect.js": "91d35e4ffaf8b5d7d3e17db6a216d4065554d3c01489828ccf765b7cedc9e03b",
     "browser-adapt.js": "5cb0210ae0de9c361fc5566956922ea12791929462d026b5abda598d2c045cc5",
-    "index.html": "6a36eba41eaf52c929ae65d02f0600b61e6241a49b37f22140217ccf3bb43777",
+    "index.html": "95cbd469fd45b1e927add558ea6e031af3ec16185e74b59faf9855424385d72a",
     "season.css": "43cfa7c5329d1803a960decaca25cd7053c974bb1147944fee0f9ec004ada321",
     "browser-adapt.css": "869ff05509a5cce592a002b94fc61f3407c8dd1ff091a7aa28e9e8a777029038",
     "market.html": "95f9ac229db1f80abd1dbf778d036ecc6264c36b59ca838714fd9d51b9723798",
