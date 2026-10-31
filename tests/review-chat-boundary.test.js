@@ -36,7 +36,7 @@ test('independent review: external model receives fixed intent and public facts,
   let calls=0,payload='';
   try{
     const answer=await customerAnswer({message:'RAW_USER_SENTINEL 姓名：审核测试；收货地址：内部模拟地址；手机13800000000，怎么买桃？',base,knowledge:{private:'PRIVATE_CONTEXT_SENTINEL'},fetcher:async(url,options)=>{
-      calls++;payload=options.body;return new Response(JSON.stringify({choices:[{message:{content:JSON.stringify({sentence_ids:[0,1],evidence_ids:['F0']})}}]}),{status:200});
+      calls++;payload=options.body;return new Response(JSON.stringify({output:[{type:'message',content:[{type:'output_text',text:JSON.stringify({sentence_ids:[0,1],evidence_ids:['F0']})}]}]}),{status:200});
     }});
     assert.equal(calls,1);assert.equal(answer.modelUsed,true);assert.doesNotMatch(payload,/RAW_USER_SENTINEL|PRIVATE_CONTEXT_SENTINEL|内部模拟地址|13800000000|审核测试/);
     for(const intent of ['privacy','unrelated','handoff']){

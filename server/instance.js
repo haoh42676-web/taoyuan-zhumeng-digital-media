@@ -10,6 +10,11 @@ export function databaseIdentity(url) {
 }
 
 export function assertIndependentDatabase({url=process.env.DATABASE_URL, instanceId=process.env.SITE_INSTANCE_ID, expected=process.env.DATABASE_IDENTITY_SHA256, production=process.env.NODE_ENV==='production'}={}) {
+  // The Render backup retains its own existing database; the primary guard stays unchanged.
+  if(process.env.RENDER==='true' && (process.env.RENDER_EXTERNAL_URL||'').replace(/\/$/,'')==='https://shushang-taoxiang-digital-media.onrender.com'){
+    if(!url || databaseIdentity(url)!=='c8adf3800a556fed456b3dc8d4d8595f17750f5fe794562806d9ba0f8bc76070')throw new Error('Render备用站数据库指纹不匹配');
+    return;
+  }
   if (!url && !production) return;
   if (instanceId !== INSTANCE_ID) throw new Error('独立站实例标识缺失或不匹配，已阻止连接数据库');
   if (url && databaseIdentity(url) === FORBIDDEN_SOURCE_DATABASE) throw new Error('已阻止独立站连接原站数据库');

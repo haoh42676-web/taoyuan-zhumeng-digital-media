@@ -1,4 +1,4 @@
-import {readFile,writeFile,mkdir,readdir,copyFile} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,readdir,copyFile,stat} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {transformAsync} from '@babel/core';
@@ -12,6 +12,8 @@ import {createHash} from 'node:crypto';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const target=path.join(root,'assets/compat');await mkdir(target,{recursive:true});
+const imageProfile='palette256-1600-v1';
+const previous=await readFile(path.join(target,'build.json'),'utf8').then(JSON.parse).catch(()=>({}));
 const pages={
  season:{html:'index.html',css:['season.css','browser-adapt.css']},
  market:{html:'market.html',css:['ui-system.css','digital.css','season-market.css','browser-adapt.css']},
@@ -61,7 +63,8 @@ async function images(dir){
   if(item.isDirectory())await images(full);
   else if(item.name.endsWith('.webp')){
    const relative=path.relative(root,full),dest=path.join(target,'images',relative.replace(/\.webp$/,'.png'));
-   await mkdir(path.dirname(dest),{recursive:true});await sharp(full).png({compressionLevel:9}).toFile(dest);
+   if(previous.imageProfile===imageProfile&&await stat(dest).then(async info=>info.mtimeMs>=(await stat(full)).mtimeMs).catch(()=>false))continue;
+   await mkdir(path.dirname(dest),{recursive:true});await sharp(full).resize({width:1600,height:1600,fit:'inside',withoutEnlargement:true}).png({palette:true,quality:85,colours:256,effort:7,compressionLevel:9}).toFile(dest);
   }
  }
 }
@@ -77,5 +80,5 @@ await writeFile(path.join(target,'THIRD-PARTY-LICENSES.txt'),notices.join('\n\n-
 await copyFile(path.join(root,'node_modules/dialog-polyfill/dist/dialog-polyfill.css'),path.join(target,'dialog.css'));
 const inputs=[...new Set([...sources,...Object.values(pages).flatMap(x=>[x.html,...x.css]),'scripts/compat/boot.js','scripts/compat/events.js','scripts/compat/polyfills.js','scripts/compat/legacy.css','scripts/build-compat.mjs','package-lock.json','project-knowledge.js','ai-core.js'])];
 const hashes={};for(const file of inputs)hashes[file]=createHash('sha256').update(await readFile(path.join(root,file))).digest('hex');
-await writeFile(path.join(target,'build.json'),JSON.stringify({format:'ES5',target:'IE11',scripts:[...sources],pages:Object.keys(pages),libraries,inputs:hashes},null,2)+'\n');
+await writeFile(path.join(target,'build.json'),JSON.stringify({format:'ES5',target:'IE11',imageProfile,scripts:[...sources],pages:Object.keys(pages),libraries,inputs:hashes},null,2)+'\n');
 console.log('Compatibility build: '+sources.size+' ES5 scripts, local polyfills, three stylesheets and PNG assets.');

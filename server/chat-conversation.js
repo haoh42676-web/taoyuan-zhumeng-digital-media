@@ -40,7 +40,7 @@ export function naturalProjectReply(base,plan,{knowledge,digital}={}){
  if(storage&&!/退款|退货|赔|腐烂|发霉/.test(q)){const answer=/软|熟透|已经熟|熟了/.test(q)?'已经偏软的话，先检查有没有压伤或其他异常，把准备食用的和需要反馈的问题果分开，按随箱指南处理。具体还能放多久，以这批桃的说明为准；有到货问题可以在自己的订单下提交反馈。':/硬|脆/.test(q)?'现在偏硬的话，先轻拿轻放，避免挤压，按随箱当批指南安排保存和食用。不同批次的成熟度不同，我不能直接保证放几天会变软；可以在自己的订单下请运营确认这批桃的处理方式。':'可以先按随箱指南检查成熟度，把有压伤、需要尽快处理的果品分开，轻拿轻放，避免继续挤压。具体温度和能放多久，以这批桃的保存说明为准。\n\n你手上的桃现在偏硬，还是已经变软了？';return{...base,intent:'storage',answer,route:'shop',localOnly:true};}
  if(plan.topics.includes('sales')&&/怎么选|选哪|适合|第一次|脆口|喜欢脆|软桃|硬桃|软一点|偏软|硬一点|偏硬|口感|甜|好吃|(?:送|给)(?:父母|爸妈|长辈)|送人/.test(q)&&!/数据|问卷|调查|调研/.test(q)){
   const picks=digital?.selected?[digital.selected]:(digital?.products||[]).slice(0,2),intro=/脆|硬|软|甜|好吃/.test(q)?'可以先按你的口感偏好来选。不过，哪款更甜或更脆、成熟度如何，要看当批说明，不能只凭包装判断。':/父母|爸妈|长辈|送人/.test(q)?'送父母或长辈的话，可以先问问他们喜欢偏脆还是偏软、一次能吃多少，再核对包装和到货安排。':'第一次买的话，可以先比较尝鲜份量和家庭份量，再结合预算和收货地区来选。';
-  const details=picks.map(p=>`${p.name}：${p.weight}，商品金额¥${p.price.toFixed(2)}，每单配送费¥${p.shippingFee.toFixed(2)}${p.realEnabled?'':'（示例规格和价格，当前仅可模拟下单）'}。`).join('\n');
+  const details=picks.map(p=>`${p.name}：${p.weight}，商品金额¥${p.price.toFixed(2)}，每单配送费¥${p.shippingFee.toFixed(2)}${p.realEnabled?'':'（方案规格与价格，下单后待运营确认）'}。`).join('\n');
   return{...base,intent:'product',answer:intro+(details?'\n'+details:'')+'\n\n你是自己吃、和家人分享，还是送人？',route:'shop',localOnly:true};
  }
  if(base.intent==='project'&&knowledge?.answerFacts?.length&&!/详细|数据|题号|分母|全部|具体比例/.test(q)){

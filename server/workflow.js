@@ -37,7 +37,7 @@ async function validateRelations(tx,kind,d,old,user){
   if(old&&old.data.status!=='draft')for(const k of ['customerId','productId','batchId','quantity','unitPrice','shippingCharged','receivedAmount','sourceRecordId','sourceRef','channel','externalOrderNo'])if(d[k]!==old.data[k])fail(422,'成交核实后不能改动商品、数量、价格、原收款或来源凭据，请保留原始成交记录');
   if(old?.data.productSnapshot)d.productSnapshot=old.data.productSnapshot;if(old?.data.batchSnapshot)d.batchSnapshot=old.data.batchSnapshot;
   if(['confirmed','shipped','completed'].includes(d.status)){
-   const live=await contentRef(tx,'batches',d.batchId),b=live||{published:old?.data.batchSnapshot};if(b.published?.status!=='verified')fail(422,'真实订单须关联已核验批次，示例批次不能确认成交');
+   const live=await contentRef(tx,'batches',d.batchId),b=live||{published:old?.data.batchSnapshot};if(b.published?.status!=='verified')fail(422,'真实订单须关联已核验批次，批次资料不能确认成交');
    if(b.published.productId!==d.productId)fail(422,'该批次的商品规格与订单不同，不能混用不同净重或礼盒规格的数量');
    if([d.unitPrice,d.shippingCharged,d.receivedAmount,d.refundAmount].some(x=>x===null)||!d.externalOrderNo||!d.sourceRef||!d.shippingRegion)fail(422,'请补齐实际单价、配送费、收款、退款、外部订单号、凭据和收货地区，已知为0须填写0');
    const amounts=orderAmounts(d);if(money(d.receivedAmount)!==money(amounts.total))fail(422,'已核实收款须等于单价×数量＋收取的配送费，退款单独记录');

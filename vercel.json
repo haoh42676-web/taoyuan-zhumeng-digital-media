@@ -1,0 +1,62 @@
+{
+  "version": 2,
+  "framework": null,
+  "installCommand": "npm ci --omit=dev",
+  "buildCommand": "node scripts/build-vercel.mjs",
+  "outputDirectory": "public",
+  "regions": [
+    "sin1"
+  ],
+  "functions": {
+    "api/index.js": {
+      "maxDuration": 300,
+      "includeFiles": "{server/**,index.html,*.js,*.css,admin/**,cloud/**,assets/**}",
+      "excludeFiles": "{node_modules/@electric-sql/**,node_modules/echarts/**,tests/**,docs/**,scripts/**}"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/demo/admin/:path*",
+      "destination": "/admin/:path*"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "/api"
+    },
+    {
+      "source": "/health",
+      "destination": "/api"
+    },
+    {
+      "source": "/runtime-config.js",
+      "destination": "/api"
+    },
+    {
+      "source": "/demo/:path*",
+      "destination": "/api"
+    }
+  ],
+  "git": {
+    "deploymentEnabled": false
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "trailingSlash": false
+}

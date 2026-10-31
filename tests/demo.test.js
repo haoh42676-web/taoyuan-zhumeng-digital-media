@@ -24,7 +24,7 @@ test('all seven workflow types self-save with valid references and statuses',asy
 });
 test('demo batches, amounts, snapshots and stock reconcile',async()=>{
  const orders=(await db.query("SELECT data FROM workflow_items WHERE kind='orders'")).rows.map(r=>r.data);assert.equal(orders.length,18);assert.deepEqual(new Set(orders.map(d=>d.status)),new Set(['draft','confirmed','shipped','completed','cancelled']));
- for(const d of orders){if(d.status!=='draft')assert.equal(d.receivedAmount,orderAmounts(d).total);assert.ok(d.refundAmount<=d.receivedAmount);assert.ok(d.productSnapshot?.name);assert.equal(d.batchSnapshot.batchId,d.batchId);assert.equal(d.batchSnapshot.productId,d.productId);assert.match(d.note,/模拟/);if(d.status==='completed')assert.ok(d.receivedAt>=d.shippedAt);if(d.status==='cancelled')assert.equal(d.receivedAmount,d.refundAmount);}
+ for(const d of orders){if(d.status!=='draft')assert.equal(d.receivedAmount,orderAmounts(d).total);assert.ok(d.refundAmount<=d.receivedAmount);assert.ok(d.productSnapshot?.name);assert.equal(d.batchSnapshot.batchId,d.batchId);assert.equal(d.batchSnapshot.productId,d.productId);assert.doesNotMatch(d.note,/模拟/);if(d.status==='completed')assert.ok(d.receivedAt>=d.shippedAt);if(d.status==='cancelled')assert.equal(d.receivedAmount,d.refundAmount);}
  const batch=(await published(db,'batches')).find(b=>b.id==='DEMO-BATCH');assert.equal(batch.availableQuantity,87);assert.equal(batch.allocatedQuantity,13);assert.doesNotThrow(()=>validateContent('batches',batch));
  const boot=await request('/demo/api/bootstrap');assert.equal(boot.response.status,200);assert.equal(boot.data.user.demo,true);assert.ok(boot.data.content.products.length);assert.ok(boot.data.content.batches.length);
 });
@@ -37,8 +37,8 @@ test('operational and AI dashboards provide nonempty sales, user, inventory and 
 
 test('simulation covers task decisions experiments and private project material examples',async()=>{
  for(const kind of ['tasks','decisions','experiments']){const statuses=new Set((await db.query('SELECT data FROM workflow_items WHERE kind=$1',[kind])).rows.map(r=>r.data.status));assert.deepEqual(statuses,new Set(Object.keys(WORKFLOWS[kind].fields.find(f=>f.key==='status').options)));}
- const accepted=(await db.query("SELECT data FROM workflow_items WHERE kind='tasks' AND data->>'status'='accepted'")).rows;assert.ok(accepted.length);for(const {data}of accepted){assert.ok(data.paidFee<=data.agreedFee);assert.match(data.paymentRef,/模拟/);assert.notEqual(data.assigneeId,data.reviewerId);}
- const sources=(await db.query("SELECT draft,published FROM content_items WHERE module='source_library' AND slug LIKE 'DEMO-V3-%'")).rows;assert.ok(sources.length>=4);for(const s of sources){assert.equal(s.published,null);assert.match(s.draft.body,/模拟/);}
+ const accepted=(await db.query("SELECT data FROM workflow_items WHERE kind='tasks' AND data->>'status'='accepted'")).rows;assert.ok(accepted.length);for(const {data}of accepted){assert.ok(data.paidFee<=data.agreedFee);assert.match(data.paymentRef,/结算凭据/);assert.notEqual(data.assigneeId,data.reviewerId);}
+ const sources=(await db.query("SELECT draft,published FROM content_items WHERE module='source_library' AND slug LIKE 'DEMO-V3-%'")).rows;assert.ok(sources.length>=4);for(const s of sources){assert.equal(s.published,null);assert.doesNotMatch(s.draft.body,/模拟/);}
  assert.equal(Number((await one(real,"SELECT count(*) n FROM workflow_items WHERE id LIKE 'DEMO-%'")).n),0);
 });
 

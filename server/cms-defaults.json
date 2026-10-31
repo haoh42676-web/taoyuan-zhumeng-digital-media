@@ -614,9 +614,9 @@
     "slug": "text-035",
     "data": {
       "scope": "global",
-      "title": "演示编号，非真实采摘记录",
-      "original": "演示编号，非真实采摘记录",
-      "replacement": "演示编号，非真实采摘记录"
+      "title": "记录编号，采摘信息待当批核对",
+      "original": "记录编号，采摘信息待当批核对",
+      "replacement": "记录编号，采摘信息待当批核对"
     },
     "sort_order": 50
   },
@@ -1505,9 +1505,9 @@
     "slug": "text-116",
     "data": {
       "scope": "global",
-      "title": "导出演示记录",
-      "original": "导出演示记录",
-      "replacement": "导出演示记录"
+      "title": "导出台账记录",
+      "original": "导出台账记录",
+      "replacement": "导出台账记录"
     },
     "sort_order": 131
   },
@@ -1703,9 +1703,9 @@
     "slug": "text-134",
     "data": {
       "scope": "global",
-      "title": "仅在此浏览器保存演示记录；不填写真实联系方式或完整地址。",
-      "original": "仅在此浏览器保存演示记录；不填写真实联系方式或完整地址。",
-      "replacement": "仅在此浏览器保存演示记录；不填写真实联系方式或完整地址。"
+      "title": "仅在此浏览器保存台账记录；不填写真实联系方式或完整地址。",
+      "original": "仅在此浏览器保存台账记录；不填写真实联系方式或完整地址。",
+      "replacement": "仅在此浏览器保存台账记录；不填写真实联系方式或完整地址。"
     },
     "sort_order": 149
   },
@@ -1758,9 +1758,9 @@
     "slug": "text-139",
     "data": {
       "scope": "global",
-      "title": "保存后在“我的演示记录”和运营台查看、演练跟进。",
-      "original": "保存后在“我的演示记录”和运营台查看、演练跟进。",
-      "replacement": "保存后在“我的演示记录”和运营台查看、演练跟进。"
+      "title": "保存后在“我的台账记录”和运营台查看、演练跟进。",
+      "original": "保存后在“我的台账记录”和运营台查看、演练跟进。",
+      "replacement": "保存后在“我的台账记录”和运营台查看、演练跟进。"
     },
     "sort_order": 154
   },
@@ -2583,9 +2583,9 @@
     "slug": "text-214",
     "data": {
       "scope": "global",
-      "title": "演示编号，非真实采摘记录。未知字段保留null。",
-      "original": "演示编号，非真实采摘记录。未知字段保留null。",
-      "replacement": "演示编号，非真实采摘记录。未知字段保留null。"
+      "title": "记录编号，采摘信息待当批核对。未知字段保留null。",
+      "original": "记录编号，采摘信息待当批核对。未知字段保留null。",
+      "replacement": "记录编号，采摘信息待当批核对。未知字段保留null。"
     },
     "sort_order": 229
   },
@@ -3628,9 +3628,9 @@
     "slug": "text-309",
     "data": {
       "scope": "home",
-      "title": "示例流程，非实际经营数据",
-      "original": "示例流程，非实际经营数据",
-      "replacement": "示例流程，非实际经营数据"
+      "title": "项目流程与经营记录按来源维护",
+      "original": "项目流程与经营记录按来源维护",
+      "replacement": "项目流程与经营记录按来源维护"
     },
     "sort_order": 324
   },

@@ -18,7 +18,7 @@ for(const [slug,[kicker,title,intro]]of Object.entries(pageTitles))add('pages',s
 for(const p of project.productData)add('products',p.id,{...p,sourceRef:'icanAIOPC 商品方案；参考价，实际批次待确认'});
 for(const [slug,p]of Object.entries(project.scenarioData))add('scenarios',slug,{...p,productId:project.productData.find(x=>x.name===p.product).id});
 for(const [slug,[title,description,owner,state]]of Object.entries(project.traceData))add('trace_steps',slug,{title,description,owner,state});
-add('batches','SP-2026-06',{batchId:'SP-2026-06',status:'example',originName:'连平县上坪镇（示例，待核验）',shippingOrigin:'',harvestDate:'',stock:null,shippingFee:null,shippingWindow:'',grading:'',shippingRegions:'',aftercareRule:'',owner:'',sourceRef:'演示流程，非真实采摘记录',verifiedAt:''});
+add('batches','SP-2026-06',{batchId:'SP-2026-06',status:'example',originName:'连平县上坪镇（示例，待核验）',shippingOrigin:'',harvestDate:'',stock:null,shippingFee:null,shippingWindow:'',grading:'',shippingRegions:'',aftercareRule:'',owner:'',sourceRef:'演示流程，采摘信息待当批核对',verifiedAt:''});
 add('ip_profile','xiaotaoman',{name:'小桃满',identity:'上坪桃林守护人、品牌好物推荐官',tone:'真诚 · 细致 · 有点俏皮',image:'assets/xiaotaoman.png',description:'讲产地、讲规格，也提醒发货和保存。',guide:'以icanAIOPC策划书4.2和项目现有素材为基准。保留桃形、草帽及服饰识别特征。角色故事不替代地方史或产地证据；背景图不作为真实产地证据。不虚构库存、检测或效果。',sourceRef:'icanAIOPC 策划书4.2'});
 const voices={season:'跟我看一段果园日常。画面是哪一天拍的、属于哪一批，我们一起记清楚。',package:'拆箱前先看说明卡：规格、保存方式和售后入口，都留在同一个地方。',social:'想要脆一点，还是送给家人？先说说需要，再确认这一批适不适合。',live:'先别急着拍。把这一批的规格、到手总价和发货安排问清楚。',care:'收到桃先看外箱和果品；遇到问题，把照片和情况一起留给运营。',tour:'先了解果园开放安排，再计划出行。现在可以记录意向，确认后再出发。'};
 for(const [slug,data]of Object.entries(project.ipData))add('ip_series',slug,{...data,voice:voices[slug],sourceRef:'icanAIOPC 策划书4.2及项目素材'});

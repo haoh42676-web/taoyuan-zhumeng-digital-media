@@ -19,7 +19,7 @@ window.PeachDigitalAdmin=(()=>{
       return heading('今天，先做好这三件事。','确认订单，更新桃乡照片，带伙伴完成推广任务。',btn('刷新','refresh','','primary'))+
         `<div class="stats">${stat('待确认 / 待付款订单',d.orders.pending,'提交订单尚未付款')}${stat('待回复售后',d.orders.openClaims,'在订单中回复，顾客可查看')}${stat('待审核报名',d.applications.pending,'通过后开放培训与工作台')}${stat('待审核作品',d.tasks.submitted,'审核通过后另行发布')}</div>`+
         `<div class="dm-start panel"><img src="/assets/ip-actions/guide.webp" alt="小桃满"><div><h2>商品事实 → 下单履约 → 推广内容</h2><p>${esc(d.notice)}</p><div class="dm-actions"><a class="primary" href="#digital/orders">处理网站订单</a><a class="small" href="#digital/members">审核成员与任务</a><a class="small" href="#digital/content">更新桃乡见闻</a></div></div></div>`+
-        `<section class="panel"><h2>经营记录</h2><div class="settings-values"><div><small>已核实真实收款</small><b>${money(d.orders.realRevenue)}</b></div><div><small>真实已付款订单</small><b>${d.orders.realPaid}</b></div><div><small>模拟订单</small><b>${d.orders.simulated}</b></div><div><small>已通过推广成员</small><b>${d.applications.approved}</b></div></div><p class="muted">模拟订单独立标记，不计入真实收款。没有实际记录时显示 0。</p></section>`;
+        `<section class="panel"><h2>经营记录</h2><div class="settings-values"><div><small>已核实真实收款</small><b>${money(d.orders.realRevenue)}</b></div><div><small>真实已付款订单</small><b>${d.orders.realPaid}</b></div><div><small>订单</small><b>${d.orders.simulated}</b></div><div><small>已通过推广成员</small><b>${d.applications.approved}</b></div></div><p class="muted">订单独立标记，不计入真实收款。没有实际记录时显示 0。</p></section>`;
     }
     if(part==='orders'){
       data.orders=await api('/admin/digital/orders');
@@ -27,7 +27,7 @@ window.PeachDigitalAdmin=(()=>{
     }
     if(part==='products'){
       data.products=await api('/admin/digital/products');
-      return heading('商品与库存','所有商品价格、配送规则、库存与开放状态在这里管理。',btn('新增商品','new-product','','primary'))+tabs([['orders','网站订单'],['products','商品与库存']],part)+`<section class="panel"><p class="notice-box">默认示例商品仅可提交模拟订单。开放实际销售前，须填全当批核验依据。</p>${table(['商品','规格与金额','库存 / 已保留','销售状态','操作'],data.products.map(p=>[`${esc(p.name)}<small>${esc(p.id)}</small>`,`${esc(p.weight)} · ${money(p.price)}<small>每单配送 ${money(p.shippingFee)}</small>`,`${p.stock} / ${p.reserved}`,p.active?(p.realEnabled?'实际销售':'模拟选购'):'已隐藏',btn('编辑','product',p.id)+' '+btn('文案草稿','copy-product',p.id)]))}</section>`;
+      return heading('商品与库存','所有商品价格、配送规则、库存与开放状态在这里管理。',btn('新增商品','new-product','','primary'))+tabs([['orders','网站订单'],['products','商品与库存']],part)+`<section class="panel"><p class="notice-box">默认方案商品仅可提交订单。开放实际销售前，须填全当批核验依据。</p>${table(['商品','规格与金额','库存 / 已保留','销售状态','操作'],data.products.map(p=>[`${esc(p.name)}<small>${esc(p.id)}</small>`,`${esc(p.weight)} · ${money(p.price)}<small>每单配送 ${money(p.shippingFee)}</small>`,`${p.stock} / ${p.reserved}`,p.active?(p.realEnabled?'实际销售':'选购'):'已隐藏',btn('编辑','product',p.id)+' '+btn('文案草稿','copy-product',p.id)]))}</section>`;
     }
     if(part==='content'){
       await site();
@@ -75,7 +75,7 @@ window.PeachDigitalAdmin=(()=>{
     if(a==='open-media'){closeModal();location.hash='media';return true;}
     if(a==='refresh'){await load();return true;}
     if(a==='product'||a==='new-product'){productEditor(data.products.find(p=>p.id===value));return true;}
-    if(a==='copy-product'){const p=data.products.find(x=>x.id===value),text=`${p.name} · ${p.weight}\n${p.subtitle}\n产地：${p.origin}\n等级：${p.grade}\n单价：${money(p.price)}，每单配送：${money(p.shippingFee)}\n发货：${p.dispatch}\n配送地区：${p.regions}\n售后：${p.aftercare}\n${p.realEnabled?'订单提交后尚未付款，须核对当批供应与配送安排。':'示例商品，模拟订单不收款、不发货。'}`;modal('基于商品事实的文案草稿',`<p class=notice-box>规则辅助生成，可复制后核对并写入商品介绍；不自动发布。</p><textarea rows=14 readonly>${esc(text)}</textarea>`+button('复制草稿','copy',text));return true;}
+    if(a==='copy-product'){const p=data.products.find(x=>x.id===value),text=`${p.name} · ${p.weight}\n${p.subtitle}\n产地：${p.origin}\n等级：${p.grade}\n单价：${money(p.price)}，每单配送：${money(p.shippingFee)}\n发货：${p.dispatch}\n配送地区：${p.regions}\n售后：${p.aftercare}\n${p.realEnabled?'订单提交后尚未付款，须核对当批供应与配送安排。':'方案商品；订单提交后按实际状态跟进。'}`;modal('基于商品事实的文案草稿',`<p class=notice-box>规则辅助生成，可复制后核对并写入商品介绍；不自动发布。</p><textarea rows=14 readonly>${esc(text)}</textarea>`+button('复制草稿','copy',text));return true;}
     if(a==='order'){orderEditor(await api('/admin/digital/orders/'+value));return true;}
     if(a==='claim'){const o=selected,c=o.claims.find(c=>c.id===value);selected={order:o,claim:c};modal('回复售后反馈',`<p>${esc(c.message)}</p>`+form('claim',area('回复内容','reply',c.reply)+`<label>处理状态<select name="status"><option value="resolved">已处理</option><option value="pending">继续跟进</option></select></label>`,'保存回复'));return true;}
     if(a==='photo'||a==='new-photo'){photoEditor(config.gallery.find(p=>p.id===value));return true;}

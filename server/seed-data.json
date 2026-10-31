@@ -461,7 +461,7 @@
       "shippingRegions": "",
       "aftercareRule": "",
       "owner": "",
-      "sourceRef": "演示流程，非真实采摘记录",
+      "sourceRef": "演示流程，采摘信息待当批核对",
       "verifiedAt": ""
     },
     "sort_order": 25
@@ -9658,7 +9658,7 @@
       "brand": "数商桃乡",
       "slogan": "数商桃乡，让好桃被看见",
       "heroIntro": "看真实桃园，选合适规格，让小桃满陪你问清一箱桃。商品咨询、内容复核与售后回访，在这里连成一条完整的体验。",
-      "heroNote": "商品参考方案与示例批次有明确状态标识，实际履约需按批次确认。",
+      "heroNote": "商品参考方案与批次资料有明确状态标识，实际履约需按批次确认。",
       "heroPhoto": "assets/origin-walk.jpeg",
       "ipImage": "assets/xiaotaoman.png",
       "proofs": [
@@ -9680,7 +9680,7 @@
         [
           "1 批桃",
           "从采摘到回访",
-          "示例流程，非实际经营数据"
+          "项目流程与经营记录按来源维护"
         ]
       ],
       "analyticsEnabled": true,

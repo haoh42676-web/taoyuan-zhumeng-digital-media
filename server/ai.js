@@ -10,6 +10,7 @@ import {customerAnswer,redact} from './llm.js';
 import {randomUUID} from 'node:crypto';
 import {selectProjectKnowledge} from './project-knowledge.js';
 import {digitalChatFacts,digitalChatReply} from './digital.js';
+import {seasonAnswer} from './season-assistant.js';
 import {createConversationMemory,conversationPlan,conversationalReply,naturalProjectReply,resolveProductMention} from './chat-conversation.js';
 export async function intelligenceConfig(db){return {...AI_DEFAULTS,...(await published(db,'ai_settings'))[0]};}
 async function takeModelBudget(db){const bucket='site:'+new Date().toISOString().slice(0,10),limit=Math.max(1,Math.min(1000,Number(process.env.AI_SITE_DAILY_LIMIT)||300));const row=(await db.query("INSERT INTO ai_usage(bucket,used,expires_at) VALUES($1,1,now()+interval '2 days') ON CONFLICT(bucket) DO UPDATE SET used=ai_usage.used+1 WHERE ai_usage.used<$2 RETURNING used",[bucket,limit])).rows;if(!row.length)fail(429,'今日模型预算已用完，改用公开事实答复');}
@@ -42,6 +43,17 @@ export async function intelligenceDashboard(db,query){
 }
 export function intelligenceRouter(db,send,limiter){
   const r=Router(),conversation=createConversationMemory();
+  r.post('/ai/season-chat',limiter(8,60000),async(req,res)=>{
+    const p=chatSchema.parse(req.body),config=await intelligenceConfig(db);
+    if(!config.chatEnabled)fail(403,'小桃满问答暂时暂停，请使用服务与探园表单');
+    const selected=selectProjectKnowledge(p.message),modules=[...new Set(selected.topics.flatMap(t=>({research:['research_sets','survey_rows'],ip:['ip_profile','ip_series'],competition:['slides']}[t]||[])))];
+    const publicContent=Object.fromEntries(await Promise.all(modules.map(async m=>[m,await published(db,m)])));
+    const base=seasonAnswer(p.message)||answerQuestion({message:p.message,config,publicContent});
+    if(req.demoMode||req.customer?.demo)return send(res,{...base,label:'演示规则回答',modelUsed:false,modelAttempted:false,modelAttempts:0});
+    const release=await reserveChat(db,{ip:req.ip,customer:{id:req.customer?.id||'season:'+req.visitorHash,demo:false}});let attempts=0;
+    try{send(res,await customerAnswer({message:p.message,base,onAttempt:async()=>{if(attempts++)await takeModelBudget(db);}}));}
+    finally{await release({refund:attempts===0});}
+  });
   r.post('/ai/chat',requireCustomer,limiter(12,60000),async(req,res)=>{
     const p=chatSchema.parse(req.body),config=await intelligenceConfig(db);if(!config.chatEnabled)fail(403,'智能客服暂时暂停，请使用商品咨询或售后表单');
     const origin=req.headers.origin;if(origin&&new URL(origin).host!==req.get('host'))fail(403,'客服仅允许站点直接调用');if(req.headers['sec-fetch-site']==='cross-site')fail(403,'不接受跨站客服调用');
@@ -55,7 +67,7 @@ export function intelligenceRouter(db,send,limiter){
     if(mention.matched)digital.selected=mention.product;
     effective.productId=plan.productId=digital.selected?.id||'';
     if(digital.selected&&plan.topics.includes('sales'))effective.message='桃子选购：'+plan.query;
-    publicContent.products=digital.products.map(v=>({...v,price:'¥'+v.price.toFixed(2),priceNote:v.realEnabled?'当前公开价格，提交后尚未付款':'示例价格，仅模拟下单',scene:/gift/.test(v.id)?'gift':'family',fields:[['规格',v.weight]],desc:v.description,sourceRef:'网站当前公开商品'}));publicContent.batches=digital.products.filter(v=>v.realEnabled).map(v=>({id:v.batchCode,productId:v.id,status:'verified',shippingRegions:v.regions,shippingWindow:v.dispatch,shippingFee:v.shippingFee,stock:v.stock,availableQuantity:v.availableStock}));const {products,faqs,batches}=publicContent;
+    publicContent.products=digital.products.map(v=>({...v,price:'¥'+v.price.toFixed(2),priceNote:v.realEnabled?'当前公开价格，提交后尚未付款':'示例价格，仅下单',scene:/gift/.test(v.id)?'gift':'family',fields:[['规格',v.weight]],desc:v.description,sourceRef:'网站当前公开商品'}));publicContent.batches=digital.products.filter(v=>v.realEnabled).map(v=>({id:v.batchCode,productId:v.id,status:'verified',shippingRegions:v.regions,shippingWindow:v.dispatch,shippingFee:v.shippingFee,stock:v.stock,availableQuantity:v.availableStock}));const {products,faqs,batches}=publicContent;
     const release=await reserveChat(db,req);let result,attempts=0;
     try{
       const knowledge=selectProjectKnowledge(p.message,{publicContent,context}),raw=digitalChatReply(answerQuestion({...effective,products,faqs,batches,config,publicContent,logistics:digital.logistics||await ownLogistics(db,req,p.recordId)}),digital),base=naturalProjectReply(raw,plan,{knowledge,digital});
@@ -74,11 +86,11 @@ export function intelligenceRouter(db,send,limiter){
   r.post('/admin/ai/descriptions',requireRole('admin','operator','editor'),limiter(8,60000),async(req,res)=>{
     const p=descriptionSchema.parse(req.body),config=await intelligenceConfig(db);if(!config.descriptionEnabled)fail(403,'商品文案生成暂时暂停');
     const data=generateDescription(p),safe={...data,title:redact(data.title),body:redact(data.body),after:redact(data.after)};
-    const assisted=req.demoMode?{modelUsed:false,provider:'rules',label:'模拟模板 · 不调用外部模型'}:await customerAnswer({message:'根据已审核事实整理商品介绍，保留全部待核验和批次说明。',base:{intent:'description',answer:safe.body,sources:[{title:'操作者录入规格 · 待人工核验',ref:'商品文案草稿'}],provider:'rules',label:'规则模板 · 待审核'},onAttempt:()=>takeModelBudget(db)});
+    const assisted=req.demoMode?{modelUsed:false,provider:'rules',label:'模板 · 不调用外部模型'}:await customerAnswer({message:'根据已审核事实整理商品介绍，保留全部待核验和批次说明。',base:{intent:'description',answer:safe.body,sources:[{title:'操作者录入规格 · 待人工核验',ref:'商品文案草稿'}],provider:'rules',label:'规则模板 · 待审核'},onAttempt:()=>takeModelBudget(db)});
     const output={...safe,body:assisted.answer||safe.body,after:assisted.answer||safe.body,provider:assisted.provider,label:assisted.label,modelUsed:assisted.modelUsed,modelAttempts:assisted.modelAttempts||0};
     await audit(db,req.user,'ai.description.generate','',{provider:output.provider,modelUsed:output.modelUsed,attempts:output.modelAttempts});send(res,output);
   });
-  r.get('/admin/ai/dashboard',requireRole('admin','operator','viewer'),async(req,res)=>{const data=await intelligenceDashboard(db,req.query);send(res,{...data,example:!!req.demoMode,notes:req.demoMode?['隔离模拟区：全部成交、客户、库存和效果均为模拟，不代表经营实绩。',...data.notes]:data.notes});});
+  r.get('/admin/ai/dashboard',requireRole('admin','operator','viewer'),async(req,res)=>{const data=await intelligenceDashboard(db,req.query);send(res,{...data,example:!!req.demoMode,notes:req.demoMode?['隔离工作区：按各自台账统计订单、客户与库存；操作保存在本环境。',...data.notes]:data.notes});});
   return r;
 }
 

@@ -48,7 +48,7 @@
     if (method === 'GET' && p === '/api/presentation/competition') return {steps:['问题与证据','消费者路径','IP 辅助营销','协作与推广'],mode:'local'};
     const next = clone(db);
     if (method === 'POST' && ['/api/consultations','/api/service/claims','/api/tours/inquiries'].includes(p)) {
-      if (payload.consent !== true) error(422,'请确认仅在此设备保存演示记录。');
+      if (payload.consent !== true) error(422,'请确认仅在此设备保存台账记录。');
       const kind = p.includes('claims') ? 'claim' : p.includes('tours') ? 'tour' : 'consultation';
       const name = clean(payload.name,40), region = clean(payload.region,80), note = clean(payload.note,800);
       if (!name || !region) error(422,'请填写称呼和收货／出行地区。');
@@ -129,7 +129,7 @@
     contract:[
       ['GET','/api/facts?dataset=consumer','读取调查选项、人数、比例和来源'],
       ['GET','/api/catalog?scene=family','按场景读取参考商品'],
-      ['GET','/api/batches/SP-2026-06','读取示例批次，未知值返回 null'],
+      ['GET','/api/batches/SP-2026-06','读取批次资料，未知值返回 null'],
       ['GET','/api/ip/xiaotaoman','读取 IP 栏目与角色资料'],
       ['POST','/api/consultations','保存规格、数量、地区与咨询意向'],
       ['GET','/api/records','读取三类本地业务记录'],

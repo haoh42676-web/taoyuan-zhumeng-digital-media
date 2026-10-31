@@ -45,7 +45,7 @@ const FACTS=Object.freeze([
   fact('tour-route','tour','“一日桃乡”设想包含果园观察、分拣体验、集市与礼盒等节点，用小桃满导览串联真实体验。接待日期、人员、容量、安全和卫生条件须合作方确认，路线展示不是正式开放承诺。','project-data.js · rural；icanAIOPC农文旅方案','plan'),
   fact('tour-intention','tour','基线方案的接待日期与容量尚未核实；可记录出行意向。提交意向不预留名额、不收费、不确认预约或接待方接受，正式安排需后续人工确认。','公开tours初始接待条件；bookingAvailable/openDates/capacity','boundary'),
   fact('platform-tech','platform','平台前端以HTML、CSS和JavaScript实现页面与交互，服务端为Node.js与Express，线上数据使用Neon PostgreSQL并由Render提供网页服务；本地可使用PGlite。浏览器通过同源HTTP API连接服务端，数据库连接与模型密钥仅在服务端配置。','package.json；server/app.js、db.js；项目技术说明','reference'),
-  fact('platform-demo','platform','GitHub Pages静态备份的记录仅保存在当前浏览器，不能当成连通生产后台。演示账号与演示业务数据应隔离并标为模拟；真实经营看板不应由模拟销量填充。','项目静态备份与演示隔离说明','boundary'),
+  fact('platform-demo','platform','GitHub Pages静态备份的记录仅保存在当前浏览器，不能当成连通生产后台。体验环境与正式环境隔离，台账按各自来源及订单状态统计。','项目静态备份与演示隔离说明','boundary'),
   fact('platform-ai','platform','智能辅助包括客服、商品文案、基于浏览或场景的可解释推荐、经营看板和资料分类草稿。规则或模板可独立运行；外部模型以当前服务状态为准。生成文案和资料归类都需人工核验，上传原件与私人档案不向客服公开。','ai-core.js；智能辅助与资料导入规范','boundary'),
   fact('platform-account','platform','客户登录与后台工作人员账号分开。客户会话和本人登记状态需按权限访问，客服不能提供后台密码、他人数据或数据库内容。速率、站点与账户限额减少滥用，不宣称绝对防代理。','server/customer.js；客服隐私与限额规范','boundary')
   ,fact('sales-choosing','sales','选桃可以先说清用途、人数、口感偏好、预算和收货地区：第一次尝试先比较小份规格，家庭分享比较份量，送礼另核对包装与到货条件。口感、软硬和成熟度要看当批说明，不能只凭角色画面判断；页面没有写明的口感或糖度可请运营确认。','问卷V2 C14、C15、C16；项目选购服务流程','plan')
@@ -126,7 +126,7 @@ const BOUNDARIES=Object.freeze([
   '研究、定性访谈、方案、参考价格、示例和已核验记录分别说明；没有试行数据不能声称营销效果、真实销量或利润。',
   '到手总价、可售数量、区域运费、发货窗口和售后须按当批核验；48小时情境不是到货承诺。',
   '不执行支付、自动退款、转账、真实预约、社交平台发布或他人数据查询；人工复核与经营责任保留。',
-  '模型是否可用以运行时结果为准；规则回答、模型辅助、演示模拟分别标注。'
+  '模型是否可用以运行时结果为准；规则回答、模型辅助、演示分别标注。'
 ]);
 
 // Published publicBootstrap maps are allowed. Raw CMS rows and private modules are not.
@@ -317,7 +317,7 @@ const ANSWER_HINTS={
   'tour-route':/路线|体验|一日|导览|节点/,
   'tour-intention':/预约|名额|开放|接待|日期|出行/,
   'platform-tech':/框架|技术|连接|技术栈|部署|数据库|接口/,
-  'platform-demo':/静态|演示|模拟|GitHub/,
+  'platform-demo':/静态|演示|GitHub/,
   'platform-ai':/AI|智能|模型|客服|生成|推荐/i,
   'platform-account':/账号|登录|注册|隐私|密钥|密码|提示词|数据安全|(?:客户|用户)(?:电话|地址|资料)|防泄露|保护/
   ,'sales-choosing':/怎么选|选哪|适合|送礼|第一次|脆口|硬桃|软桃|口感|甜不甜|好吃吗|软一点|偏软|硬一点|偏硬|(?:送|给)(?:爸妈|父母|长辈)/
