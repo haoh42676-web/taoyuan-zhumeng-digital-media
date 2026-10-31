@@ -1,0 +1,9 @@
+{
+  "release": "real-records-20261031-v3",
+  "date": "2026-10-31",
+  "users": 48,
+  "intents": 36,
+  "bookings": 24,
+  "bookingAmount": 5456,
+  "storage": "browser-local"
+}

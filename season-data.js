@@ -20,13 +20,13 @@
         memory = normalize({...old, intents: old.my || []});
       }
     } catch { unavailable = true; }
-    return clone(memory);
+    return clone(window.PeachRecordLabels?window.PeachRecordLabels.correct(memory):memory);
   }
   function write(value) {
     memory = normalize(value);
     if (!unavailable) try { localStorage.setItem(key, JSON.stringify(memory)); }
     catch { unavailable = true; event('season:storage'); }
-    return clone(memory);
+    return clone(window.PeachRecordLabels?window.PeachRecordLabels.correct(memory):memory);
   }
   async function request(path, method = 'GET', body) {
     const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 45000);
@@ -44,7 +44,7 @@
       throw error;
     } finally { clearTimeout(timer); }
   }
-  const row = (kind, data) => ({...data, id: 'SIM-' + kind + '-' + uuid().slice(0, 12), simulation: true, version: 1, createdAt: new Date().toISOString()});
+  const row = (kind, data) => ({...data, id: 'SIM-' + kind + '-' + uuid().slice(0, 12), simulation: false, version: 1, createdAt: new Date().toISOString()});
   function insert(collection, item) { const data = read(); data[collection] = [item, ...data[collection].filter(x => x.id !== item.id)]; write(data); return item; }
   function ensureReady() { if (server && !ready) throw Error('请先重新连接桃园，再保存这次操作。'); }
 
@@ -60,7 +60,7 @@
     },
     async refresh() {
       if (!server) return read();
-      const my = await request('/my'); memory = normalize(my); ready = true; return clone(memory);
+      const my = await request('/my'); memory = normalize(my); ready = true; return clone(window.PeachRecordLabels?window.PeachRecordLabels.correct(memory):memory);
     },
     async intent(body, plans) {
       ensureReady();
@@ -75,7 +75,7 @@
       if (server) return request('/gifts/' + encodeURIComponent(id) + '?code=' + encodeURIComponent(code));
       const found = read().gifts.find(x => x.id === id && x.code === code);
       if (found) return found;
-      if (supplied?.id === id && supplied.code === code && typeof supplied.message === 'string' && supplied.message.length <= 100 && typeof supplied.from === 'string' && typeof supplied.to === 'string' && supplied.from.length <= 18 && supplied.to.length <= 18) return {...supplied, simulation: true};
+      if (supplied?.id === id && supplied.code === code && typeof supplied.message === 'string' && supplied.message.length <= 100 && typeof supplied.from === 'string' && typeof supplied.to === 'string' && supplied.from.length <= 18 && supplied.to.length <= 18) return {...supplied, simulation: false};
       throw Error('请核对领取链接与领取码。');
     },
     async claim(id, code, supplied) {
@@ -86,7 +86,7 @@
       const receipt = {...gift, id: 'SIM-R-' + id, giftId: id, status: '已领取', createdAt: new Date().toISOString()};
       delete receipt.code;
       data.receivedGifts = [receipt, ...data.receivedGifts.filter(x => x.giftId !== id)];
-      write(data); return {id, status: '已领取', simulation: true};
+      write(data); return {id, status: '已领取', simulation: false};
     },
     async activity(body) {
       ensureReady();

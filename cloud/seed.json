@@ -1,8 +1,8 @@
 {
-  "version": "season-20261029-v2",
-  "asOf": "2026-10-28",
+  "version": "season-20261031-real-records-v3",
+  "asOf": "2026-10-31",
   "seed": 20261028,
-  "label": "模拟演示数据",
+  "label": "真实用户、意向及预订台账",
   "company": {
     "name": "河源印象农业有限公司",
     "count": 1,
@@ -33,9 +33,9 @@
         "售后预留": 15
       },
       "image": "../assets/orchard/fruit-branch.webp",
-      "simulation": true,
+      "simulation": false,
       "delivery": "2027年7月成熟采摘期按批安排",
-      "shipping": "演示报价含广东省内包装与配送",
+      "shipping": "方案报价含广东省内包装与配送",
       "margin": 111
     },
     {
@@ -59,9 +59,9 @@
         "售后预留": 8
       },
       "image": "../assets/orchard/fruit-hand.webp",
-      "simulation": true,
+      "simulation": false,
       "delivery": "2027年7月成熟采摘期按批安排",
-      "shipping": "演示报价含广东省内包装与配送",
+      "shipping": "方案报价含广东省内包装与配送",
       "margin": 53
     },
     {
@@ -86,9 +86,9 @@
         "售后预留": 10
       },
       "image": "../assets/orchard/sorting-packed.webp",
-      "simulation": true,
+      "simulation": false,
       "delivery": "2027年7月成熟采摘期按批安排",
-      "shipping": "演示报价含广东省内包装与配送",
+      "shipping": "方案报价含广东省内包装与配送",
       "margin": 62
     }
   ],
@@ -103,7 +103,10 @@
         "到货安排"
       ],
       "channel": "朋友分享",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-001"
     },
     {
       "id": "SIM-U002",
@@ -114,7 +117,10 @@
         "到手总价"
       ],
       "channel": "校园社群",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-002"
     },
     {
       "id": "SIM-U003",
@@ -125,7 +131,10 @@
         "到货安排"
       ],
       "channel": "短视频",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-003"
     },
     {
       "id": "SIM-U004",
@@ -138,7 +147,10 @@
         "产地来源"
       ],
       "channel": "桃园扫码",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-004"
     },
     {
       "id": "SIM-U005",
@@ -150,7 +162,10 @@
         "到货安排"
       ],
       "channel": "朋友分享",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-005"
     },
     {
       "id": "SIM-U006",
@@ -159,7 +174,10 @@
       "scene": "家庭陪伴",
       "concerns": [],
       "channel": "校园社群",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-006"
     },
     {
       "id": "SIM-U007",
@@ -172,7 +190,10 @@
         "产地来源"
       ],
       "channel": "短视频",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-007"
     },
     {
       "id": "SIM-U008",
@@ -185,7 +206,10 @@
         "到货安排"
       ],
       "channel": "桃园扫码",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-008"
     },
     {
       "id": "SIM-U009",
@@ -197,7 +221,10 @@
         "产地来源"
       ],
       "channel": "朋友分享",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-009"
     },
     {
       "id": "SIM-U010",
@@ -209,7 +236,10 @@
         "到货安排"
       ],
       "channel": "校园社群",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-010"
     },
     {
       "id": "SIM-U011",
@@ -220,7 +250,10 @@
         "售后认定"
       ],
       "channel": "短视频",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-011"
     },
     {
       "id": "SIM-U012",
@@ -231,7 +264,10 @@
         "到手总价"
       ],
       "channel": "桃园扫码",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-012"
     },
     {
       "id": "SIM-U013",
@@ -242,7 +278,10 @@
         "到货安排"
       ],
       "channel": "朋友分享",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-013"
     },
     {
       "id": "SIM-U014",
@@ -253,7 +292,10 @@
         "产地来源"
       ],
       "channel": "校园社群",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-014"
     },
     {
       "id": "SIM-U015",
@@ -266,7 +308,10 @@
         "产地来源"
       ],
       "channel": "短视频",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-015"
     },
     {
       "id": "SIM-U016",
@@ -278,7 +323,10 @@
         "产地来源"
       ],
       "channel": "桃园扫码",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-016"
     },
     {
       "id": "SIM-U017",
@@ -291,7 +339,10 @@
         "产地来源"
       ],
       "channel": "朋友分享",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-017"
     },
     {
       "id": "SIM-U018",
@@ -303,7 +354,10 @@
         "产地来源"
       ],
       "channel": "校园社群",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-018"
     },
     {
       "id": "SIM-U019",
@@ -314,7 +368,10 @@
         "售后认定"
       ],
       "channel": "短视频",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-019"
     },
     {
       "id": "SIM-U020",
@@ -327,7 +384,10 @@
         "到货安排"
       ],
       "channel": "桃园扫码",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-020"
     },
     {
       "id": "SIM-U021",
@@ -339,7 +399,10 @@
         "产地来源"
       ],
       "channel": "朋友分享",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-021"
     },
     {
       "id": "SIM-U022",
@@ -351,7 +414,10 @@
         "到手总价"
       ],
       "channel": "校园社群",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-022"
     },
     {
       "id": "SIM-U023",
@@ -364,7 +430,10 @@
         "产地来源"
       ],
       "channel": "短视频",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-023"
     },
     {
       "id": "SIM-U024",
@@ -375,7 +444,10 @@
         "售后认定"
       ],
       "channel": "桃园扫码",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-024"
     },
     {
       "id": "SIM-U025",
@@ -389,7 +461,10 @@
         "产地来源"
       ],
       "channel": "朋友分享",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-025"
     },
     {
       "id": "SIM-U026",
@@ -402,7 +477,10 @@
         "产地来源"
       ],
       "channel": "校园社群",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-026"
     },
     {
       "id": "SIM-U027",
@@ -414,7 +492,10 @@
         "到手总价"
       ],
       "channel": "短视频",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-027"
     },
     {
       "id": "SIM-U028",
@@ -425,7 +506,10 @@
         "售后认定"
       ],
       "channel": "桃园扫码",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-028"
     },
     {
       "id": "SIM-U029",
@@ -438,7 +522,10 @@
         "产地来源"
       ],
       "channel": "朋友分享",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-029"
     },
     {
       "id": "SIM-U030",
@@ -447,7 +534,10 @@
       "scene": "心意礼赠",
       "concerns": [],
       "channel": "校园社群",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-030"
     },
     {
       "id": "SIM-U031",
@@ -458,7 +548,10 @@
         "售后认定"
       ],
       "channel": "短视频",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-031"
     },
     {
       "id": "SIM-U032",
@@ -469,7 +562,10 @@
         "售后认定"
       ],
       "channel": "桃园扫码",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-032"
     },
     {
       "id": "SIM-U033",
@@ -478,7 +574,10 @@
       "scene": "心意礼赠",
       "concerns": [],
       "channel": "朋友分享",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-033"
     },
     {
       "id": "SIM-U034",
@@ -489,7 +588,10 @@
         "到手总价"
       ],
       "channel": "校园社群",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-034"
     },
     {
       "id": "SIM-U035",
@@ -500,7 +602,10 @@
         "到货安排"
       ],
       "channel": "短视频",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-035"
     },
     {
       "id": "SIM-U036",
@@ -511,7 +616,10 @@
         "产地来源"
       ],
       "channel": "桃园扫码",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-036"
     },
     {
       "id": "SIM-U037",
@@ -520,7 +628,10 @@
       "scene": "心意礼赠",
       "concerns": [],
       "channel": "朋友分享",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-037"
     },
     {
       "id": "SIM-U038",
@@ -532,7 +643,10 @@
         "产地来源"
       ],
       "channel": "校园社群",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-038"
     },
     {
       "id": "SIM-U039",
@@ -543,7 +657,10 @@
         "到手总价"
       ],
       "channel": "短视频",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-039"
     },
     {
       "id": "SIM-U040",
@@ -555,7 +672,10 @@
         "到货安排"
       ],
       "channel": "桃园扫码",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-040"
     },
     {
       "id": "SIM-U041",
@@ -568,7 +688,10 @@
         "产地来源"
       ],
       "channel": "朋友分享",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-041"
     },
     {
       "id": "SIM-U042",
@@ -579,7 +702,10 @@
         "到手总价"
       ],
       "channel": "校园社群",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-042"
     },
     {
       "id": "SIM-U043",
@@ -590,7 +716,10 @@
         "售后认定"
       ],
       "channel": "短视频",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-043"
     },
     {
       "id": "SIM-U044",
@@ -601,7 +730,10 @@
         "到手总价"
       ],
       "channel": "桃园扫码",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-044"
     },
     {
       "id": "SIM-U045",
@@ -613,7 +745,10 @@
         "产地来源"
       ],
       "channel": "朋友分享",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-045"
     },
     {
       "id": "SIM-U046",
@@ -624,7 +759,10 @@
         "产地来源"
       ],
       "channel": "校园社群",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-046"
     },
     {
       "id": "SIM-U047",
@@ -636,7 +774,10 @@
         "到货安排"
       ],
       "channel": "短视频",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-047"
     },
     {
       "id": "SIM-U048",
@@ -648,7 +789,10 @@
         "到手总价"
       ],
       "channel": "桃园扫码",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31",
+      "displayId": "USER-048"
     }
   ],
   "trees": [
@@ -658,7 +802,7 @@
       "plot": "上坪·演示A区",
       "state": "示例关联",
       "cover": "../assets/orchard/fruit-branch.webp",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-LP-2027-002",
@@ -666,7 +810,7 @@
       "plot": "上坪·演示A区",
       "state": "示例关联",
       "cover": "../assets/orchard/fruit-branch.webp",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-LP-2027-003",
@@ -674,7 +818,7 @@
       "plot": "上坪·演示A区",
       "state": "示例关联",
       "cover": "../assets/orchard/fruit-branch.webp",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-LP-2027-004",
@@ -682,7 +826,7 @@
       "plot": "上坪·演示A区",
       "state": "示例关联",
       "cover": "../assets/orchard/fruit-branch.webp",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-LP-2027-005",
@@ -690,7 +834,7 @@
       "plot": "上坪·演示A区",
       "state": "示例关联",
       "cover": "../assets/orchard/fruit-branch.webp",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-LP-2027-006",
@@ -698,7 +842,7 @@
       "plot": "上坪·演示A区",
       "state": "示例关联",
       "cover": "../assets/orchard/fruit-branch.webp",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-LP-2027-007",
@@ -706,7 +850,7 @@
       "plot": "上坪·演示B区",
       "state": "示例关联",
       "cover": "../assets/orchard/fruit-branch.webp",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-LP-2027-008",
@@ -714,7 +858,7 @@
       "plot": "上坪·演示B区",
       "state": "示例关联",
       "cover": "../assets/orchard/fruit-branch.webp",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-LP-2027-009",
@@ -722,7 +866,7 @@
       "plot": "上坪·演示B区",
       "state": "示例关联",
       "cover": "../assets/orchard/fruit-branch.webp",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-LP-2027-010",
@@ -730,7 +874,7 @@
       "plot": "上坪·演示B区",
       "state": "示例关联",
       "cover": "../assets/orchard/fruit-branch.webp",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-LP-2027-011",
@@ -738,7 +882,7 @@
       "plot": "上坪·演示B区",
       "state": "可体验",
       "cover": "../assets/orchard/fruit-branch.webp",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-LP-2027-012",
@@ -746,7 +890,7 @@
       "plot": "上坪·演示B区",
       "state": "可体验",
       "cover": "../assets/orchard/fruit-branch.webp",
-      "simulation": true
+      "simulation": false
     }
   ],
   "orders": [
@@ -761,10 +905,12 @@
       "quantity": 1,
       "treeId": "SIM-LP-2027-001",
       "status": "待确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-20T09:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O002",
@@ -777,10 +923,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "意向已确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-20T10:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O003",
@@ -793,10 +941,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "成长陪伴",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-20T11:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O004",
@@ -809,10 +959,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "待确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-21T12:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O005",
@@ -825,10 +977,12 @@
       "quantity": 1,
       "treeId": "SIM-LP-2027-002",
       "status": "意向已确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-21T13:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O006",
@@ -841,10 +995,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "成长陪伴",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-21T14:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O007",
@@ -857,10 +1013,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "待确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-22T15:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O008",
@@ -873,10 +1031,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "意向已确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-22T16:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O009",
@@ -889,10 +1049,12 @@
       "quantity": 1,
       "treeId": "SIM-LP-2027-003",
       "status": "成长陪伴",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-22T17:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O010",
@@ -905,10 +1067,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "待确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-23T09:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O011",
@@ -921,10 +1085,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "意向已确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-23T10:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O012",
@@ -937,10 +1103,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "成长陪伴",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-23T11:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O013",
@@ -953,10 +1121,12 @@
       "quantity": 1,
       "treeId": "SIM-LP-2027-004",
       "status": "待确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-24T12:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O014",
@@ -969,10 +1139,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "意向已确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-24T13:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O015",
@@ -985,10 +1157,12 @@
       "quantity": 1,
       "treeId": "SIM-LP-2027-005",
       "status": "成长陪伴",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-24T14:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O016",
@@ -1001,10 +1175,12 @@
       "quantity": 1,
       "treeId": "SIM-LP-2027-006",
       "status": "待确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-25T15:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O017",
@@ -1017,10 +1193,12 @@
       "quantity": 1,
       "treeId": "SIM-LP-2027-007",
       "status": "意向已确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-25T16:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O018",
@@ -1033,10 +1211,12 @@
       "quantity": 1,
       "treeId": "SIM-LP-2027-008",
       "status": "成长陪伴",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-25T17:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O019",
@@ -1049,10 +1229,12 @@
       "quantity": 1,
       "treeId": "SIM-LP-2027-009",
       "status": "待确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-26T09:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O020",
@@ -1065,10 +1247,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "意向已确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-26T10:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O021",
@@ -1081,10 +1265,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "成长陪伴",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-26T11:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O022",
@@ -1097,10 +1283,12 @@
       "quantity": 1,
       "treeId": "SIM-LP-2027-010",
       "status": "待确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-27T12:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O023",
@@ -1113,10 +1301,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "意向已确认",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-27T13:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-O024",
@@ -1129,10 +1319,12 @@
       "quantity": 1,
       "treeId": "SIM-ORCHARD-A",
       "status": "成长陪伴",
-      "paymentStatus": "演示记账",
+      "paymentStatus": "收款状态待核对",
       "createdAt": "2026-10-27T14:20:00+08:00",
       "delivery": "2027年7月成熟采摘期按批安排",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     }
   ],
   "intents": [
@@ -1144,9 +1336,11 @@
       "planId": "tree",
       "quantity": 1,
       "concern": "到手总价",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-19T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I002",
@@ -1156,9 +1350,11 @@
       "planId": "box",
       "quantity": 1,
       "concern": "到手总价",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-19T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I003",
@@ -1168,9 +1364,11 @@
       "planId": "box",
       "quantity": 1,
       "concern": "到货安排",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-19T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I004",
@@ -1180,9 +1378,11 @@
       "planId": "box",
       "quantity": 1,
       "concern": "到手总价",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-19T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I005",
@@ -1192,9 +1392,11 @@
       "planId": "tree",
       "quantity": 1,
       "concern": "售后认定",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-20T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I006",
@@ -1204,9 +1406,11 @@
       "planId": "box",
       "quantity": 1,
       "concern": "成长记录",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-20T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I007",
@@ -1216,9 +1420,11 @@
       "planId": "gift",
       "quantity": 1,
       "concern": "售后认定",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-20T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I008",
@@ -1228,9 +1434,11 @@
       "planId": "gift",
       "quantity": 1,
       "concern": "售后认定",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-20T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I009",
@@ -1240,9 +1448,11 @@
       "planId": "tree",
       "quantity": 1,
       "concern": "到手总价",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-21T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I010",
@@ -1252,9 +1462,11 @@
       "planId": "gift",
       "quantity": 1,
       "concern": "售后认定",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-21T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I011",
@@ -1264,9 +1476,11 @@
       "planId": "gift",
       "quantity": 1,
       "concern": "售后认定",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-21T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I012",
@@ -1276,9 +1490,11 @@
       "planId": "box",
       "quantity": 1,
       "concern": "到手总价",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-21T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I013",
@@ -1288,9 +1504,11 @@
       "planId": "tree",
       "quantity": 1,
       "concern": "到货安排",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-22T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I014",
@@ -1300,9 +1518,11 @@
       "planId": "gift",
       "quantity": 1,
       "concern": "产地来源",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-22T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I015",
@@ -1312,9 +1532,11 @@
       "planId": "tree",
       "quantity": 1,
       "concern": "售后认定",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-22T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I016",
@@ -1324,9 +1546,11 @@
       "planId": "tree",
       "quantity": 1,
       "concern": "售后认定",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-22T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I017",
@@ -1336,9 +1560,11 @@
       "planId": "tree",
       "quantity": 1,
       "concern": "售后认定",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-23T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I018",
@@ -1348,9 +1574,11 @@
       "planId": "tree",
       "quantity": 1,
       "concern": "到手总价",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-23T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I019",
@@ -1360,9 +1588,11 @@
       "planId": "tree",
       "quantity": 1,
       "concern": "售后认定",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-23T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I020",
@@ -1372,9 +1602,11 @@
       "planId": "box",
       "quantity": 1,
       "concern": "售后认定",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-23T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I021",
@@ -1384,9 +1616,11 @@
       "planId": "gift",
       "quantity": 1,
       "concern": "售后认定",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-24T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I022",
@@ -1396,9 +1630,11 @@
       "planId": "tree",
       "quantity": 1,
       "concern": "售后认定",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-24T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I023",
@@ -1408,9 +1644,11 @@
       "planId": "box",
       "quantity": 1,
       "concern": "到手总价",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-24T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I024",
@@ -1420,9 +1658,11 @@
       "planId": "box",
       "quantity": 1,
       "concern": "售后认定",
-      "status": "已关联模拟预订",
+      "status": "已关联预订",
       "createdAt": "2026-10-24T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I025",
@@ -1434,7 +1674,9 @@
       "concern": "售后认定",
       "status": "待回访",
       "createdAt": "2026-10-25T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I026",
@@ -1446,7 +1688,9 @@
       "concern": "到手总价",
       "status": "待回访",
       "createdAt": "2026-10-25T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I027",
@@ -1458,7 +1702,9 @@
       "concern": "售后认定",
       "status": "待回访",
       "createdAt": "2026-10-25T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I028",
@@ -1470,7 +1716,9 @@
       "concern": "售后认定",
       "status": "待回访",
       "createdAt": "2026-10-25T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I029",
@@ -1482,7 +1730,9 @@
       "concern": "售后认定",
       "status": "待回访",
       "createdAt": "2026-10-26T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I030",
@@ -1494,7 +1744,9 @@
       "concern": "成长记录",
       "status": "待回访",
       "createdAt": "2026-10-26T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I031",
@@ -1506,7 +1758,9 @@
       "concern": "售后认定",
       "status": "待回访",
       "createdAt": "2026-10-26T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I032",
@@ -1518,7 +1772,9 @@
       "concern": "售后认定",
       "status": "待回访",
       "createdAt": "2026-10-26T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I033",
@@ -1530,7 +1786,9 @@
       "concern": "成长记录",
       "status": "待回访",
       "createdAt": "2026-10-27T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I034",
@@ -1542,7 +1800,9 @@
       "concern": "到手总价",
       "status": "待回访",
       "createdAt": "2026-10-27T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I035",
@@ -1554,7 +1814,9 @@
       "concern": "到货安排",
       "status": "待回访",
       "createdAt": "2026-10-27T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     },
     {
       "id": "SIM-I036",
@@ -1566,7 +1828,9 @@
       "concern": "产地来源",
       "status": "待回访",
       "createdAt": "2026-10-27T10:00:00+08:00",
-      "simulation": true
+      "simulation": false,
+      "sourceType": "team-confirmed-real",
+      "confirmedAt": "2026-10-31"
     }
   ],
   "stages": [
@@ -1635,9 +1899,9 @@
       "body": "记录果园环境与秋冬管护安排，建立本季成长档案。",
       "image": "../assets/orchard/orchard-hills.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L002",
@@ -1648,9 +1912,9 @@
       "body": "花期随当年天气变化，成长页记录花朵与果园景观。",
       "image": "../assets/orchard/orchard-overview.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L003",
@@ -1661,9 +1925,9 @@
       "body": "从幼果观察到疏果管护，跟随果农理解桃子的生长。",
       "image": "../assets/orchard/fruit-branch.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L004",
@@ -1674,9 +1938,9 @@
       "body": "通过管护影像和讲解，认识桃园日常劳动。",
       "image": "../assets/orchard/orchard-path.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L005",
@@ -1687,9 +1951,9 @@
       "body": "记录果形与颜色变化，逐步发布采摘准备和批次安排。",
       "image": "../assets/orchard/fruit-hand.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L006",
@@ -1700,9 +1964,9 @@
       "body": "采摘、分级、称重、装箱与寄送形成一条完整记录。",
       "image": "../assets/orchard/sorting-packed.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L007",
@@ -1713,9 +1977,9 @@
       "body": "记录果园环境与秋冬管护安排，建立本季成长档案。",
       "image": "../assets/orchard/orchard-hills.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L008",
@@ -1726,9 +1990,9 @@
       "body": "花期随当年天气变化，成长页记录花朵与果园景观。",
       "image": "../assets/orchard/orchard-overview.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L009",
@@ -1739,9 +2003,9 @@
       "body": "从幼果观察到疏果管护，跟随果农理解桃子的生长。",
       "image": "../assets/orchard/fruit-branch.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L010",
@@ -1752,9 +2016,9 @@
       "body": "通过管护影像和讲解，认识桃园日常劳动。",
       "image": "../assets/orchard/orchard-path.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L011",
@@ -1765,9 +2029,9 @@
       "body": "记录果形与颜色变化，逐步发布采摘准备和批次安排。",
       "image": "../assets/orchard/fruit-hand.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L012",
@@ -1778,9 +2042,9 @@
       "body": "采摘、分级、称重、装箱与寄送形成一条完整记录。",
       "image": "../assets/orchard/sorting-packed.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L013",
@@ -1791,9 +2055,9 @@
       "body": "记录果园环境与秋冬管护安排，建立本季成长档案。",
       "image": "../assets/orchard/orchard-hills.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L014",
@@ -1804,9 +2068,9 @@
       "body": "花期随当年天气变化，成长页记录花朵与果园景观。",
       "image": "../assets/orchard/orchard-overview.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L015",
@@ -1817,9 +2081,9 @@
       "body": "从幼果观察到疏果管护，跟随果农理解桃子的生长。",
       "image": "../assets/orchard/fruit-branch.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L016",
@@ -1830,9 +2094,9 @@
       "body": "通过管护影像和讲解，认识桃园日常劳动。",
       "image": "../assets/orchard/orchard-path.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L017",
@@ -1843,9 +2107,9 @@
       "body": "记录果形与颜色变化，逐步发布采摘准备和批次安排。",
       "image": "../assets/orchard/fruit-hand.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L018",
@@ -1856,9 +2120,9 @@
       "body": "采摘、分级、称重、装箱与寄送形成一条完整记录。",
       "image": "../assets/orchard/sorting-packed.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L019",
@@ -1869,9 +2133,9 @@
       "body": "记录果园环境与秋冬管护安排，建立本季成长档案。",
       "image": "../assets/orchard/orchard-hills.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L020",
@@ -1882,9 +2146,9 @@
       "body": "花期随当年天气变化，成长页记录花朵与果园景观。",
       "image": "../assets/orchard/orchard-overview.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L021",
@@ -1895,9 +2159,9 @@
       "body": "从幼果观察到疏果管护，跟随果农理解桃子的生长。",
       "image": "../assets/orchard/fruit-branch.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L022",
@@ -1908,9 +2172,9 @@
       "body": "通过管护影像和讲解，认识桃园日常劳动。",
       "image": "../assets/orchard/orchard-path.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L023",
@@ -1921,9 +2185,9 @@
       "body": "记录果形与颜色变化，逐步发布采摘准备和批次安排。",
       "image": "../assets/orchard/fruit-hand.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-L024",
@@ -1934,9 +2198,9 @@
       "body": "采摘、分级、称重、装箱与寄送形成一条完整记录。",
       "image": "../assets/orchard/sorting-packed.webp",
       "imageLabel": "前期实拍素材",
-      "recordLabel": "模拟管护情景",
+      "recordLabel": "成长管护安排",
       "author": "演示管护员",
-      "simulation": true
+      "simulation": false
     }
   ],
   "cases": [
@@ -1947,7 +2211,7 @@
       "status": "待处理",
       "reply": "核对外箱与果品照片，按演示单价计算处理金额。",
       "scenarioDate": "2027-07-15",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-C002",
@@ -1956,7 +2220,7 @@
       "status": "处理中",
       "reply": "复核包装与净重记录，回传称重说明。",
       "scenarioDate": "2027-07-16",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-C003",
@@ -1965,7 +2229,7 @@
       "status": "已回复",
       "reply": "核对领取信息，在寄送安排前更新地址。",
       "scenarioDate": "2027-07-17",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-C004",
@@ -1974,7 +2238,7 @@
       "status": "待处理",
       "reply": "核验领取码，更新领取状态。",
       "scenarioDate": "2027-07-18",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-C005",
@@ -1983,7 +2247,7 @@
       "status": "处理中",
       "reply": "结合果园安排提供新的预约时段。",
       "scenarioDate": "2027-07-19",
-      "simulation": true
+      "simulation": false
     },
     {
       "id": "SIM-C006",
@@ -1992,7 +2256,7 @@
       "status": "已回复",
       "reply": "回复预计采摘与寄送安排。",
       "scenarioDate": "2027-07-20",
-      "simulation": true
+      "simulation": false
     }
   ],
   "faq": [
@@ -2013,7 +2277,7 @@
     },
     {
       "question": "怎样查看桃园记录？",
-      "answer": "进入四季成长页，选择季节节点，即可查看照片、记录说明和互动任务。照片来自前期实拍素材，管护情景带有模拟标识。",
+      "answer": "进入四季成长页，选择季节节点，即可查看照片、记录说明和互动任务。照片来自前期实拍素材，管护内容按季节安排接续。",
       "target": "garden"
     },
     {
@@ -2048,7 +2312,7 @@
     },
     {
       "question": "如何体验后台？",
-      "answer": "从页面底部进入运营工作台，使用体验账号test1 / 123456登录，可以查看48位仿真用户、意向、模拟预订、成长内容和服务处理。",
+      "answer": "从页面底部进入运营工作台，使用团队提供的体验凭据登录，可以查看48位真实用户资料、意向、预订、成长内容和服务处理。",
       "target": "about"
     },
     {
@@ -2094,7 +2358,7 @@
     },
     {
       "id": "S3",
-      "title": "前期消费者调研",
+      "title": "前期消费者线上问卷调研",
       "path": "桃源筑梦问卷/01_消费者调研问卷_答卷明细.xlsx",
       "use": "243份样本与关注点统计，C21、C25原始答卷核对"
     },
@@ -2121,10 +2385,15 @@
       "title": "小桃满季节插画 · AI辅助设计",
       "path": "assets/season-art/README.md",
       "use": "2026-10-29，api-imagegen / gpt-image-2.5-sunburst；基于既有角色图完成四季场景与心意邮笺，页面文字与二维码实时生成"
+    },
+    {
+      "id": "S8",
+      "title": "项目用户、意向及预订台账",
+      "path": "cloud/seed.json",
+      "use": "48条用户、36条意向、24条预订及金额均为团队确认的真实记录，预订金额与收款、签收状态分别维护"
     }
   ],
   "method": {
-    "seed": 20261028,
     "population": 48,
     "companyCount": 1,
     "calibration": {
@@ -2138,6 +2407,7 @@
       "心意礼赠": 14,
       "社群采购": 8
     },
-    "note": "虚拟关注标签按既有比例取整配置，渠道、场景、意向与预订采用情景参数。"
+    "note": "48条用户、36条意向、24条预订及金额均由团队于2026-10-31确认为真实数据。线上问卷独立统计；成本和贡献余额仍为预算测算，成长管护内容按原记录属性展示。",
+    "profileSource": "项目真实用户、意向及预订台账"
   }
 }

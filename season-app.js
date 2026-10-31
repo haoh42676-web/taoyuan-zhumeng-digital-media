@@ -55,23 +55,23 @@
   }
   function planDetail(id) {
     const p = plan(id), total = Object.values(p.cost).reduce((a,b) => a+b,0);
-    open(`${pill(p.scene, 'pill-green')}<h2>${e(p.name)}</h2><p>${e(p.subtitle)}</p>${image(p.image, p.name, 'detail-photo')}<div class="quote-total"><span>${p.weight}斤精选鲜桃<small>每份 / 广东省内包装配送 / 模拟报价</small></span><strong>${money(p.price)}</strong></div><ul class="detail-rights">${p.rights.map(t => `<li>${icon('check')}${e(t)}</li>`).join('')}</ul><p>${e(p.delivery)}</p><details class="cost-disclosure"><summary>查看方案费用组成</summary><p class="form-help">经营情景测算 / 元每份</p><div class="detail-costs">${Object.entries(p.cost).map(([n,v]) => `<div>${e(n)}<b>${v}</b></div>`).join('')}<div>贡献余额<b>${p.margin}</b></div></div><p class="form-help">模拟成本合计${total}元，实际经营条款由企业确认后更新。</p></details><div class="button-row">${action('选择这一季', 'enroll', p.id, 'btn btn-primary')}${link('看看四季记录', '#garden', 'text-button')}</div>`, false, '方案与权益');
+    open(`${pill(p.scene, 'pill-green')}<h2>${e(p.name)}</h2><p>${e(p.subtitle)}</p>${image(p.image, p.name, 'detail-photo')}<div class="quote-total"><span>${p.weight}斤精选鲜桃<small>每份 / 广东省内包装配送</small></span><strong>${money(p.price)}</strong></div><ul class="detail-rights">${p.rights.map(t => `<li>${icon('check')}${e(t)}</li>`).join('')}</ul><p>${e(p.delivery)}</p><details class="cost-disclosure"><summary>查看方案费用组成</summary><p class="form-help">经营情景测算 / 元每份</p><div class="detail-costs">${Object.entries(p.cost).map(([n,v]) => `<div>${e(n)}<b>${v}</b></div>`).join('')}<div>贡献余额<b>${p.margin}</b></div></div><p class="form-help">预算成本合计${total}元，实际经营条款由企业确认后更新。</p></details><div class="button-row">${action('选择这一季', 'enroll', p.id, 'btn btn-primary')}${link('看看四季记录', '#garden', 'text-button')}</div>`, false, '方案与权益');
   }
   function enrollment(id, keep = false) {
     const p = plan(id);
     if (!keep || !state.enrollment || state.enrollment.planId !== id) state.enrollment = {planId:id,nickname:api?.user?.name || '', city:'广州', concern:'到手总价', quantity:1,idempotencyKey:store.uuid(),step:1};
     const d = state.enrollment;
     if (d.step === 2) {
-      open(`<div class="wizard-steps"><span>1 选择与填写</span><i></i><span class="active">2 确认这一季</span><i></i><span>3 开启期待</span></div><h2>${e(d.nickname)}，把期待收好了。</h2><div class="wizard-summary">${image(p.image,p.name)}<div><b>${e(p.name)}</b><small>${p.weight}斤 × ${d.quantity}份</small></div><strong>${money(p.price*d.quantity)}</strong></div><dl class="confirm-list">${[['体验昵称',d.nickname],['所在城市',d.city],['最关注',d.concern],['预计收获','2027年7月成熟季']].map(([k,v]) => `<div><dt>${k}</dt><dd>${e(v)}</dd></div>`).join('')}</dl><div class="quote-total"><span>本次方案总价<small>含广东省内包装与配送</small></span><strong>${money(p.price*d.quantity)}</strong></div><p class="form-help">本次登记生成SIM模拟意向记录，可持续查看成长与服务进度。</p><form id="enroll-confirm" class="season-form"><p class="form-error" data-error role="alert" hidden></p><div class="button-row"><button type="submit" class="btn btn-primary">确认登记${icon('check')}</button>${action('返回修改', 'enroll-back', '', 'text-button', '')}</div></form>`, false, '认养一季 · 确认信息');
+      open(`<div class="wizard-steps"><span>1 选择与填写</span><i></i><span class="active">2 确认这一季</span><i></i><span>3 开启期待</span></div><h2>${e(d.nickname)}，把期待收好了。</h2><div class="wizard-summary">${image(p.image,p.name)}<div><b>${e(p.name)}</b><small>${p.weight}斤 × ${d.quantity}份</small></div><strong>${money(p.price*d.quantity)}</strong></div><dl class="confirm-list">${[['体验昵称',d.nickname],['所在城市',d.city],['最关注',d.concern],['预计收获','2027年7月成熟季']].map(([k,v]) => `<div><dt>${k}</dt><dd>${e(v)}</dd></div>`).join('')}</dl><div class="quote-total"><span>本次方案总价<small>含广东省内包装与配送</small></span><strong>${money(p.price*d.quantity)}</strong></div><p class="form-help">本次登记生成意向记录，尚不代表付款或签收，可持续查看成长与服务进度。</p><form id="enroll-confirm" class="season-form"><p class="form-error" data-error role="alert" hidden></p><div class="button-row"><button type="submit" class="btn btn-primary">确认登记${icon('check')}</button>${action('返回修改', 'enroll-back', '', 'text-button', '')}</div></form>`, false, '认养一季 · 确认信息');
       return;
     }
-    open(`<div class="wizard-steps"><span class="active">1 选择与填写</span><i></i><span>2 确认这一季</span><i></i><span>3 开启期待</span></div><h2>开始你的${e(p.name)}。</h2><div class="wizard-summary">${image(p.image,p.name)}<div><b>${e(p.scene)} · ${p.weight}斤 / 份</b><small>广东省内包装配送</small></div><strong>${money(p.price)}</strong></div><form id="enroll-form" class="season-form"><div class="form-two"><label>体验昵称<input name="nickname" maxlength="18" autocomplete="nickname" value="${e(d.nickname)}" placeholder="给这一季留个名字" required></label><label>所在城市<select name="city">${['广州','深圳','河源','东莞','惠州','佛山'].map(x=>`<option ${x===d.city?'selected':''}>${x}</option>`).join('')}</select></label></div><div class="form-two"><label>方案份数<select name="quantity">${[1,2,3].map(x=>`<option value="${x}" ${x===d.quantity?'selected':''}>${x}份 · ${p.weight*x}斤</option>`).join('')}</select></label><label>你最关心的事<select name="concern">${['到手总价','产地来源','售后认定','到货安排','季节陪伴'].map(x=>`<option ${x===d.concern?'selected':''}>${x}</option>`).join('')}</select></label></div><div class="quote-total"><span>这一季的方案总价<small>2027年7月计划 / 模拟报价</small></span><strong id="enroll-total">${money(p.price*d.quantity)}</strong></div><p class="form-error" data-error role="alert" hidden></p><button type="submit" class="btn btn-primary">下一步，核对信息${icon('arrow')}</button></form>`, false, '认养一季 · 选择与填写');
+    open(`<div class="wizard-steps"><span class="active">1 选择与填写</span><i></i><span>2 确认这一季</span><i></i><span>3 开启期待</span></div><h2>开始你的${e(p.name)}。</h2><div class="wizard-summary">${image(p.image,p.name)}<div><b>${e(p.scene)} · ${p.weight}斤 / 份</b><small>广东省内包装配送</small></div><strong>${money(p.price)}</strong></div><form id="enroll-form" class="season-form"><div class="form-two"><label>体验昵称<input name="nickname" maxlength="18" autocomplete="nickname" value="${e(d.nickname)}" placeholder="给这一季留个名字" required></label><label>所在城市<select name="city">${['广州','深圳','河源','东莞','惠州','佛山'].map(x=>`<option ${x===d.city?'selected':''}>${x}</option>`).join('')}</select></label></div><div class="form-two"><label>方案份数<select name="quantity">${[1,2,3].map(x=>`<option value="${x}" ${x===d.quantity?'selected':''}>${x}份 · ${p.weight*x}斤</option>`).join('')}</select></label><label>你最关心的事<select name="concern">${['到手总价','产地来源','售后认定','到货安排','季节陪伴'].map(x=>`<option ${x===d.concern?'selected':''}>${x}</option>`).join('')}</select></label></div><div class="quote-total"><span>这一季的方案总价<small>2027年7月计划 / 方案报价</small></span><strong id="enroll-total">${money(p.price*d.quantity)}</strong></div><p class="form-error" data-error role="alert" hidden></p><button type="submit" class="btn btn-primary">下一步，核对信息${icon('arrow')}</button></form>`, false, '认养一季 · 选择与填写');
   }
   async function saveEnrollment() {
     const d = state.enrollment, {step,...payload} = d;
     const item = await store.intent(payload, state.data.plans); await refresh(false); state.sampleId = ''; state.enrollment = null;
     render();
-    open(`<div class="success-icon">${icon('check')}</div><p class="eyebrow">这一季，从现在开始</p><h2>${e(item.nickname)}的期待，已经收好。</h2><p>${e(plan(item.planId).name)} · ${money(item.amount)} · ${item.quantity}份</p><div class="record-number">模拟记录编号：${e(item.id)}</div><p>接着去看四季成长，或者为这一季做一张纪念卡。</p><div class="button-row">${link('去看四季成长', '#garden', 'btn btn-primary')}${link('查看我的桃园', '#mine', 'btn btn-outline')}${action('生成纪念卡', 'certificate', item.id, 'text-button', 'down')}</div>`, false, '意向登记成功');
+    open(`<div class="success-icon">${icon('check')}</div><p class="eyebrow">这一季，从现在开始</p><h2>${e(item.nickname)}的期待，已经收好。</h2><p>${e(plan(item.planId).name)} · ${money(item.amount)} · ${item.quantity}份</p><div class="record-number">记录编号：${e(item.id)}</div><p>接着去看四季成长，或者为这一季做一张纪念卡。</p><div class="button-row">${link('去看四季成长', '#garden', 'btn btn-primary')}${link('查看我的桃园', '#mine', 'btn btn-outline')}${action('生成纪念卡', 'certificate', item.id, 'text-button', 'down')}</div>`, false, '意向登记成功');
   }
   function task(id) {
     const stage = state.data.stages.find(x => x.id === id), prior = V.activity(state,'stage',id);
@@ -87,10 +87,10 @@
     open(`${pill('成长、方案与收获服务')}<h2>有想了解的，和桃园聊聊。</h2><form id="feedback-form" class="season-form"><label>关联哪一份期待<select name="recordId"><option value="garden">桃园公共成长页</option>${choices.map(x=>`<option value="${e(x.id)}" ${recordId===x.id?'selected':''}>${e(x.nickname)}的${e(plan(x.planId).name)}</option>`).join('')}</select></label><label>问题类型<select name="kind">${['成长咨询','方案咨询','到货破损','重量核对','礼卡领取'].map(x=>`<option>${x}</option>`).join('')}</select></label><label>具体情况<textarea name="message" maxlength="500" rows="4" placeholder="写清记录、时间和你关心的问题，方便果园跟进。" required></textarea></label><p class="form-help">保存后可在“我的桃园 → 服务与探园”查看回复。</p><p class="form-error" data-error role="alert" hidden></p><button type="submit" class="btn btn-primary">保存这条反馈${icon('arrow')}</button></form>`,false,'联系桃园');
   }
   function visit() {
-    open(`${pill('2027年3—7月 / 1—4人同行','pill-green')}<h2>下一次，在桃树下见。</h2>${image('assets/orchard/orchard-path.webp','前期实拍：桃园小路','detail-photo')}<form id="visit-form" class="season-form"><div class="form-two"><label>期望探园日期<input type="date" name="date" min="2027-03-01" max="2027-07-31" required></label><label>同行人数<select name="people">${[1,2,3,4].map(n=>`<option value="${n}" ${n===2?'selected':''}>${n}人</option>`).join('')}</select></label></div><p class="form-help">本次保存模拟探园意向，果园确认接待安排后回写进度。</p><p class="form-error" data-error role="alert" hidden></p><button type="submit" class="btn btn-primary">留下探园意向${icon('calendar')}</button></form>`,false,'山野相见');
+    open(`${pill('2027年3—7月 / 1—4人同行','pill-green')}<h2>下一次，在桃树下见。</h2>${image('assets/orchard/orchard-path.webp','前期实拍：桃园小路','detail-photo')}<form id="visit-form" class="season-form"><div class="form-two"><label>期望探园日期<input type="date" name="date" min="2027-03-01" max="2027-07-31" required></label><label>同行人数<select name="people">${[1,2,3,4].map(n=>`<option value="${n}" ${n===2?'selected':''}>${n}人</option>`).join('')}</select></label></div><p class="form-help">本次保存探园意向，果园确认接待安排后回写进度。</p><p class="form-error" data-error role="alert" hidden></p><button type="submit" class="btn btn-primary">留下探园意向${icon('calendar')}</button></form>`,false,'山野相见');
   }
   function samples() {
-    open(`<p class="eyebrow">48位仿真用户 / 一家合作企业</p><h2>换个视角，认识这一季。</h2><p>选一位家庭、礼赠或社群用户，查看关联的方案与成长记录。</p><input id="sample-search" type="search" class="sample-search" aria-label="搜索仿真用户" placeholder="搜索昵称、城市或场景"><div id="sample-users">${sampleList('')}</div>`,true,'仿真用户体验');
+    open(`<p class="eyebrow">48位真实用户 / 一家合作企业</p><h2>换个视角，认识这一季。</h2><p>选一位家庭、礼赠或社群用户，查看关联的方案与成长记录。</p><input id="sample-search" type="search" class="sample-search" aria-label="搜索用户资料" placeholder="搜索昵称、城市或场景"><div id="sample-users">${sampleList('')}</div>`,true,'用户资料查看');
   }
   function sampleList(q) {
     const rows = state.data.profiles.filter(x => [x.id,x.nickname,x.city,x.scene].join(' ').includes(q.trim()));
@@ -110,7 +110,7 @@
     let supplied; try { supplied=JSON.parse(params.get('preview') || 'null'); } catch {}
     try {
       const g=await store.giftPreview(id,code,supplied); state.invitation={...g,code};
-      open(`${pill('一份来自'+g.from+'的桃园心意','pill-green')}<h2>亲爱的${e(g.to)}，<br>有份七月的期待寄给你。</h2><div class="claim-quote">${e(g.message)}</div><p class="claim-from">来自 ${e(g.from)} · 2027桃季模拟心意卡</p><form id="claim-form" class="season-form"><p class="form-error" data-error role="alert" hidden></p><button class="btn btn-primary" type="submit">收藏这份心意${icon('gift')}</button></form>`,false,'收到一份心意');
+      open(`${pill('一份来自'+g.from+'的桃园心意','pill-green')}<h2>亲爱的${e(g.to)}，<br>有份七月的期待寄给你。</h2><div class="claim-quote">${e(g.message)}</div><p class="claim-from">来自 ${e(g.from)} · 2027桃季心意卡</p><form id="claim-form" class="season-form"><p class="form-error" data-error role="alert" hidden></p><button class="btn btn-primary" type="submit">收藏这份心意${icon('gift')}</button></form>`,false,'收到一份心意');
     } catch(error) { open(`<h2>找找这份心意。</h2><p>${e(error.message)}</p><p>请向赠送人核对完整链接，再回来继续领取。</p>${link('先看看桃园','#garden','btn btn-primary')}`,false,'心意卡领取'); }
   }
   function clearInvite() { const url = new URL(location.href); for(const k of ['gift','code','preview'])url.searchParams.delete(k); history.replaceState(null,'',url); }
@@ -137,7 +137,7 @@
         c.fillStyle='#fffdf4';c.fillRect(75,697,size,size);c.fillStyle='#214d38';
         for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(qr.isDark(y,x))c.fillRect(75+(x+4)*unit,697+(y+4)*unit,Math.ceil(unit),Math.ceil(unit));
       }
-      c.fillStyle='#59704e';c.font='19px Microsoft YaHei';c.fillText('扫码领取这份心意',240,742);c.font='16px Microsoft YaHei';c.fillText('模拟体验 / '+item.id,240,779);
+      c.fillStyle='#59704e';c.font='19px Microsoft YaHei';c.fillText('扫码领取这份心意',240,742);c.font='16px Microsoft YaHei';c.fillText('季节记录 / '+item.id,240,779);
       c.font='17px Microsoft YaHei';c.fillText('广东 · 连平上坪',75,1442);c.fillText('AI辅助邮笺插画',770,1442);
       canvas.dataset.ready='1';return;
     }
@@ -146,7 +146,7 @@
     c.strokeStyle='#c8d1b7';c.beginPath();c.moveTo(65,120);c.lineTo(1135,120);c.stroke();
     c.font='bold 57px Microsoft YaHei';drawWrapped(c,gift?'亲爱的'+item.to+'，\n把七月，寄给你。':item.nickname+'的\n七月期待，正在生长。',65,223,800,84,2);
     c.fillStyle='#7e906e';c.font='27px Microsoft YaHei';drawWrapped(c,gift?item.message:plan(item.planId).name+' · '+plan(item.planId).weight+'斤鲜桃权益\n等花开，等果熟，也等与你分享。',68,438,780,44,3);
-    c.font='19px Microsoft YaHei';c.fillText('广东河源 · 连平上坪 · 2027桃季',68,665);c.font='16px Microsoft YaHei';c.fillText('模拟体验 / '+item.id,68,707);c.fillText('扫码一起看桃园，收藏这一季的变化。',68,785);
+    c.font='19px Microsoft YaHei';c.fillText('广东河源 · 连平上坪 · 2027桃季',68,665);c.font='16px Microsoft YaHei';c.fillText('季节记录 / '+item.id,68,707);c.fillText('扫码一起看桃园，收藏这一季的变化。',68,785);
     try {const ip=await loadImg('assets/ip-season/'+(gift?'gift':'welcome')+'.webp');if(canvas.isConnected)c.drawImage(ip,875,425,240,280);}catch{}
     if (typeof qrcode === 'function') { const qr=qrcode(0,'M');qr.addData(url);qr.make();const n=qr.getModuleCount(),size=200,unit=size/(n+8),startX=925,startY=170;c.fillStyle='#fffef5';c.fillRect(startX,startY,size,size);c.fillStyle='#214d38';for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(qr.isDark(y,x))c.fillRect(startX+(x+4)*unit,startY+(y+4)*unit,Math.ceil(unit),Math.ceil(unit)); }
     canvas.dataset.ready='1';
@@ -158,19 +158,19 @@
   function account() {
     if(api?.user){open(`<p class="eyebrow">我的账号</p><h2>你好，${e(api.user.name || api.user.account)}。</h2><p>云养记录、商城订单和共创任务，都可以从这里继续。</p><div class="account-options">${link('我的桃园','#mine','')}${link('我的商城订单','market.html?orders=1#shop','')}${link('成员共创空间','market.html#join','')}</div>${action('退出账号','logout','','btn btn-outline','')}`,false,'账号与服务');return;}
     const register=authTab==='register';
-    open(`<p class="eyebrow">小桃满 · 一起认识桃乡</p><h2>${register?'创建你的桃乡账号。':'登录，接着走这一季。'}</h2><form id="account-form" class="season-form"><label>账号<input name="account" autocomplete="username" pattern="[a-zA-Z0-9_]{3,40}" minlength="3" maxlength="40" required placeholder="3—40位字母、数字或下划线" ${store.server?'':'value="test1"'}></label><label>密码<input name="password" type="password" autocomplete="${register?'new-password':'current-password'}" minlength="${register?10:6}" maxlength="128" required placeholder="${register?'至少10位':'输入密码'}" ${store.server?'':'value="123456"'}></label><p class="form-error" data-error role="alert" hidden></p><button class="btn btn-primary" type="submit">${register?'注册并登录':'登录'}${icon('arrow')}</button></form>${store.server?action(register?'已有账号，去登录':'创建一个账号','auth-switch','','text-button',''):''}<p class="form-help">体验账号 test1 / 123456 · 顾客与运营后台分别登录</p>`,false,'桃乡账号');
+    open(`<p class="eyebrow">小桃满 · 一起认识桃乡</p><h2>${register?'创建你的桃乡账号。':'登录，接着走这一季。'}</h2><div class="button-row" aria-label="选择登录入口"><span class="pill pill-green">前台登录</span>${link('后台登录 ↗',window.PEACH_CONFIG?.adminPath||'admin/','text-button','')}</div><form id="account-form" class="season-form"><label>账号<input name="account" autocomplete="username" pattern="[a-zA-Z0-9_]{3,40}" minlength="3" maxlength="40" required placeholder="3—40位字母、数字或下划线"></label><label>密码<input name="password" type="password" autocomplete="${register?'new-password':'current-password'}" minlength="${register?10:6}" maxlength="128" required placeholder="${register?'至少10位':'输入密码'}"></label><p class="form-error" data-error role="alert" hidden></p><button class="btn btn-primary" type="submit">${register?'注册并登录':'登录'}${icon('arrow')}</button></form>${store.server?action(register?'已有账号，去登录':'创建一个账号','auth-switch','','text-button',''):''}<p class="form-help">请使用已分配的账号，体验凭据由团队单独提供。</p>`,false,'桃乡账号');
   }
   function updateAccount() {document.querySelector('[data-account-name]').textContent=api?.user?.name || '登录';}
   function assistant() {
     const messages=assistantMessages.length?assistantMessages:[{role:'assistant',text:'嗨，我是小桃满！想比较方案、看看四季成长，还是给朋友寄份心意？把你关心的告诉我。'}];
-    open(`<p class="eyebrow">你的桃园向导</p><h2>小桃满，听你说。</h2><div class="assistant-shortcuts">${['三档方案怎么选？','什么时候收到桃？','怎样寄心意卡？','怎样联系果园？'].map(x=>`<button type="button" data-do="ask-shortcut" data-value="${x}">${x}</button>`).join('')}</div><div class="assistant-messages" id="assistant-messages">${messages.map(x=>`<div class="assistant-message ${x.role}"><small>${x.role==='user'?'我':'小桃满 · 项目资料'}</small>${e(x.text)}</div>`).join('')}</div><form id="assistant-form" class="assistant-form"><label class="sr-only" for="assistant-input">想问小桃满的问题</label><input id="assistant-input" name="message" maxlength="500" placeholder="问问方案、成长或桃乡的事…" required><button class="btn btn-primary" type="submit" ${assistantBusy?'disabled':''}>发送${icon('arrow')}</button></form><div class="button-row">${link('比较方案','#plans','text-button')}${link('联系桃园','#mine/service','text-button')}${!api?.user?action('登录账号继续聊','account','','text-button','user'):''}</div>`,false,'问问小桃满');
+    open(`<p class="eyebrow">你的桃园向导</p><h2>小桃满，听你说。</h2><div class="assistant-shortcuts">${['三档方案怎么选？','什么时候收到桃？','怎样寄心意卡？','怎样联系果园？'].map(x=>`<button type="button" data-do="ask-shortcut" data-value="${x}">${x}</button>`).join('')}</div><div class="assistant-messages" id="assistant-messages">${messages.map(x=>`<div class="assistant-message ${x.role}"><small>${x.role==='user'?'我':e(x.label||'小桃满 · 项目资料')}</small>${e(x.text)}</div>`).join('')}</div><form id="assistant-form" class="assistant-form"><label class="sr-only" for="assistant-input">想问小桃满的问题</label><input id="assistant-input" name="message" maxlength="500" placeholder="问问方案、成长或桃乡的事…" required><button class="btn btn-primary" type="submit" ${assistantBusy?'disabled':''}>发送${icon('arrow')}</button></form><div class="button-row">${link('比较方案','#plans','text-button')}${link('联系桃园','#mine/service','text-button')}${!api?.user?action('登录账号继续聊','account','','text-button','user'):''}</div>`,false,'问问小桃满');
     body.querySelector('#assistant-messages')?.scrollTo({top:100000});
   }
   function localAnswer(q) {
     if(/坏|缺重|售后|联系|反馈/.test(q))return '在“我的桃园 → 服务与探园”写下问题，选择关联记录和问题类型。果园的回复与进度会回到同一页面。商城订单请在商城的对应订单中提交反馈。';
-    if(/礼|送|赠/.test(q))return '桃礼卡模拟方案为199元，含8斤礼盒与心意卡。在“寄份心意”填写称呼和祝福，生成领取链接寄给朋友；领取后，双方可在“我的桃园”继续看状态。';
-    if(/时间|收到|什么时候|几月|配送|运费/.test(q))return '本季面向2027年7月成熟采摘期，成长页按六个物候节点展示计划。159元、199元、299元模拟方案均包含广东省内包装配送，批次安排随当年物候更新。';
-    if(/方案|选择|价格|多少|认养|家庭/.test(q))return '家庭陪伴可看299元“认养一棵桃”：10斤鲜桃、成长档案与两张探园预约券；初次尝鲜可看159元“云养尝鲜箱”：5斤鲜桃；送礼可看199元“桃礼卡”：8斤礼盒与祝福领取。三档均为2027桃季模拟方案。';
+    if(/礼|送|赠/.test(q))return '桃礼卡方案为199元，含8斤礼盒与心意卡。在“寄份心意”填写称呼和祝福，生成领取链接寄给朋友；领取后，双方可在“我的桃园”继续看状态。';
+    if(/时间|收到|什么时候|几月|配送|运费/.test(q))return '本季面向2027年7月成熟采摘期，成长页按六个物候节点展示计划。159元、199元、299元方案均包含广东省内包装配送，批次安排随当年物候更新。';
+    if(/方案|选择|价格|多少|认养|家庭/.test(q))return '家庭陪伴可看299元“认养一棵桃”：10斤鲜桃、成长档案与两张探园预约券；初次尝鲜可看159元“云养尝鲜箱”：5斤鲜桃；送礼可看199元“桃礼卡”：8斤礼盒与祝福领取。三档均为2027桃季方案。';
     if(/成长|桃园|物候|记录/.test(q))return '打开“四季桃园”，从山野蓄力走到七月收获。每站可以看前期实拍、读成长情景、收藏节点，或者留下一句观察。我的桃园会保存你的参与与愿望。';
     if(/你好|嗨|在吗/.test(q))return '在呢！我是小桃满。你想先逛逛桃园，还是看看适合自己的那份季节方案？';
     return '可以从“认养一季”比较权益，在“四季桃园”看成长，或到“寄份心意”写张卡。也可以告诉我你关心的是价格、配送、成长还是礼赠，我陪你接着看。';
@@ -179,10 +179,9 @@
     q=String(q||'').trim();if(!q)return;
     if(assistantBusy)return;assistantBusy=true;assistantMessages.push({role:'user',text:q});assistant();
     try {
-      const seasonTopic=/云养|认养|方案|这一季|七月|成长|物候|礼卡|桃园|收获|运费|什么时候|收到|价格|售后|联系|反馈/.test(q);
-      const response=api?.user && !seasonTopic?await api.chat(q):{answer:localAnswer(q)};
-      assistantMessages.push({role:'assistant',text:response.answer || localAnswer(q)});
-    } catch(error) {assistantMessages.push({role:'assistant',text:'这次连接用时较长。'+localAnswer(q)});}
+      const response=store.server?await api.seasonChat(q):{answer:localAnswer(q),label:'静态体验 · 本地资料答复'};
+      assistantMessages.push({role:'assistant',text:response.answer || localAnswer(q),label:response.modelUsed?'AI辅助 · 本站公开资料':(response.label||'本站公开资料答复')});
+    } catch(error) {assistantMessages.push({role:'assistant',text:'连接暂未完成，以下为本地资料答复。'+localAnswer(q),label:'本地资料答复'});}
     finally{assistantBusy=false;if(dialog.open&&body.querySelector('#assistant-form'))assistant();}
   }
 
@@ -198,13 +197,13 @@
     if(name==='stage'){state.stage=value;if(state.route==='garden')location.hash='garden/'+value;else{const y=scrollY;render();scrollTo(0,y);}return;}
     if(name==='stage-task'){task(value);return;}
     if(name==='favorite'){await store.activity({type:'favorite',stageId:value,message:'',active:!V.activity(state,'favorite',value)});await refresh();toast(V.activity(state,'favorite',value)?'这一站，已收藏。':'已更新收藏。');return;}
-    if(name==='stage-logs'){const logs=state.data.logs.filter(x=>x.stageId===value);open(`<h2>${e(state.data.stages.find(x=>x.id===value).name)} · 成长手记</h2><p>前期实拍 / 模拟管护情景</p><div class="log-list">${logs.map(x=>`<button type="button" data-do="log" data-value="${e(x.id)}"><span>${e(x.date)}</span><b>${e(x.title)}</b><small>${e(x.treeId)}</small>${icon('arrow')}</button>`).join('')}</div>`,false,'成长手记');return;}
+    if(name==='stage-logs'){const logs=state.data.logs.filter(x=>x.stageId===value);open(`<h2>${e(state.data.stages.find(x=>x.id===value).name)} · 成长手记</h2><p>前期实拍 / 成长管护安排</p><div class="log-list">${logs.map(x=>`<button type="button" data-do="log" data-value="${e(x.id)}"><span>${e(x.date)}</span><b>${e(x.title)}</b><small>${e(x.treeId)}</small>${icon('arrow')}</button>`).join('')}</div>`,false,'成长手记');return;}
     if(name==='log'){const x=state.data.logs.find(x=>x.id===value);if(x)open(`${pill(x.date+' / 季节情景','pill-green')}<h2>${e(x.title)}</h2>${image(x.image,x.title,'detail-photo')}<p>${e(x.body)}</p><p class="form-help">${e(x.imageLabel)} · ${e(x.recordLabel)}<br>树牌：${e(x.treeId)} / ${e(x.author)}</p><div class="button-row">${action('参与这一站','stage-task',x.stageId,'btn btn-primary')}${action('收藏这一站','favorite',x.stageId,'text-button','heart')}</div>`,false,'桃园手记');return;}
     if(name==='wish'){wish();return;}
     if(name==='feedback'){feedback(value);return;}
     if(name==='visit'){visit();return;}
     if(name==='sample'){samples();return;}
-    if(name==='sample-pick'){state.sampleId=value;close();if(location.hash.startsWith('#mine'))render();else location.hash='mine';toast('已打开仿真用户的季节档案。');return;}
+    if(name==='sample-pick'){state.sampleId=value;close();if(location.hash.startsWith('#mine'))render();else location.hash='mine';toast('已打开真实用户的季节档案。');return;}
     if(name==='exit-sample'){state.sampleId='';const url=new URL(location.href);url.searchParams.delete('sample');history.replaceState(null,'',url);render();return;}
     if(name==='refresh'){await refresh();toast('桃园记录已更新。');return;}
     if(name==='certificate'){await card(value);return;}

@@ -15,6 +15,12 @@
   }
   var sources = [], nodes = document.querySelectorAll('script[data-peach-src]');
   for (i = 0; i < nodes.length; i++) sources.push(nodes[i].getAttribute('data-peach-src'));
+  // Fetch in parallel while retaining script execution order for shared globals.
+  for (i = 0; i < sources.length; i++) {
+    var preload = document.createElement('link'); preload.rel = 'preload'; preload.as = 'script';
+    preload.href = legacy ? base + 'assets/compat/js/' + sources[i].replace(/^\//, '') : base + sources[i].replace(/^\//, '');
+    document.head.appendChild(preload);
+  }
   function load(src, next) {
     var script = document.createElement('script'); script.src = src; script.async = false;
     script.onload = next;
